@@ -66,10 +66,9 @@ Squarespace until DNS changes. Greg pushes; Claude commits locally and stops.
 
 - **The form** on `/contact` posts to FormSubmit (formsubmit.co), which emails
   `hunter@audiospatials.com` and CCs `gregor@audiospatials.com`. No account.
-  The **first submission ever** sends an activation email to hunter@; nothing
-  arrives until he clicks it. After that, FormSubmit offers a random alias to
-  use in the form's `action` instead of the address, which keeps it out of
-  the page source — worth swapping in. With JS the form posts to the `/ajax/`
+  Activated 2026-09-27. The form's `action` uses FormSubmit's alias for
+  hunter@ (`c03ed932…`) rather than the address itself, so the address stays
+  out of the page source. The `_cc` to gregor@ is still plain text. With JS the form posts to the `/ajax/`
   endpoint and shows the result inline; without JS it posts normally and
   FormSubmit sends people back to `/contact?sent`.
 - **The mail icon** and every other mailto link go to `audiospatials@gmail.com`.
