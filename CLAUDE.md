@@ -50,9 +50,9 @@ one glyph: **the D** was fixed here on 2026-09-27 — its bowl was centred insid
 the bar, so the bar's corners stuck out past the curve. Visuospatials never
 draws a D, so it still has the old one; carry the fix over if it ever does.
 **`converge` also takes `opts.sig`** (added here 2026-09-27, Greg's idea): the
-front wordmark warms to `--sig` red over the last 3s of its run in, lands red,
-then flickers back to mono ~1s after landing (the `FLICKER` spans; it also does
-this on load). The red draws on a second canvas (`#geo-sig`) with normal blend,
+front wordmark flickers into `--sig` red over the last ~1.7s of its run in
+(`ARRIVE`), holds red through the 5s hold (and on load), and flickers back to
+mono over ~0.6s as it moves away (`LEAVE`). The red draws on a second canvas (`#geo-sig`) with normal blend,
 because the main canvas's `difference` blend turns red cyan over the photo. Off
 under reduced motion. Visuospatials doesn't have it; copy it over if wanted.
 And **the bottom bar on phones** (2026-09-27): `.exit` pads by

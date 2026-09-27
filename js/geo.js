@@ -189,8 +189,8 @@
         const HOLD = opts.hold || 0;
         const INK = opts.ink || '#f2f2ef', DIM = opts.dim || '#8c8c88';
         const cx = canvas.getContext('2d');
-        // opts.sig: { canvas, color }. The pieces warm to that color over the
-        // last seconds of the run in, arrive in it, then flicker back. It draws
+        // opts.sig: { canvas, color }. The pieces flicker into that color as
+        // they come in, hold in it, and flicker back out as they leave. It draws
         // on its own canvas, since the main one's blend would turn red to cyan.
         const sig = opts.sig && MOVING ? opts.sig : null;
         const sx = sig && sig.canvas.getContext('2d');
@@ -231,12 +231,16 @@
         }
 
         // 0 = its own tones, 1 = the signal color. t is seconds into the cycle;
-        // the word lands at t = 0. Flicker: [from, to) spans that show mono.
-        const FLICKER = [[0.9, 0.96], [1.04, 1.09], [1.13, 1.27], [1.31, 1.36], [1.4, Infinity]];
+        // the word lands at t = 0 and leaves at t = HOLD. It flickers on as it
+        // comes in (ARRIVE: red spans, seconds before landing), holds red, and
+        // flickers off as it leaves (LEAVE: red spans, seconds after leaving).
+        const ARRIVE = [[1.7, 1.62], [1.3, 1.2], [0.95, 0.88], [0.72, 0.55], [0.42, 0]];
+        const LEAVE = [[0, 0.1], [0.16, 0.2], [0.3, 0.42], [0.55, 0.6]];
+        const lit = (x, spans) => spans.some(([a, z]) => x >= Math.min(a, z) && x < Math.max(a, z));
         function tint(t) {
-            const end = CYCLE + HOLD, into = 3;
-            if (t > end - into) { const k = (t - (end - into)) / into; return k * k * (3 - 2 * k); }
-            return FLICKER.some(([a, z]) => t >= a && t < z) ? 0 : 1;
+            const end = CYCLE + HOLD;
+            if (t >= HOLD) return lit(end - t, ARRIVE) || lit(t - HOLD, LEAVE) ? 1 : 0;
+            return 1;
         }
 
         function render(sec) {
