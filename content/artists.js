@@ -61,7 +61,7 @@ const ARTISTS = [
             'Her successful shows have led her to share the stage with renowned artists such as David Löhlein, Cassie Raptor, Nikolina, LOLALITA, FUTUR IS OFFLINE, and MA ČKA.',
         ],
         listen: [
-            { kind: 'soundcloud', url: 'https://api.soundcloud.com/tracks/2149285848', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/luci-sucre-lyon-06-10-25', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
         ],
     },
     {
@@ -91,7 +91,7 @@ const ARTISTS = [
             'Margo Flow is a singer-songwriter based in Santa Cruz, CA. Her songs are a patchwork expression of the emotional ebb and flow of her internal landscape along with a calling for hope and appreciation of the natural world and sustainability. Her sound is inspired by 60s folk artists, like Bob Dylan and Joni Mitchell, and modern confessional artists, like Taylor Swift and Lizzy McAlpine. She tries to emulate the song of the natural world in her music through her lyrics and sonic world. Pop, folk, and acoustic genres inspire her sound. She hopes that her songs can serve as a gateway for inspiring others to take steps towards enlivening their own personal dreams and their dreams for the world at large.',
         ],
         listen: [
-            { kind: 'soundcloud', url: 'https://api.soundcloud.com/tracks/2042923028', title: 'carpe diem' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/carpe-diem', title: 'carpe diem' },
         ],
     },
     {
@@ -105,7 +105,7 @@ const ARTISTS = [
         ],
         listen: [
             { kind: 'youtube', url: 'https://www.youtube.com/watch?v=qLlb-5TRAX8', title: 'kröw, live' },
-            { kind: 'soundcloud', url: 'https://api.soundcloud.com/tracks/1586274567', title: 'LIVE @ Lollapalooza 2023 Budlight Backyard Stage' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stephkrow/steph-lolla-2023', title: 'LIVE @ Lollapalooza 2023 Budlight Backyard Stage' },
         ],
         photos: ['krow-live-6.webp', 'krow-live-5.webp', 'krow-press-4.webp', 'krow-show-9.webp'],
     },
@@ -120,7 +120,7 @@ const ARTISTS = [
             'An inter-dimensional pontificator adventuring through time and space, manifested into a physical form in our shared dimension and instilled with the conviction to share perspective through audio artform is where we find our artist. Born and raised in St. Louis, Stäzrad busted out of the midwest and hit the road full time to pursue a life of nomadic adventure chasing rock climbs and rock shows across the North American West. The siren song of the West Coast has finally lured Stäz into a California dreamin’ era that now establishes East Bay as home-base.',
         ],
         listen: [
-            { kind: 'soundcloud', url: 'https://api.soundcloud.com/playlists/1732839255', title: 'Originals', sub: 'Playlist' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/sets/originals', title: 'Originals', sub: 'Playlist' },
         ],
     },
     {

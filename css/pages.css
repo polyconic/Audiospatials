@@ -182,8 +182,11 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 .track-title { font-size: 15px; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .track[data-state="playing"] .track-title { color: var(--sig); }
 .track-time { white-space: nowrap; font-variant-numeric: tabular-nums; }
-.track-time a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
-.track-time a:hover { color: var(--sig); }
+/* The way out to SoundCloud, always there under the title, with the site's small arrow. */
+.track-sub a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.track-sub a::after { content: ""; display: inline-block; width: 0.5em; height: 0.5em; margin-left: 0.6em;
+                      vertical-align: 0.22em; background: currentColor; clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.track-sub a:hover, .track-sub a:focus-visible { color: var(--sig); }
 .track-bar { grid-column: 1 / -1; height: 17px; margin-top: 6px; position: relative; cursor: pointer; }
 .track-bar::before, .track-bar span { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 1px; }
 .track-bar::before { background: var(--rule); }

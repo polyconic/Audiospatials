@@ -81,8 +81,9 @@ function track(item) {
     return `<div class="track" data-src="${esc(src)}">` +
         `<button type="button" class="track-play" aria-label="${esc('Play ' + item.title)}"><i></i></button>` +
         `<div class="track-name"><span class="track-title">${esc(item.title)}</span>` +
-        `<span class="track-sub label">${esc(item.sub || 'SoundCloud')}</span></div>` +
-        `<span class="track-time label">${page ? `<a href="${esc(page)}" target="_blank" rel="noopener">SoundCloud</a>` : ''}</span>` +
+        `<span class="track-sub label">${item.sub ? esc(item.sub) + ' · ' : ''}` +
+        (page ? `<a href="${esc(page)}" target="_blank" rel="noopener">SoundCloud</a>` : 'SoundCloud') + `</span></div>` +
+        `<span class="track-time label"></span>` +
         `<div class="track-bar" aria-hidden="true"><span></span></div></div>`;
 }
 
