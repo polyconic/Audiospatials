@@ -48,7 +48,12 @@ branch". The deployed site leaves out `tools/`, `.github/`, `CLAUDE.md` and
 `~/Documents/GitHub/visuospatials` (there they sit at the root), unchanged except
 one glyph: **the D** was fixed here on 2026-09-27 — its bowl was centred inside
 the bar, so the bar's corners stuck out past the curve. Visuospatials never
-draws a D, so it still has the old one; carry the fix over if it ever does. Read that repo's CLAUDE.md for the geometric alphabet, the
+draws a D, so it still has the old one; carry the fix over if it ever does.
+And **the bottom bar on phones** (2026-09-27): `.exit` pads by
+`env(safe-area-inset-bottom)` and paints `--bg` below itself (`.exit::after`),
+with `viewport-fit=cover` on every page (and in the build's artist template),
+so the page can't show between the bar and the screen edge while Safari's
+toolbar slides; the corner marks keep clear of a landscape notch the same way. Read that repo's CLAUDE.md for the geometric alphabet, the
 corner marks, the exit bar, view transitions and prerendering — all the same
 here. If one of these changes there, copy it over.
 
