@@ -84,6 +84,8 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 /* Photos further down a page keep their own shape. */
 .photos { columns: 2; column-gap: clamp(14px, 2vw, 28px); margin-top: clamp(24px, 5vh, 54px); }
 @media (max-width: 620px) { .photos { columns: 1; } }
+/* A single photo takes the whole width rather than half of it. */
+.photos:has(> img:only-child) { columns: 1; }
 .photos img { display: block; width: 100%; height: auto; margin-bottom: clamp(14px, 2vw, 28px);
               break-inside: avoid; background: var(--rule); }
 
