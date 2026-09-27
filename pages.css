@@ -105,3 +105,8 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 /* Rows whose right side is a sentence, not a label. */
 .rows.plain .u { text-transform: none; letter-spacing: 0; font-size: 14px; line-height: 1.5;
                  max-width: 44ch; }
+
+/* The exit bar, centered: sections and the copyright in one centered row.
+   base.css keeps the Visuospatials layout; this overrides it here only. */
+.exit { justify-content: center; text-align: center; }
+.exit .spacer { display: none; }
