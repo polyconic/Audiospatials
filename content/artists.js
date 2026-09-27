@@ -112,7 +112,8 @@ const ARTISTS = [
             'Margo Flow is a singer-songwriter based in Santa Cruz, CA. Her songs are a patchwork expression of the emotional ebb and flow of her internal landscape along with a calling for hope and appreciation of the natural world and sustainability. Her sound is inspired by 60s folk artists, like Bob Dylan and Joni Mitchell, and modern confessional artists, like Taylor Swift and Lizzy McAlpine. She tries to emulate the song of the natural world in her music through her lyrics and sonic world. Pop, folk, and acoustic genres inspire her sound. She hopes that her songs can serve as a gateway for inspiring others to take steps towards enlivening their own personal dreams and their dreams for the world at large.',
         ],
         listen: [
-            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/carpe-diem', title: 'carpe diem' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/children', title: 'children' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/nyc', title: 'nyc' },
         ],
     },
     {
