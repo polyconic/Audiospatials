@@ -227,3 +227,21 @@ section:has(> .tiles.cube) > .label { text-align: center; }
 .track.native .track-frame iframe { height: 120px; }
 .track.native[data-kind="spotify"] .track-frame iframe { height: 152px; border-radius: 12px; }
 .track.native .track-bar { display: none; }
+
+/* Page titles breathe out as you scroll: letter-spacing opens from tight to
+   a little looser over the first quarter of a screen, and closes again on
+   the way back up. Tied to the scroll, not a timer. Browsers without
+   scroll-linked animation (and anyone who asks for less motion) keep it still. */
+@supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .wrap > h1 {
+            animation: title-open linear both;
+            animation-timeline: scroll(root block);
+            /* Done by the time the title has scrolled off, so all of it is seen. */
+            animation-range: 0 25vh;
+        }
+    }
+}
+@keyframes title-open { to { letter-spacing: 0.03em; } }
+/* A title that already wraps (Contact's, on narrower screens) stays still, or it re-wraps mid-scroll. */
+.wrap > h1.still { animation: none; }
