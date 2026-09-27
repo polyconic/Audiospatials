@@ -66,7 +66,8 @@ function embed(kind, url) {
         return { src: `https://open.spotify.com/embed/${m[1]}/${m[2]}?theme=0`, shape: 'audio', tall: m[1] !== 'track', page: url };
     }
     return { src: 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(url) + '&color=%23ff2d00&auto_play=true&visual=false&show_artwork=true',
-             shape: 'audio', tall: url.includes('/playlists/') };
+             shape: 'audio', tall: url.includes('/playlists/') || url.includes('/sets/'),
+             page: /^https:\/\/soundcloud\.com\//.test(url) ? url : undefined };
 }
 
 // A button that becomes the player when clicked (js/players.js). The title and
