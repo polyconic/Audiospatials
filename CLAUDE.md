@@ -66,7 +66,7 @@ here. If one of these changes there, copy it over.
 | `<slug>.html` | One per artist, **entirely built**. Same slugs as the old Squarespace site so old links hold. |
 | `music.html` | Released-on-Audiospatials grid, then videos (built blocks). |
 | `studio.html` | What we do, Recent work (releases with a `credit`, in `STUDIO_ORDER`), Start a project. |
-| `about.html` | The About text verbatim from the old site, plus the two founders. |
+| `about.html` | The About text verbatim from the old site, with the two founders beside it, staggered as on the old Squarespace page: Hunter high at the far right, Gregor lower and inset (`margin-top: 34%`, a share of the pair's width so it scales). Stacks under the text on a phone, stagger kept. |
 | `contact.html` | The form (see Contact) and elsewhere. |
 | `404.html` | The 404 in the alphabet. |
 | `css/pages.css` | Styles the inside pages share (heading, rows, tiles, players). |

@@ -18,12 +18,26 @@
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
     <style>
-        .founders { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 28px);
-                    margin-top: 16px; max-width: 900px; }
-        .founders figure img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover;
-                               background: var(--rule); }
+        /* The old site's About layout: words on the left, the two founders on
+           the right, staggered — Hunter high at the far right, Gregor lower
+           and inset. The stagger holds on a phone, under the words. */
+        .about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+                 gap: clamp(30px, 6vw, 110px); align-items: start;
+                 margin-top: clamp(30px, 6vh, 60px); }
+        .about .prose { margin-top: clamp(0px, 8vw, 120px); }
+        .founders { display: grid; grid-template-columns: repeat(2, 1fr);
+                    gap: clamp(14px, 3vw, 48px); align-items: start; }
+        /* Down by about half a photo; % of the pair's width, which the photos scale with. */
+        .founders figure:first-child { margin-top: 34%; }
+        .founders img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover;
+                        background: var(--rule); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .founders a { display: block; overflow: hidden; }
+        .founders a:hover img, .founders a:focus-visible img { transform: scale(1.02); }
         .founders figcaption { padding-top: 10px; }
-        @media (max-width: 480px) { .founders { grid-template-columns: 1fr; } }
+        @media (max-width: 760px) {
+            .about { grid-template-columns: 1fr; }
+            .about .prose { margin-top: 0; }
+        }
     </style>
 </head>
 <body>
@@ -37,21 +51,20 @@
 <div class="wrap">
     <h1 data-arrive>About<em>.</em></h1>
 
-    <div class="prose">
-        <p>Audiospatials is the collaborative project of Gregor Egan and Hunter Bowersmith - two musicians whose paths crossed at a party in Santa Cruz, CA, where they bonded over a mutual love for experimental sounds and genre-defying music.</p>
-        <p>Gregor, a Chicago-born and trained jazz pianist, began producing IDM and experimental electronic music in 2020. His work gradually evolved into dark and hypnotic techno. He is based in LA.</p>
-        <p>Hunter, a self-taught guitarist, is the creative force behind FENNEC, a project that blends rock, folk, and electronic sounds. He is currently based in Santa Cruz, California.</p>
-        <p>Audiospatials was born to create a space where live instrumentation, music production, mixing, and mastering for all artists comes together. Creative direction in all forms.</p>
-        <p><a href="https://visuospatials.com/" rel="noopener" target="_blank">Visuospatials</a> is the design and visual identity behind the artists.</p>
-    </div>
-
-    <section>
-        <p class="label">Founders</p>
-        <div class="founders">
-            <figure><a href="/gregor-egan"><img src="/img/artists/gregor-egan-live.webp" alt="Gregor Egan" loading="lazy"></a><figcaption class="label">Gregor Egan &mdash; Los Angeles</figcaption></figure>
-            <figure><a href="/fennec"><img src="/img/artists/fennec.webp" alt="Hunter Bowersmith" loading="lazy"></a><figcaption class="label">Hunter Bowersmith &mdash; Santa Cruz</figcaption></figure>
+    <div class="about">
+        <div class="prose">
+            <p>Audiospatials is the collaborative project of Gregor Egan and Hunter Bowersmith - two musicians whose paths crossed at a party in Santa Cruz, CA, where they bonded over a mutual love for experimental sounds and genre-defying music.</p>
+            <p>Gregor, a Chicago-born and trained jazz pianist, began producing IDM and experimental electronic music in 2020. His work gradually evolved into dark and hypnotic techno. He is based in LA.</p>
+            <p>Hunter, a self-taught guitarist, is the creative force behind FENNEC, a project that blends rock, folk, and electronic sounds. He is currently based in Santa Cruz, California.</p>
+            <p>Audiospatials was born to create a space where live instrumentation, music production, mixing, and mastering for all artists comes together. Creative direction in all forms.</p>
+            <p><a href="https://visuospatials.com/" rel="noopener" target="_blank">Visuospatials</a> is the design and visual identity behind the artists.</p>
         </div>
-    </section>
+
+        <div class="founders" aria-label="Founders">
+            <figure><a href="/gregor-egan"><img src="/img/artists/gregor-egan-live.webp" alt="Gregor Egan" decoding="async"></a><figcaption class="label">Gregor Egan &mdash; Los Angeles</figcaption></figure>
+            <figure><a href="/fennec"><img src="/img/artists/fennec.webp" alt="Hunter Bowersmith" decoding="async"></a><figcaption class="label">Hunter Bowersmith &mdash; Santa Cruz</figcaption></figure>
+        </div>
+    </div>
 </div>
 
 <nav class="exit">
