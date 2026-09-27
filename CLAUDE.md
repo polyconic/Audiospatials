@@ -14,7 +14,10 @@ that way: new content goes in a data file, not hard-coded into a page.
 ## Shared with Visuospatials
 
 `css/base.css`, `js/geo.js` and `js/nav.js` are copied from
-`~/Documents/GitHub/visuospatials` unchanged (there they sit at the root). Read that repo's CLAUDE.md for the geometric alphabet, the
+`~/Documents/GitHub/visuospatials` (there they sit at the root), unchanged except
+one glyph: **the D** was fixed here on 2026-09-27 — its bowl was centred inside
+the bar, so the bar's corners stuck out past the curve. Visuospatials never
+draws a D, so it still has the old one; carry the fix over if it ever does. Read that repo's CLAUDE.md for the geometric alphabet, the
 corner marks, the exit bar, view transitions and prerendering — all the same
 here. If one of these changes there, copy it over.
 

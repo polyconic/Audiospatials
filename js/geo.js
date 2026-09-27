@@ -45,7 +45,10 @@
         A: { w: 0.86, parts: vee.map(flip) },
         B: { w: 0.47, parts: [rect(0, 0, T, 1), half(T, 0.25, 0.25, -PI / 2, PI / 2), half(T, 0.75, 0.25, -PI / 2, PI / 2)] },
         C: { w: 0.8, parts: [ring(0.45, 0.5, 0.45, 0.25, PI / 4, 7 * PI / 4)] },
-        D: { w: 0.6, parts: [rect(0, 0, T, 1), ring(0.1, 0.5, 0.5, 0.3, -PI / 2, PI / 2)] },
+        // The bowl is centred on the bar's right edge, so it leaves the bar
+        // flush at the top and bottom. Centred inside the bar, the bar's corners
+        // stuck out past the curve.
+        D: { w: 0.7, parts: [rect(0, 0, T, 1), ring(T, 0.5, 0.5, 0.3, -PI / 2, PI / 2)] },
         E: { w: 0.56, parts: [rect(0, 0, T, 1), rect(T, 0, 0.36, T), rect(T, 0.4, 0.26, T), rect(T, 0.8, 0.36, T)] },
         F: { w: 0.56, parts: [rect(0, 0, T, 1), rect(T, 0, 0.36, T), rect(T, 0.4, 0.26, T)] },
         G: { w: 0.9, parts: [ring(0.45, 0.5, 0.45, 0.25, 0, 7 * PI / 4), rect(0.5, 0.4, 0.4, T)] },
