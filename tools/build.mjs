@@ -171,8 +171,9 @@ function artistPage(a) {
     const sc = (a.listen || []).filter(l => l.kind === 'soundcloud' || l.kind === 'spotify');
     const rest = (a.listen || []).filter(l => l.kind === 'youtube');
     body.push(`    <h1 class="name" data-arrive>${esc(a.name)}<em>.</em></h1>`);
-    body.push(`    <div class="artist-top${a.flip ? ' flip' : ''}">
-        <div class="artist-photo"><img src="/img/artists/${a.hero || a.photo}" alt="${esc(a.name)}" decoding="async"></div>
+    const wide = /\.(mp4|webm|mov)$/i.test(a.hero || '');
+    body.push(`    <div class="artist-top${a.flip ? ' flip' : ''}${wide ? ' wide' : ''}">
+        <div class="artist-photo">${/\.(mp4|webm|mov)$/i.test(a.hero || '') ? media(a.hero, a.name) : `<img src="/img/${(a.hero || a.photo).includes('/') ? '' : 'artists/'}${a.hero || a.photo}" alt="${esc(a.name)}" decoding="async">`}</div>
         <div class="artist-text">${a.tagline ? `\n            <p class="lede">${esc(a.tagline)}</p>` : ''}${a.bio && a.bio.length ? `\n            <div class="prose">\n${a.bio.map(p => `                <p>${esc(p)}</p>`).join('\n')}\n            </div>` : ''}${sc.length ? `
             <div class="listen-here">
                 <p class="label">Listen</p>

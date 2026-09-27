@@ -75,10 +75,14 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 /* Artist pages: the photo beside the words, stacked on a phone. */
 .artist-top { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
               gap: clamp(24px, 5vw, 80px); align-items: start; margin-top: clamp(26px, 5vh, 54px); }
-.artist-photo img { display: block; width: 100%; height: auto; background: var(--rule); }
+.artist-photo img, .artist-photo video { display: block; width: 100%; height: auto; background: var(--rule); }
 .artist-text .lede { margin-top: 0; }
 .artist-text .prose { margin-top: 0; }
 .artist-text .lede + .prose { margin-top: clamp(22px, 4vh, 40px); }
+/* wide: a clip as the main asset runs the full width, the words under it. */
+.artist-top.wide { grid-template-columns: 1fr; }
+.artist-top.wide .artist-text { max-width: 760px; }
+
 /* flip: the photo on the right. On a phone it still comes first. */
 .artist-top.flip { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
 .artist-top.flip .artist-photo { order: 2; }
@@ -98,7 +102,8 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 .more .note { margin-left: auto; margin-right: auto; }
 
 /* Four releases make a square: two by two. */
-.tiles.cube { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+.tiles.cube { grid-template-columns: repeat(2, 1fr); max-width: 760px; margin-left: auto; margin-right: auto; }
+section:has(> .tiles.cube) > .label { text-align: center; }
 
 /* A single photo takes the whole width rather than half of it. */
 .photos:has(> img:only-child) { columns: 1; }

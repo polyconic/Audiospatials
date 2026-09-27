@@ -9,6 +9,7 @@
    description one or two sentences for Google and link previews
    photo       the picture on the Artists grid, in img/artists/. Also the one
                beside the bio, unless `hero` names a different one for the page
+               (a photo, or a clip like 'video/luci-red.mp4')
    tagline     optional, one short line under the name
    bio         paragraphs, one string each
    photos      optional, more pictures further down the page. A name with a
@@ -60,6 +61,7 @@ const ARTISTS = [
         description: 'Berlin DJ, originally from California and formed in the Lyon underground. Dark, hypnotic sets drawn from post-rock and goth.',
         name: 'LUCI',
         photo: 'luci.webp',
+        hero: 'video/luci-red.mp4',
         bio: [
             'LUCI is a Berlin-based DJ, first emerging from the underground Lyon scene and originally from California. She draws inspiration from post-rock and gothic rock. Her captivating, dark, and hypnotic sets have taken her across France, with performances in cities like Paris, Lyon, and Montpellier and in 2026, Berlin.',
             'Her successful shows have led her to share the stage with renowned artists such as David Löhlein, Cassie Raptor, Nikolina, LOLALITA, FUTUR IS OFFLINE, and MA ČKA.',
@@ -67,7 +69,7 @@ const ARTISTS = [
         listen: [
             { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/luci-sucre-lyon-06-10-25', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
         ],
-        photos: ['luci-stage.webp', 'video/luci-crowd.mp4', 'video/luci-red.mp4'],
+        photos: ['luci-stage.webp', 'video/luci-crowd.mp4', 'luci.webp'],
     },
     {
         slug: 'gregor-egan',
