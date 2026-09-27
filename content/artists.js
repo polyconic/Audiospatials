@@ -128,6 +128,9 @@ const ARTISTS = [
             'An inter-dimensional pontificator adventuring through time and space, manifested into a physical form in our shared dimension and instilled with the conviction to share perspective through audio artform is where we find our artist. Born and raised in St. Louis, Stäzrad busted out of the midwest and hit the road full time to pursue a life of nomadic adventure chasing rock climbs and rock shows across the North American West. The siren song of the West Coast has finally lured Stäz into a California dreamin’ era that now establishes East Bay as home-base.',
         ],
         listen: [
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/gist-ode-to-mac-miller', title: 'gist (ode to mac miller)' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/they-themestry', title: 'they/themestry' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/salad-for-life-tk0-mp3', title: 'salad for life tk0.mp3' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/sets/originals', title: 'Originals', sub: 'Playlist' },
         ],
     },
