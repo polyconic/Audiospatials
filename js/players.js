@@ -3,8 +3,10 @@
 
    YouTube: the button becomes YouTube's own player.
 
-   SoundCloud and Spotify: our own row (.track). The first press loads the
-   service's embed API and its player out of sight, and the row drives it:
+   SoundCloud and Spotify: our own row (.track). As a row nears the screen,
+   the service's embed API and its player load out of sight, unstarted, so a
+   single tap can start it (Safari won't allow sound that starts later than
+   the tap). The row drives it:
    play and pause, elapsed and total time, a hairline that fills as it plays
    and seeks when clicked. One track plays at a time across the page. If the
    browser won't start the hidden player (iOS can refuse), the row shows the
@@ -75,8 +77,9 @@
     const spotifyApi = () => spApi || (spApi = script('https://open.spotify.com/embed/iframe-api/v1',
         ok => { window.onSpotifyIframeApiReady = ok; }));
 
-    // Each engine loads its player into `slot`, starts it, and reports back
-    // through `on`; it returns controls, or throws if its API won't load.
+    // Each engine loads its player into `slot` without starting it, reports
+    // back through `on`, and resolves with its controls once the player is
+    // ready — or rejects if the service's API won't load.
     const engines = {
         async soundcloud(row, slot, on) {
             const frame = document.createElement('iframe');
@@ -87,26 +90,32 @@
             const SC = await soundcloudApi();
             const w = SC.Widget(frame), E = SC.Widget.Events;
             let duration = 0;
-            w.bind(E.READY, () => { w.getDuration(d => { duration = d; on.progress(0, d); }); w.play(); on.ready(); });
             w.bind(E.PLAY, () => { w.getDuration(d => { duration = d; }); on.play(); });
             w.bind(E.PAUSE, on.pause);
             w.bind(E.FINISH, () => { on.pause(); on.progress(0, duration); });
             w.bind(E.PLAY_PROGRESS, p => on.progress(p.currentPosition, duration));
-            return { play: () => w.play(), pause: () => w.pause(), seek: ms => w.seekTo(ms) };
+            return new Promise(done => w.bind(E.READY, () => {
+                w.getDuration(d => { duration = d; on.progress(0, d); });
+                done({ play: () => w.play(), pause: () => w.pause(), seek: ms => w.seekTo(ms) });
+            }));
         },
         async spotify(row, slot, on) {
             const IFrameAPI = await spotifyApi();
             const el = document.createElement('div');
             slot.append(el);
             return new Promise(done => IFrameAPI.createController(el, { uri: row.dataset.uri, width: '100%', height: 152 }, c => {
-                let paused = true;
-                c.addListener('ready', () => { c.play(); on.ready(); });
+                let paused = true, begun = false;
                 c.addListener('playback_update', e => {
                     const d = e.data;
                     if (d.isPaused !== paused) { paused = d.isPaused; paused ? on.pause() : on.play(); }
                     on.progress(d.position, d.duration);
                 });
-                done({ play: () => c.resume(), pause: () => c.pause(), seek: ms => c.seek(ms / 1000) });
+                c.addListener('ready', () => done({
+                    // The first play starts the release; after that, carry on where it stopped.
+                    play: () => { if (begun) c.resume(); else { begun = true; c.play(); } },
+                    pause: () => c.pause(),
+                    seek: ms => c.seek(ms / 1000),
+                }));
             }));
         },
     };
@@ -123,15 +132,15 @@
         const fill = row.querySelector('.track-bar span');
         const bar = row.querySelector('.track-bar');
         const title = row.querySelector('.track-title').textContent;
-        let ctl = null, loading = false, playing = false, started = false, duration = 0;
+        let ctl = null, prep = null, want = false, playing = false, started = false, duration = 0, watch = 0;
 
         const state = s => { row.dataset.state = s; btn.setAttribute('aria-label', (s === 'playing' ? 'Pause ' : 'Play ') + title); };
         const slot = document.createElement('div');
         slot.className = 'track-frame';
+        const native = () => { row.classList.add('native'); state('idle'); };
         const on = {
             title,
-            ready: () => setTimeout(() => { if (!started) { row.classList.add('native'); state('idle'); } }, 3500),
-            play: () => { started = playing = true; state('playing'); row.classList.remove('native'); all.forEach(t => t.row !== row && t.pause()); },
+            play: () => { clearTimeout(watch); started = playing = true; state('playing'); row.classList.remove('native'); all.forEach(t => t.row !== row && t.pause()); },
             pause: () => { playing = false; if (started) state('paused'); },
             progress: (pos, dur) => {
                 if (dur) { duration = dur; fill.style.transform = `scaleX(${Math.min(1, pos / dur)})`; }
@@ -139,23 +148,48 @@
             },
         };
 
-        btn.addEventListener('click', async () => {
-            if (ctl) { playing ? ctl.pause() : ctl.play(); return; }
-            if (loading) return;
-            loading = true;
-            state('loading');
+        // Load the player, unstarted, before anyone presses play: Safari only
+        // lets sound start inside the tap itself, so by the time of the tap the
+        // player has to be ready to take it.
+        const prepare = () => prep || (prep = (async () => {
             row.append(slot);
             try { ctl = await engines[row.dataset.kind](row, slot, on); }
-            catch (err) { row.classList.add('native'); state('idle'); }
+            catch (err) { native(); return; }
+            if (want) start();
+        })());
+
+        // Play from a tap. If nothing has started a few seconds later, the
+        // browser refused: show the service's own player to tap instead.
+        const start = () => {
+            ctl.play();
+            clearTimeout(watch);
+            watch = setTimeout(() => { if (!playing) native(); }, 3500);
+        };
+
+        btn.addEventListener('click', () => {
+            if (ctl) { playing ? ctl.pause() : start(); return; }
+            want = true;
+            state('loading');
+            prepare();
         });
         bar.addEventListener('click', e => {
             if (!ctl || !duration) return;
             const r = bar.getBoundingClientRect();
             ctl.seek(((e.clientX - r.left) / r.width) * duration);
-            if (!playing) ctl.play();
+            if (!playing) start();
         });
 
         state('idle');
-        return { row, pause: () => ctl && playing && ctl.pause() };
+        return { row, prepare, pause: () => ctl && playing && ctl.pause() };
     });
+
+    // Get each player ready as its row nears the screen.
+    if ('IntersectionObserver' in window) {
+        const near = new IntersectionObserver(entries => entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            near.unobserve(e.target);
+            all.find(t => t.row === e.target).prepare();
+        }), { rootMargin: '300px' });
+        rows.forEach(r => near.observe(r));
+    } else all.forEach(t => t.prepare());
 })();

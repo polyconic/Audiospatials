@@ -81,7 +81,7 @@ function track(item) {
         page = item.url;
     } else {
         const src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(item.url) +
-            '&auto_play=true&visual=false&show_artwork=false&hide_related=true&show_comments=false' +
+            '&auto_play=false&visual=false&show_artwork=false&hide_related=true&show_comments=false' +
             '&show_user=false&show_reposts=false&show_teaser=false&color=%23ff2d00';
         data = `data-kind="soundcloud" data-src="${esc(src)}"`;
         page = /^https:\/\/soundcloud\.com\//.test(item.url) ? item.url : null;

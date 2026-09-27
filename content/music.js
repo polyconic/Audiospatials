@@ -26,9 +26,11 @@ const RELEASES = [
       url: 'https://open.spotify.com/album/7ljzUgOt1JfiFfmEvd7rZy',
       credit: 'produced, mixed and mastered by Gregor Egan' },
     { title: 'Love You', artist: 'WOLFMANWOOF', cover: 'love-you.webp',
-      url: 'https://open.spotify.com/album/7oEeCfFE0QxOwHwywky7jn' },
+      url: 'https://open.spotify.com/album/7oEeCfFE0QxOwHwywky7jn',
+      credit: 'produced and mixed by Hunter Bowersmith' },
     { title: 'Moonrise EP', artist: 'WOLFMANWOOF', cover: 'moonrise.webp',
-      url: 'https://open.spotify.com/album/5MZyYI2rvFfai4WuTNTRF7' },
+      url: 'https://open.spotify.com/album/5MZyYI2rvFfai4WuTNTRF7',
+      credit: 'produced, mixed and mastered by Gregor Egan' },
     { title: 'Highwater', artist: 'WOLFMANWOOF', cover: 'highwater.webp',
       url: 'https://open.spotify.com/album/5cUgPduiXyYyJaNWUkYRT9',
       credit: 'produced by Hunter Bowersmith, mixed and mastered by Gregor Egan' },
@@ -39,7 +41,7 @@ const RELEASES = [
 ];
 
 // Recent work on the Studio page, by title.
-const STUDIO_ORDER = ['Blueberry Pie EP', 'Latency', 'Highwater', 'Shifter EP', 'Medium EP'];
+const STUDIO_ORDER = ['Blueberry Pie EP', 'Latency', 'Highwater', 'Love You', 'Moonrise EP', 'Shifter EP', 'Medium EP'];
 
 const VIDEOS = [
     { id: '5LAzm3qv7Lk', title: 'Dragonfly', artist: 'CANARY' },
