@@ -74,7 +74,8 @@ Squarespace until DNS changes. Greg pushes; Claude commits locally and stops.
   page source. With JS the form posts to the `/ajax/` endpoint and shows the
   result inline; without JS it posts normally and FormSubmit sends people back
   to `/contact?sent`.
-- **The mail icon** and every other mailto link go to `audiospatials@gmail.com`.
+- **The mail icon** and every other mailto link go to `hello@audiospatials.com`.
+  Nothing on the site names the Gmail address or a personal alias.
 - `@audiospatials.com` mail works through **Namecheap email forwarding** (MX
   `eforward*.registrar-servers.com`). When switching the site's DNS to GitHub
   Pages, change only the A / CNAME records — **leave the MX and TXT records
