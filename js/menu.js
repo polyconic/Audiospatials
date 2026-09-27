@@ -19,6 +19,15 @@
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + OPEN + '</svg>';
     corner.append(btn);
 
+    // The copyright stays out of the dropdown; on phones it closes the page instead.
+    const copy = bar.querySelector('.copy');
+    if (copy) {
+        const foot = document.createElement('p');
+        foot.className = 'footcopy label';
+        foot.textContent = copy.textContent;
+        document.body.append(foot);
+    }
+
     const set = open => {
         document.documentElement.classList.toggle('menu-open', open);
         btn.setAttribute('aria-expanded', String(open));
