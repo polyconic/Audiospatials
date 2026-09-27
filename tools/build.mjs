@@ -70,19 +70,28 @@ function embed(kind, url) {
              page: /^https:\/\/soundcloud\.com\//.test(url) ? url : undefined };
 }
 
-// SoundCloud gets our own row instead of its white widget: play button, title,
+// SoundCloud and Spotify get our own row instead of their widgets: play button, title,
 // time, and a hairline that fills as it plays. js/players.js drives SoundCloud's
 // widget out of sight once play is pressed; nothing loads before that.
 function track(item) {
-    const src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(item.url) +
-        '&auto_play=true&visual=false&show_artwork=false&hide_related=true&show_comments=false' +
-        '&show_user=false&show_reposts=false&show_teaser=false&color=%23ff2d00';
-    const page = /^https:\/\/soundcloud\.com\//.test(item.url) ? item.url : null;
-    return `<div class="track" data-src="${esc(src)}">` +
+    let data, page;
+    if (item.kind === 'spotify') {
+        const m = item.url.match(/open\.spotify\.com\/(album|artist|track|playlist)\/(\w+)/);
+        data = `data-kind="spotify" data-uri="spotify:${m[1]}:${m[2]}"`;
+        page = item.url;
+    } else {
+        const src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(item.url) +
+            '&auto_play=true&visual=false&show_artwork=false&hide_related=true&show_comments=false' +
+            '&show_user=false&show_reposts=false&show_teaser=false&color=%23ff2d00';
+        data = `data-kind="soundcloud" data-src="${esc(src)}"`;
+        page = /^https:\/\/soundcloud\.com\//.test(item.url) ? item.url : null;
+    }
+    const where = NAMES[item.kind];
+    return `<div class="track" ${data}>` +
         `<button type="button" class="track-play" aria-label="${esc('Play ' + item.title)}"><i></i></button>` +
         `<div class="track-name"><span class="track-title">${esc(item.title)}</span>` +
         `<span class="track-sub label">${item.sub ? esc(item.sub) + ' · ' : ''}` +
-        (page ? `<a href="${esc(page)}" target="_blank" rel="noopener">SoundCloud</a>` : 'SoundCloud') + `</span></div>` +
+        (page ? `<a href="${esc(page)}" target="_blank" rel="noopener">${where}</a>` : where) + `</span></div>` +
         `<span class="track-time label"></span>` +
         `<div class="track-bar" aria-hidden="true"><span></span></div></div>`;
 }
@@ -116,6 +125,29 @@ const exitBar = here => `<nav class="exit">
 
 // ---------- artist pages
 
+// Width and height from a .webp header, so a clip holds its shape before it loads.
+function webpSize(f) {
+    const b = fs.readFileSync(path.join(ROOT, f));
+    const chunk = b.toString('ascii', 12, 16);
+    if (chunk === 'VP8X') return [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+    if (chunk === 'VP8 ') return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+    if (chunk === 'VP8L') { const v = b.readUInt32LE(21); return [1 + (v & 0x3fff), 1 + ((v >> 14) & 0x3fff)]; }
+    return null;
+}
+
+// An entry in `photos`: a file in img/artists/, or a path under img/ (like
+// 'video/luci-red.mp4'). Videos play silent and looping, only while in view
+// (js/players.js), with a still of the same name (.webp) until then.
+function media(f, name) {
+    const src = '/img/' + (f.includes('/') ? f : 'artists/' + f);
+    if (/\.(mp4|webm|mov)$/i.test(f)) {
+        const poster = src.replace(/\.\w+$/, '.webp');
+        const size = exists(poster.slice(1)) && webpSize(poster.slice(1));
+        return `<video src="${src}"${size ? ` poster="${poster}" width="${size[0]}" height="${size[1]}"` : ''} muted loop playsinline preload="none" data-inview aria-label="${esc(name)}"></video>`;
+    }
+    return `<img src="${src}" alt="${esc(name)}" loading="lazy" decoding="async">`;
+}
+
 const releasesBy = name => RELEASES.filter(r => r.artist === name);
 
 function artistLD(a) {
@@ -136,32 +168,32 @@ function artistPage(a) {
     const body = [];
     // SoundCloud rows sit under the bio, where people are already reading;
     // the bigger Spotify and YouTube players get their own section below.
-    const sc = (a.listen || []).filter(l => l.kind === 'soundcloud');
-    const rest = (a.listen || []).filter(l => l.kind !== 'soundcloud');
+    const sc = (a.listen || []).filter(l => l.kind === 'soundcloud' || l.kind === 'spotify');
+    const rest = (a.listen || []).filter(l => l.kind === 'youtube');
     body.push(`    <h1 class="name" data-arrive>${esc(a.name)}<em>.</em></h1>`);
-    body.push(`    <div class="artist-top">
+    body.push(`    <div class="artist-top${a.flip ? ' flip' : ''}">
         <div class="artist-photo"><img src="/img/artists/${a.hero || a.photo}" alt="${esc(a.name)}" decoding="async"></div>
         <div class="artist-text">${a.tagline ? `\n            <p class="lede">${esc(a.tagline)}</p>` : ''}${a.bio && a.bio.length ? `\n            <div class="prose">\n${a.bio.map(p => `                <p>${esc(p)}</p>`).join('\n')}\n            </div>` : ''}${sc.length ? `
             <div class="listen-here">
                 <p class="label">Listen</p>
                 <div class="tracks">
                     ${sc.map(track).join('\n                    ')}
-                </div>
+                </div>${a.note ? `\n                <p class="note label">${esc(a.note)}</p>` : ''}
             </div>` : ''}
         </div>
     </div>`);
     const listen = [];
-    if (rest.length || (a.note && !sc.length)) listen.push(`    <section>
+    if (rest.length || (a.note && !sc.length)) listen.push(`    <section class="more">
         <p class="label">${sc.length ? 'More' : 'Listen'}</p>${rest.length ? `
         <div class="players">
             ${rest.map(player).join('\n            ')}
-        </div>` : ''}${a.note ? `\n        <p class="note label">${esc(a.note)}</p>` : ''}
+        </div>` : ''}${a.note && !sc.length ? `\n        <p class="note label">${esc(a.note)}</p>` : ''}
     </section>`);
     if (a.releases) {
         const own = releasesBy(a.releases);
         if (own.length) body.push(`    <section>
         <p class="label">Releases</p>
-        <div class="tiles">
+        <div class="tiles${own.length === 4 ? ' cube' : ''}">
             ${own.map(releaseTile).join('\n            ')}
         </div>
     </section>`);
@@ -169,7 +201,7 @@ function artistPage(a) {
     if (!a.listenLast) body.push(...listen);
     if (a.photos && a.photos.length) body.push(`    <section>
         <div class="photos">
-            ${a.photos.map(f => `<img src="/img/artists/${f}" alt="${esc(a.name)}" loading="lazy" decoding="async">`).join('\n            ')}
+            ${a.photos.map(f => media(f, a.name)).join('\n            ')}
         </div>${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
     </section>`);
     if (a.listenLast) body.push(...listen);

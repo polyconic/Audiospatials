@@ -11,7 +11,10 @@
                beside the bio, unless `hero` names a different one for the page
    tagline     optional, one short line under the name
    bio         paragraphs, one string each
-   photos      optional, more pictures further down the page
+   photos      optional, more pictures further down the page. A name with a
+               slash is a path under img/ — 'video/luci-red.mp4' plays silent
+               and looping, with img/video/luci-red.webp as its still
+   flip        optional, true puts the photo on the right of the bio
    credit      optional, a line under the photos (poster artist, photographer)
    listen      optional, players. kind is 'spotify', 'soundcloud' or 'youtube';
                url is the address you would share; title as it should read;
@@ -46,8 +49,8 @@ const ARTISTS = [
             "— John Bear",
         ],
         listen: [
-            { kind: 'spotify', url: 'https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj', title: 'Blueberry Pie EP' },
-            { kind: 'spotify', url: 'https://open.spotify.com/artist/1AdQ7OOSbL8yQlqB9KkNVS', title: 'John Bear on Spotify' },
+            { kind: 'spotify', url: 'https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj', title: 'Blueberry Pie EP', sub: 'EP' },
+            { kind: 'spotify', url: 'https://open.spotify.com/artist/1AdQ7OOSbL8yQlqB9KkNVS', title: 'John Bear', sub: 'Top tracks' },
         ],
         note: 'Blueberry Pie + Rachel Made Coffee produced and mixed by Hunter Bowersmith. Mastered by Gregor Egan on Blueberry Pie EP by John Bear.',
         photos: ['john-bear-3.webp', 'john-bear-4.webp'],
@@ -64,6 +67,7 @@ const ARTISTS = [
         listen: [
             { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/luci-sucre-lyon-06-10-25', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
         ],
+        photos: ['luci-stage.webp', 'video/luci-crowd.mp4', 'video/luci-red.mp4'],
     },
     {
         slug: 'gregor-egan',
@@ -114,6 +118,7 @@ const ARTISTS = [
         description: 'A folk song that turns hardcore. Emo, prog and finger-picked acoustic songs from a Bay Area artist born in St. Louis.',
         name: 'Stäzrad',
         photo: 'stazrad.webp',
+        flip: true,
         bio: [
             'If Stäzrad’s style could be distilled to a single word it would be: authentic, raw, and emo (a single word wouldn’t suffice). Emo as in emotionally vulnerable lyrical content conveyed through gut-wrenching vocal releases over musical climaxes that are sure to transport you into an existential catharsis…but of course, the tendrils of midwest emo (in the traditional sense) and hardcore have slithered their way all throughout the folk-acoustic and poly-rhythmic musings of this unique artist.',
             'Drawing inspiration from the psychedelic 60s from the likes of Pink Floyd and The Beatles (after they discovered acid ofc) all the way to modern prog-rock stylings from the iconic Radiohead soundscape and post-hardcore breakdowns of Circa Survive, we find ourselves with a one: Stäzrad. Have you ever heard a folk song turn hardcore? As if Fleetwood Mac were cowriting a tune with Bob Dylan when suddenly the whole squad was transported to the middle of an Underoath mosh pit? If that’s hard to fathom give Stäzrad’s finger-pickin’, heart-rippin’ original “Autumn-Like Changes” a listen :)',

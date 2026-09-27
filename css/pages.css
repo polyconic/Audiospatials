@@ -79,11 +79,27 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 .artist-text .lede { margin-top: 0; }
 .artist-text .prose { margin-top: 0; }
 .artist-text .lede + .prose { margin-top: clamp(22px, 4vh, 40px); }
-@media (max-width: 760px) { .artist-top { grid-template-columns: 1fr; } }
+/* flip: the photo on the right. On a phone it still comes first. */
+.artist-top.flip { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+.artist-top.flip .artist-photo { order: 2; }
+@media (max-width: 760px) { .artist-top, .artist-top.flip { grid-template-columns: 1fr; }
+                            .artist-top.flip .artist-photo { order: 0; } }
 
 /* Photos further down a page keep their own shape. */
 .photos { columns: 2; column-gap: clamp(14px, 2vw, 28px); margin-top: clamp(24px, 5vh, 54px); }
 @media (max-width: 620px) { .photos { columns: 1; } }
+/* Silent looping clips sit among the photos. */
+.photos video { display: block; width: 100%; height: auto; margin-bottom: clamp(14px, 2vw, 28px);
+                break-inside: avoid; background: var(--rule); }
+
+/* Video players below the bio sit centred on the page. */
+.more { text-align: center; }
+.more .players { margin: 0 auto; text-align: left; }
+.more .note { margin-left: auto; margin-right: auto; }
+
+/* Four releases make a square: two by two. */
+.tiles.cube { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+
 /* A single photo takes the whole width rather than half of it. */
 .photos:has(> img:only-child) { columns: 1; }
 .photos img { display: block; width: 100%; height: auto; margin-bottom: clamp(14px, 2vw, 28px);
@@ -155,7 +171,7 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
     html.menu-open .exit::after { display: none; }
     html.menu-open .exit .copy { display: none; }
     .footcopy { display: block; max-width: 1180px; margin: clamp(50px, 10vh, 90px) auto 0;
-                font-size: 10px; text-align: right; }
+                font-size: 10px; text-align: center; }
 }
 @keyframes drop { from { opacity: 0; transform: translateY(-6px); } }
 
@@ -197,8 +213,12 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 .track-bar::before { background: var(--rule); }
 .track-bar span { background: var(--sig); transform: scaleX(0); transform-origin: left; transition: transform 0.25s linear; }
 .track[data-state="idle"] .track-bar { cursor: default; }
-/* Out of sight while it plays for us; shown only if the browser won't start it hidden. */
-.track-frame { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; border: 0; }
-.track.native .track-frame { position: static; grid-column: 1 / -1; width: 100%; height: 120px;
-                             opacity: 1; pointer-events: auto; margin: 4px 0 14px; }
+/* The service's own player: out of sight while it plays for us, shown only
+   if the browser won't start it hidden. */
+.track-frame { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+.track-frame iframe { display: block; width: 100%; border: 0; }
+.track.native .track-frame { position: static; grid-column: 1 / -1; width: 100%; height: auto;
+                             overflow: visible; opacity: 1; pointer-events: auto; margin: 4px 0 14px; }
+.track.native .track-frame iframe { height: 120px; }
+.track.native[data-kind="spotify"] .track-frame iframe { height: 152px; border-radius: 12px; }
 .track.native .track-bar { display: none; }

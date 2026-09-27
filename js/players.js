@@ -1,14 +1,18 @@
-/* Click-to-load players. tools/build.mjs writes them into the page; nothing
-   from Spotify, SoundCloud or YouTube loads until one is pressed.
+/* Players. tools/build.mjs writes them into the page; nothing from Spotify,
+   SoundCloud or YouTube loads until one is pressed.
 
-   Spotify and YouTube: the button becomes their own player.
+   YouTube: the button becomes YouTube's own player.
 
-   SoundCloud: our own row (.track). The first press loads SoundCloud's widget
-   API and its player out of sight, and the row drives it: play and pause,
-   elapsed and total time, a hairline that fills as it plays and seeks when
-   clicked. One track plays at a time. If the browser won't start it from
-   the hidden player (iOS can refuse), the row shows SoundCloud's own player
-   instead, so a tap there does it. */
+   SoundCloud and Spotify: our own row (.track). The first press loads the
+   service's embed API and its player out of sight, and the row drives it:
+   play and pause, elapsed and total time, a hairline that fills as it plays
+   and seeks when clicked. One track plays at a time across the page. If the
+   browser won't start the hidden player (iOS can refuse), the row shows the
+   service's own player instead, so a tap there does it. Spotify plays
+   30-second previews to anyone not logged in to Spotify; that's theirs.
+
+   Clips among the photos (video[data-inview]) play silent and looping only
+   while on screen, and load nothing before they first come into view. */
 (function () {
     document.addEventListener('click', e => {
         const b = e.target.closest && e.target.closest('button.player[data-src]');
@@ -25,17 +29,67 @@
         f.focus();
     });
 
-    const tracks = [...document.querySelectorAll('.track[data-src]')];
-    if (!tracks.length) return;
+    const clips = document.querySelectorAll('video[data-inview]');
+    if (clips.length && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => entries.forEach(e => {
+            const v = e.target;
+            if (e.isIntersecting) { v.preload = 'auto'; v.play().catch(() => {}); }
+            else v.pause();
+        }), { rootMargin: '120px' });
+        clips.forEach(v => io.observe(v));
+    }
 
-    let api = null;
-    const loadApi = () => api || (api = new Promise((ok, fail) => {
+    const rows = [...document.querySelectorAll('.track[data-kind]')];
+    if (!rows.length) return;
+
+    const script = (src, before) => new Promise((ok, fail) => {
+        if (before) before(ok);
         const s = document.createElement('script');
-        s.src = 'https://w.soundcloud.com/player/api.js';
-        s.onload = () => ok(window.SC);
+        s.src = src;
+        s.onload = () => { if (!before) ok(); };
         s.onerror = fail;
         document.head.append(s);
-    }));
+    });
+    let scApi = null, spApi = null;
+    const soundcloudApi = () => scApi || (scApi = script('https://w.soundcloud.com/player/api.js').then(() => window.SC));
+    const spotifyApi = () => spApi || (spApi = script('https://open.spotify.com/embed/iframe-api/v1',
+        ok => { window.onSpotifyIframeApiReady = ok; }));
+
+    // Each engine loads its player into `slot`, starts it, and reports back
+    // through `on`; it returns controls, or throws if its API won't load.
+    const engines = {
+        async soundcloud(row, slot, on) {
+            const frame = document.createElement('iframe');
+            frame.src = row.dataset.src;
+            frame.allow = 'autoplay; encrypted-media';
+            frame.title = on.title;
+            slot.append(frame);
+            const SC = await soundcloudApi();
+            const w = SC.Widget(frame), E = SC.Widget.Events;
+            let duration = 0;
+            w.bind(E.READY, () => { w.getDuration(d => { duration = d; on.progress(0, d); }); w.play(); on.ready(); });
+            w.bind(E.PLAY, () => { w.getDuration(d => { duration = d; }); on.play(); });
+            w.bind(E.PAUSE, on.pause);
+            w.bind(E.FINISH, () => { on.pause(); on.progress(0, duration); });
+            w.bind(E.PLAY_PROGRESS, p => on.progress(p.currentPosition, duration));
+            return { play: () => w.play(), pause: () => w.pause(), seek: ms => w.seekTo(ms) };
+        },
+        async spotify(row, slot, on) {
+            const IFrameAPI = await spotifyApi();
+            const el = document.createElement('div');
+            slot.append(el);
+            return new Promise(done => IFrameAPI.createController(el, { uri: row.dataset.uri, width: '100%', height: 152 }, c => {
+                let paused = true;
+                c.addListener('ready', () => { c.play(); on.ready(); });
+                c.addListener('playback_update', e => {
+                    const d = e.data;
+                    if (d.isPaused !== paused) { paused = d.isPaused; paused ? on.pause() : on.play(); }
+                    on.progress(d.position, d.duration);
+                });
+                done({ play: () => c.resume(), pause: () => c.pause(), seek: ms => c.seek(ms / 1000) });
+            }));
+        },
+    };
 
     const clock = ms => {
         const t = Math.max(0, Math.round(ms / 1000));
@@ -43,70 +97,45 @@
         return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`;
     };
 
-    function Track(row) {
+    const all = rows.map(row => {
         const btn = row.querySelector('.track-play');
         const time = row.querySelector('.track-time');
         const fill = row.querySelector('.track-bar span');
         const bar = row.querySelector('.track-bar');
-        let widget = null, frame = null, duration = 0, playing = false, started = false;
+        const title = row.querySelector('.track-title').textContent;
+        let ctl = null, loading = false, playing = false, started = false, duration = 0;
 
-        const state = s => { row.dataset.state = s; btn.setAttribute('aria-label', (s === 'playing' ? 'Pause ' : 'Play ') + row.querySelector('.track-title').textContent); };
-        const show = pos => {
-            if (duration) fill.style.transform = `scaleX(${Math.min(1, pos / duration)})`;
-            time.textContent = duration ? `${clock(pos)} / ${clock(duration)}` : clock(pos);
+        const state = s => { row.dataset.state = s; btn.setAttribute('aria-label', (s === 'playing' ? 'Pause ' : 'Play ') + title); };
+        const slot = document.createElement('div');
+        slot.className = 'track-frame';
+        const on = {
+            title,
+            ready: () => setTimeout(() => { if (!started) { row.classList.add('native'); state('idle'); } }, 3500),
+            play: () => { started = playing = true; state('playing'); row.classList.remove('native'); all.forEach(t => t.row !== row && t.pause()); },
+            pause: () => { playing = false; if (started) state('paused'); },
+            progress: (pos, dur) => {
+                if (dur) { duration = dur; fill.style.transform = `scaleX(${Math.min(1, pos / dur)})`; }
+                time.textContent = duration ? `${clock(pos)} / ${clock(duration)}` : '';
+            },
         };
 
-        // The hidden player wouldn't start: show SoundCloud's own in the row.
-        const fallBack = () => {
-            if (started || !frame) return;
-            row.classList.add('native');
-            state('idle');
-        };
-
-        async function load() {
+        btn.addEventListener('click', async () => {
+            if (ctl) { playing ? ctl.pause() : ctl.play(); return; }
+            if (loading) return;
+            loading = true;
             state('loading');
-            frame = document.createElement('iframe');
-            frame.src = row.dataset.src;
-            frame.title = row.querySelector('.track-title').textContent;
-            frame.allow = 'autoplay; encrypted-media';
-            frame.className = 'track-frame';
-            row.append(frame);
-            let SC;
-            try { SC = await loadApi(); } catch (err) { fallBack(); return; }
-            widget = SC.Widget(frame);
-            const E = SC.Widget.Events;
-            widget.bind(E.READY, () => {
-                widget.getDuration(d => { duration = d; show(0); });
-                widget.play();
-                setTimeout(fallBack, 3500);
-            });
-            widget.bind(E.PLAY, () => {
-                started = true; playing = true; state('playing');
-                row.classList.remove('native');
-                others(row).forEach(t => t.pause());
-                widget.getDuration(d => { duration = d; });
-            });
-            widget.bind(E.PAUSE, () => { playing = false; state('paused'); });
-            widget.bind(E.FINISH, () => { playing = false; state('paused'); show(0); });
-            widget.bind(E.PLAY_PROGRESS, p => show(p.currentPosition));
-        }
-
-        btn.addEventListener('click', () => {
-            if (!frame) { load(); return; }
-            if (!widget) return;
-            playing ? widget.pause() : widget.play();
+            row.append(slot);
+            try { ctl = await engines[row.dataset.kind](row, slot, on); }
+            catch (err) { row.classList.add('native'); state('idle'); }
         });
         bar.addEventListener('click', e => {
-            if (!widget || !duration) return;
+            if (!ctl || !duration) return;
             const r = bar.getBoundingClientRect();
-            widget.seekTo(((e.clientX - r.left) / r.width) * duration);
-            if (!playing) widget.play();
+            ctl.seek(((e.clientX - r.left) / r.width) * duration);
+            if (!playing) ctl.play();
         });
 
         state('idle');
-        return { row, pause: () => widget && playing && widget.pause() };
-    }
-
-    const all = tracks.map(Track);
-    const others = row => all.filter(t => t.row !== row);
+        return { row, pause: () => ctl && playing && ctl.pause() };
+    });
 })();
