@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,16 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "LUCI",
+ "url": "https://audiospatials.com/luci",
+ "image": "https://audiospatials.com/assets/share/luci.jpg",
+ "description": "Berlin DJ, originally from California and formed in the Lyon underground. Dark, hypnotic sets drawn from post-rock and goth."
+}
+</script>
 </head>
 <body>
 <div class="corner">
@@ -26,8 +37,26 @@
 </div>
 <a class="backmark" href="/artists" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<!-- Everything on this page comes from this artist's entry in artists.js. -->
-<div class="wrap" id="artist" data-slug="luci"></div>
+<div class="wrap">
+    <h1 class="name" data-arrive>LUCI<em>.</em></h1>
+
+    <div class="artist-top">
+        <div class="artist-photo"><img src="/img/artists/luci.webp" alt="LUCI" decoding="async"></div>
+        <div class="artist-text">
+            <div class="prose">
+                <p>LUCI is a Berlin-based DJ, first emerging from the underground Lyon scene and originally from California. She draws inspiration from post-rock and gothic rock. Her captivating, dark, and hypnotic sets have taken her across France, with performances in cities like Paris, Lyon, and Montpellier and in 2026, Berlin.</p>
+                <p>Her successful shows have led her to share the stage with renowned artists such as David Löhlein, Cassie Raptor, Nikolina, LOLALITA, FUTUR IS OFFLINE, and MA ČKA.</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <p class="label">Listen</p>
+        <div class="players">
+            <button type="button" class="player audio" data-src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2149285848&amp;color=%23ff2d00&amp;auto_play=true&amp;visual=false&amp;show_artwork=true" data-title="LUCI on SoundCloud" aria-label="Play LUCI on SoundCloud on SoundCloud"><span class="play"><i></i><b>LUCI on SoundCloud<small class="label">Play on SoundCloud</small></b></span></button>
+        </div>
+    </section>
+</div>
 
 <nav class="exit">
     <a href="/">Audiospatials</a>
@@ -35,11 +64,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
-<script src="/content/music.js"></script>
 <script src="/js/players.js"></script>
-<script src="/js/covers.js"></script>
-<script src="/js/artist.js"></script>
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script>

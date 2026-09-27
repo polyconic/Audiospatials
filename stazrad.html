@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,16 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "Stäzrad",
+ "url": "https://audiospatials.com/stazrad",
+ "image": "https://audiospatials.com/assets/share/stazrad.jpg",
+ "description": "A folk song that turns hardcore. Emo, prog and finger-picked acoustic songs from a Bay Area artist born in St. Louis."
+}
+</script>
 </head>
 <body>
 <div class="corner">
@@ -26,8 +37,27 @@
 </div>
 <a class="backmark" href="/artists" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<!-- Everything on this page comes from this artist's entry in artists.js. -->
-<div class="wrap" id="artist" data-slug="stazrad"></div>
+<div class="wrap">
+    <h1 class="name" data-arrive>Stäzrad<em>.</em></h1>
+
+    <div class="artist-top">
+        <div class="artist-photo"><img src="/img/artists/stazrad.webp" alt="Stäzrad" decoding="async"></div>
+        <div class="artist-text">
+            <div class="prose">
+                <p>If Stäzrad’s style could be distilled to a single word it would be: authentic, raw, and emo (a single word wouldn’t suffice). Emo as in emotionally vulnerable lyrical content conveyed through gut-wrenching vocal releases over musical climaxes that are sure to transport you into an existential catharsis…but of course, the tendrils of midwest emo (in the traditional sense) and hardcore have slithered their way all throughout the folk-acoustic and poly-rhythmic musings of this unique artist.</p>
+                <p>Drawing inspiration from the psychedelic 60s from the likes of Pink Floyd and The Beatles (after they discovered acid ofc) all the way to modern prog-rock stylings from the iconic Radiohead soundscape and post-hardcore breakdowns of Circa Survive, we find ourselves with a one: Stäzrad. Have you ever heard a folk song turn hardcore? As if Fleetwood Mac were cowriting a tune with Bob Dylan when suddenly the whole squad was transported to the middle of an Underoath mosh pit? If that’s hard to fathom give Stäzrad’s finger-pickin’, heart-rippin’ original “Autumn-Like Changes” a listen :)</p>
+                <p>An inter-dimensional pontificator adventuring through time and space, manifested into a physical form in our shared dimension and instilled with the conviction to share perspective through audio artform is where we find our artist. Born and raised in St. Louis, Stäzrad busted out of the midwest and hit the road full time to pursue a life of nomadic adventure chasing rock climbs and rock shows across the North American West. The siren song of the West Coast has finally lured Stäz into a California dreamin’ era that now establishes East Bay as home-base.</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <p class="label">Listen</p>
+        <div class="players">
+            <button type="button" class="player audio tall" data-src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Fplaylists%2F1732839255&amp;color=%23ff2d00&amp;auto_play=true&amp;visual=false&amp;show_artwork=true" data-title="Stäzrad on SoundCloud" aria-label="Play Stäzrad on SoundCloud on SoundCloud"><span class="play"><i></i><b>Stäzrad on SoundCloud<small class="label">Play on SoundCloud</small></b></span></button>
+        </div>
+    </section>
+</div>
 
 <nav class="exit">
     <a href="/">Audiospatials</a>
@@ -35,11 +65,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
-<script src="/content/music.js"></script>
 <script src="/js/players.js"></script>
-<script src="/js/covers.js"></script>
-<script src="/js/artist.js"></script>
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script>

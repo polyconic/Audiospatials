@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,30 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "Gregor Egan",
+ "url": "https://audiospatials.com/gregor-egan",
+ "image": "https://audiospatials.com/assets/share/gregor-egan.jpg",
+ "description": "LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.",
+ "album": [
+  {
+   "@type": "MusicAlbum",
+   "name": "Shifter EP",
+   "url": "https://open.spotify.com/album/6bQV8We6TvwaG73aCShgxS",
+   "image": "https://audiospatials.com/img/releases/shifter.webp"
+  },
+  {
+   "@type": "MusicAlbum",
+   "name": "Medium EP",
+   "url": "https://open.spotify.com/album/7ljzUgOt1JfiFfmEvd7rZy",
+   "image": "https://audiospatials.com/img/releases/medium.webp"
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <div class="corner">
@@ -26,8 +51,27 @@
 </div>
 <a class="backmark" href="/artists" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<!-- Everything on this page comes from this artist's entry in artists.js. -->
-<div class="wrap" id="artist" data-slug="gregor-egan"></div>
+<div class="wrap">
+    <h1 class="name" data-arrive>Gregor Egan<em>.</em></h1>
+
+    <div class="artist-top">
+        <div class="artist-photo"><img src="/img/artists/gregor-egan.webp" alt="Gregor Egan" decoding="async"></div>
+        <div class="artist-text">
+            <p class="lede">Techno producer and DJ.</p>
+            <div class="prose">
+                <p>Gregor Egan is a Los Angeles-based producer and DJ whose techno draws from jazz training, Chicago house floors, and a sustained obsession with the hypnotic and textural.</p>
+                <p>He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Atmospheric and dark sound design, built now around Elektron hardware and a Moog Grandmother.</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="photos">
+            <img src="/img/artists/gregor-egan-red.webp" alt="Gregor Egan" loading="lazy" decoding="async">
+            <img src="/img/artists/gregor-egan-live.webp" alt="Gregor Egan" loading="lazy" decoding="async">
+        </div>
+    </section>
+</div>
 
 <nav class="exit">
     <a href="/">Audiospatials</a>
@@ -35,11 +79,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
-<script src="/content/music.js"></script>
 <script src="/js/players.js"></script>
-<script src="/js/covers.js"></script>
-<script src="/js/artist.js"></script>
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script>

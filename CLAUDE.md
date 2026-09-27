@@ -1,15 +1,46 @@
 # audiospatials.com
 
 Audiospatials' site, rebuilt 2026-09-27 from the Squarespace
-version to mirror visuospatials.com. Static HTML, no build step, no
-dependencies, no analytics. `README.md` is the public face; this is the working
-document.
+version to mirror visuospatials.com. Static HTML, no dependencies, no
+analytics. `README.md` is the public face; this is the working document.
 
-**Two people edit this site: Gregor Egan and Hunter Bowersmith.** Hunter needs
-to change content without touching code, which is the whole reason the site
-was on Squarespace. So content lives in two data files he can edit on GitHub's
-web editor — `content/artists.js` and `content/music.js` — and page files stay dumb. Keep it
-that way: new content goes in a data file, not hard-coded into a page.
+**Content lives in `content/`, and a build writes it into the pages.** Greg does
+most of the editing (with Claude); Hunter can edit too, on GitHub's web
+editor. `content/site.js` (who Audiospatials is), `content/artists.js` and
+`content/music.js` are the source; `node tools/build.mjs` writes them into the
+HTML. New content goes in a content file, never hand-written into a built
+block. **After changing anything in `content/`, run the build and commit its
+output with the change.**
+
+## The build (and why)
+
+Added 2026-09-27 for search and AI visibility. The pages used to fill
+themselves in with JavaScript in the browser; AI crawlers (GPTBot, ClaudeBot,
+PerplexityBot…) read the raw HTML without running scripts, so they saw only
+the menu. Now every page carries its full text in its own HTML. Plain Node, no
+packages. `tools/build.mjs`:
+
+- writes each artist's page, `<slug>.html`, whole — adding an entry to
+  `artists.js` creates the page; removing it deletes the page. Built pages say
+  so in a comment on line 2; don't hand-edit them.
+- fills the blocks between `<!-- build:x -->` / `<!-- /build:x -->` markers in
+  `artists.html` (grid), `music.html` (releases, videos, structured data),
+  `studio.html` (recent work) and `index.html` (structured data, and a visually
+  hidden h1 + description + section links, since the wordmark is a drawing).
+  Everything outside the markers is hand-written.
+- writes `sitemap.xml` and `llms.txt`.
+- only rewrites files whose content changed, so a second run is silent.
+
+**Structured data** (JSON-LD): `Organization` on the front page (founders,
+places, services, Instagram/YouTube), `MusicGroup` on each artist page (with
+their releases and Spotify links), an `ItemList` of `MusicAlbum`s on Music. No
+`member` list on the Organization — it reads as a collective.
+
+**Publishing:** `.github/workflows/pages.yml` runs the build on every push to
+`main` and deploys the result, so an edit made on GitHub's website is built
+too. **Pages source is "GitHub Actions"** (Settings → Pages), not "Deploy from a
+branch". The deployed site leaves out `tools/`, `.github/`, `CLAUDE.md` and
+`README.md`.
 
 ## Shared with Visuospatials
 
@@ -26,16 +57,17 @@ here. If one of these changes there, copy it over.
 | File | What it is |
 |---|---|
 | `index.html` | The front: the WOLFMANWOOF header (`img/header.webp`), one copy covering the screen, crop centered on the kicking figure (tiled and mirrored versions were tried 2026-09-27 and dropped) and the converging wordmark. The name links to `/artists`. `spatial` explodes it, Konami inverts. |
-| `artists.html` | The grid, built from `content/artists.js`. |
-| `<slug>.html` | One per artist, same slugs as the old Squarespace site so old links hold. Each is a stub carrying its slug, title and meta; `js/artist.js` renders it from `content/artists.js`. |
-| `music.html` | Released-on-Audiospatials grid, then videos. From `content/music.js`. |
+| `artists.html` | The grid (built block). |
+| `<slug>.html` | One per artist, **entirely built**. Same slugs as the old Squarespace site so old links hold. |
+| `music.html` | Released-on-Audiospatials grid, then videos (built blocks). |
 | `studio.html` | What we do, Recent work (releases with a `credit`, in `STUDIO_ORDER`), Start a project. |
 | `about.html` | The About text verbatim from the old site, plus the two founders. |
-| `contact.html` | Mail and elsewhere. There is no form — no backend. |
+| `contact.html` | The form (see Contact) and elsewhere. |
 | `404.html` | The 404 in the alphabet. |
 | `css/pages.css` | Styles the inside pages share (heading, rows, tiles, players). |
-| `js/players.js` | Click-to-load Spotify / SoundCloud / YouTube players. Nothing third-party loads until a visitor clicks. YouTube uses the nocookie domain. |
-| `js/covers.js` | Release covers: 1200px copy from `img/releases/sm/` in grids, full file for big screens; falls back to the full file when no small copy exists. |
+| `js/players.js` | Click-to-load players. The build writes each as a button carrying its embed address; clicking swaps in the Spotify / SoundCloud / YouTube frame. Nothing third-party loads before that. YouTube uses the nocookie domain. |
+| `tools/build.mjs` | The build, above. |
+| `llms.txt` | Built. The plain-text summary for AI tools. |
 | `tools/serve.py` | Local preview that maps `/studio` to `studio.html` like Pages does. `python3 tools/serve.py` → localhost:8765. |
 
 ## Folders
@@ -43,7 +75,7 @@ here. If one of these changes there, copy it over.
 **Pages stay at the root.** Pages serves `x.html` at `/x` only from the top
 level; moving them into a folder would change every address and break the old
 Squarespace links (`/john-bear`, `/studio`). Everything else is foldered:
-`content/` (the two data files), `css/`, `js/`, `img/`, `assets/` (icons and
+`content/` (site, artists, music), `css/`, `js/`, `img/`, `assets/` (icons and
 `share/`), `tools/`. Paths are root-absolute everywhere.
 
 ## Link previews
@@ -79,11 +111,11 @@ Music page makes no request to YouTube until a video is played.
 
 ## Deploy
 
-Not live yet. Plan: GitHub Pages from `main` under the `polyconic` account.
-The domain is at **Namecheap** (not Squarespace), so switching is DNS only.
-Add `CNAME` (`audiospatials.com`) only when switching, because with it
-present the github.io address redirects to the domain, which still points at
-Squarespace until DNS changes. Greg pushes; Claude commits locally and stops.
+Live since 2026-09-27 on GitHub Pages, repo `polyconic/Audiospatials` (public),
+published by the Action above. DNS is at **Namecheap**: four A records to
+185.199.108–111.153, four AAAA to 2606:50c0:8000–8003::153, `www` CNAME to
+`polyconic.github.io.`. Squarespace is no longer in the DNS. Greg pushes;
+Claude commits locally and stops.
 
 ## Contact
 
@@ -100,6 +132,6 @@ Squarespace until DNS changes. Greg pushes; Claude commits locally and stops.
 - **The mail icon** and every other mailto link go to `hello@audiospatials.com`.
   Nothing on the site names the Gmail address or a personal alias.
 - `@audiospatials.com` mail works through **Namecheap email forwarding** (MX
-  `eforward*.registrar-servers.com`). When switching the site's DNS to GitHub
-  Pages, change only the A / CNAME records — **leave the MX and TXT records
-  alone** or hunter@ and gregor@ stop receiving mail.
+  `eforward*.registrar-servers.com`). If the site's DNS ever changes again,
+  change only the A / AAAA / CNAME records — **leave the MX and TXT records
+  alone** or @audiospatials.com mail stops arriving.

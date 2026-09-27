@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,16 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "FENNEC",
+ "url": "https://audiospatials.com/fennec",
+ "image": "https://audiospatials.com/assets/share/fennec.jpg",
+ "description": "A Santa Cruz band blending rock, folk and electronic sound, led by Hunter Bowersmith."
+}
+</script>
 </head>
 <body>
 <div class="corner">
@@ -26,8 +37,25 @@
 </div>
 <a class="backmark" href="/artists" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<!-- Everything on this page comes from this artist's entry in artists.js. -->
-<div class="wrap" id="artist" data-slug="fennec"></div>
+<div class="wrap">
+    <h1 class="name" data-arrive>FENNEC<em>.</em></h1>
+
+    <div class="artist-top">
+        <div class="artist-photo"><img src="/img/artists/fennec.webp" alt="FENNEC" decoding="async"></div>
+        <div class="artist-text">
+            <p class="lede">A Santa Cruz-based band.</p>
+        </div>
+    </div>
+
+    <section>
+        <div class="photos">
+            <img src="/img/artists/fennec-poster-1.webp" alt="FENNEC" loading="lazy" decoding="async">
+            <img src="/img/artists/fennec-poster-2.webp" alt="FENNEC" loading="lazy" decoding="async">
+            <img src="/img/artists/fennec-poster-3.webp" alt="FENNEC" loading="lazy" decoding="async">
+        </div>
+        <p class="note label">Poster art by Ross Mantell</p>
+    </section>
+</div>
 
 <nav class="exit">
     <a href="/">Audiospatials</a>
@@ -35,11 +63,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
-<script src="/content/music.js"></script>
 <script src="/js/players.js"></script>
-<script src="/js/covers.js"></script>
-<script src="/js/artist.js"></script>
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script>

@@ -1,26 +1,28 @@
 /* The roster. One entry per artist, in the order they appear on /artists.
 
-   To change an artist's text or photos, edit their entry here — nothing else.
-   To add an artist, add an entry here AND copy one of the artist pages
-   (john-bear.html, say) to a new file named after the slug, changing the
-   slug, title and description at the top of it.
+   Edit an entry, or add one, and the pages are rebuilt from this file:
+   the artist's own page, the Artists grid, the sitemap and llms.txt.
+   Locally: node tools/build.mjs. On GitHub it happens by itself on push.
 
-   slug      the address: 'john-bear' lives at audiospatials.com/john-bear
-   name      as it should be written
-   photo     the picture on the Artists grid, in img/artists/
-   tagline   optional, one short line under the name
-   bio       paragraphs, one string each
-   photos    optional, more pictures further down the page
-   credit    optional, a line under the photos (poster artist, photographer)
-   listen    optional, players. kind is 'spotify', 'soundcloud' or 'youtube';
-             url is the address you would share. A player only loads when
-             someone clicks it, so nothing tracks a visitor who doesn't.
-   note      optional, a small line under the players (credits and the like)
+   slug        the address: 'john-bear' lives at audiospatials.com/john-bear
+   name        as it should be written
+   description one or two sentences for Google and link previews
+   photo       the picture on the Artists grid, in img/artists/. For link
+               previews, also add a 1200px square JPG as assets/share/<slug>.jpg
+   tagline     optional, one short line under the name
+   bio         paragraphs, one string each
+   photos      optional, more pictures further down the page
+   credit      optional, a line under the photos (poster artist, photographer)
+   listen      optional, players. kind is 'spotify', 'soundcloud' or 'youtube';
+               url is the address you would share. A player only loads when
+               someone clicks it, so nothing tracks a visitor who doesn't.
+   note        optional, a small line under the players (credits and the like)
 */
 
 const ARTISTS = [
     {
         slug: 'fennec',
+        description: 'A Santa Cruz band blending rock, folk and electronic sound, led by Hunter Bowersmith.',
         name: 'FENNEC',
         photo: 'fennec.webp',
         tagline: 'A Santa Cruz-based band.',
@@ -30,6 +32,7 @@ const ARTISTS = [
     },
     {
         slug: 'john-bear',
+        description: 'Santa Cruz folk songwriter, originally from Birmingham, Alabama. Blueberry Pie EP out on Audiospatials.',
         name: 'John Bear',
         photo: 'john-bear.webp',
         tagline: 'John Bear is a folk artist in Santa Cruz.',
@@ -48,6 +51,7 @@ const ARTISTS = [
     },
     {
         slug: 'luci',
+        description: 'Berlin DJ, originally from California and formed in the Lyon underground. Dark, hypnotic sets drawn from post-rock and goth.',
         name: 'LUCI',
         photo: 'luci.webp',
         bio: [
@@ -60,6 +64,7 @@ const ARTISTS = [
     },
     {
         slug: 'gregor-egan',
+        description: 'LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.',
         name: 'Gregor Egan',
         photo: 'gregor-egan.webp',
         tagline: 'Techno producer and DJ.',
@@ -71,6 +76,7 @@ const ARTISTS = [
     },
     {
         slug: 'margo-flow',
+        description: 'Santa Cruz singer-songwriter. Folk and pop about the inner world and the natural one.',
         name: 'Margo Flow',
         photo: 'margo-flow.webp',
         bio: [
@@ -82,6 +88,7 @@ const ARTISTS = [
     },
     {
         slug: 'krow',
+        description: 'Minimal house and deep tech DJ with Chicago and San Francisco roots. Played Lollapalooza 2023.',
         name: 'kröw',
         photo: 'krow.webp',
         bio: [
@@ -96,6 +103,7 @@ const ARTISTS = [
     },
     {
         slug: 'stazrad',
+        description: 'A folk song that turns hardcore. Emo, prog and finger-picked acoustic songs from a Bay Area artist born in St. Louis.',
         name: 'Stäzrad',
         photo: 'stazrad.webp',
         bio: [
@@ -109,6 +117,7 @@ const ARTISTS = [
     },
     {
         slug: 'wolfmanwoof',
+        description: 'Two producers, one from techno and one from experimental synth-rock, meeting in between. Moonrise EP out now.',
         name: 'WOLFMANWOOF',
         photo: 'wolfmanwoof.webp',
         bio: [
@@ -118,7 +127,7 @@ const ARTISTS = [
     },
 
     /* On the old site's grid but without pages yet. Uncomment an entry once it
-       has a photo and a page file, and it appears.
+       has a photo, description and bio, and its page is built with the rest.
     { slug: 'canary', name: 'Canary', photo: '' },
     { slug: 'the-silver-spurs', name: 'The Silver Spurs', photo: '' },
     { slug: 'hunter-ray', name: 'Hunter Ray', photo: '' },

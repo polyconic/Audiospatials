@@ -28,7 +28,18 @@
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
 <div class="wrap">
     <h1 data-arrive>Artists<em>.</em></h1>
-    <div class="tiles" id="tiles"></div>
+    <div class="tiles">
+<!-- build:tiles -->
+        <a class="tile" href="/fennec"><div class="shot"><img src="/img/artists/fennec.webp" alt="FENNEC" loading="lazy" decoding="async"></div><div class="cap"><span class="t">FENNEC</span></div></a>
+        <a class="tile" href="/john-bear"><div class="shot"><img src="/img/artists/john-bear.webp" alt="John Bear" loading="lazy" decoding="async"></div><div class="cap"><span class="t">John Bear</span></div></a>
+        <a class="tile" href="/luci"><div class="shot"><img src="/img/artists/luci.webp" alt="LUCI" loading="lazy" decoding="async"></div><div class="cap"><span class="t">LUCI</span></div></a>
+        <a class="tile" href="/gregor-egan"><div class="shot"><img src="/img/artists/gregor-egan.webp" alt="Gregor Egan" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Gregor Egan</span></div></a>
+        <a class="tile" href="/margo-flow"><div class="shot"><img src="/img/artists/margo-flow.webp" alt="Margo Flow" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Margo Flow</span></div></a>
+        <a class="tile" href="/krow"><div class="shot"><img src="/img/artists/krow.webp" alt="kröw" loading="lazy" decoding="async"></div><div class="cap"><span class="t">kröw</span></div></a>
+        <a class="tile" href="/stazrad"><div class="shot"><img src="/img/artists/stazrad.webp" alt="Stäzrad" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Stäzrad</span></div></a>
+        <a class="tile" href="/wolfmanwoof"><div class="shot"><img src="/img/artists/wolfmanwoof.webp" alt="WOLFMANWOOF" loading="lazy" decoding="async"></div><div class="cap"><span class="t">WOLFMANWOOF</span></div></a>
+<!-- /build:tiles -->
+    </div>
 </div>
 
 <nav class="exit">
@@ -37,20 +48,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
 <script>
-const tiles = document.getElementById('tiles');
-ARTISTS.forEach(a => {
-    const el = document.createElement('a');
-    el.className = 'tile';
-    el.href = '/' + a.slug;
-    el.innerHTML = '<div class="shot"><img alt="" loading="lazy" decoding="async"></div><div class="cap"><span class="t"></span></div>';
-    const img = el.querySelector('img');
-    img.src = '/img/artists/' + a.photo;
-    img.alt = a.name;
-    el.querySelector('.t').textContent = a.name;
-    tiles.append(el);
-});
 if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/artists' + location.search + location.hash);
 </script>
 <script src="/js/geo.js"></script>

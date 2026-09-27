@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,42 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "WOLFMANWOOF",
+ "url": "https://audiospatials.com/wolfmanwoof",
+ "image": "https://audiospatials.com/assets/share/wolfmanwoof.jpg",
+ "description": "Two producers, one from techno and one from experimental synth-rock, meeting in between. Moonrise EP out now.",
+ "album": [
+  {
+   "@type": "MusicAlbum",
+   "name": "Latency",
+   "url": "https://open.spotify.com/album/57s6rqYzN0SdpJrCWNlE7E",
+   "image": "https://audiospatials.com/img/releases/latency.webp"
+  },
+  {
+   "@type": "MusicAlbum",
+   "name": "Love You",
+   "url": "https://open.spotify.com/album/7oEeCfFE0QxOwHwywky7jn",
+   "image": "https://audiospatials.com/img/releases/love-you.webp"
+  },
+  {
+   "@type": "MusicAlbum",
+   "name": "Moonrise EP",
+   "url": "https://open.spotify.com/album/5MZyYI2rvFfai4WuTNTRF7",
+   "image": "https://audiospatials.com/img/releases/moonrise.webp"
+  },
+  {
+   "@type": "MusicAlbum",
+   "name": "Highwater",
+   "url": "https://open.spotify.com/album/5cUgPduiXyYyJaNWUkYRT9",
+   "image": "https://audiospatials.com/img/releases/highwater.webp"
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <div class="corner">
@@ -26,8 +63,28 @@
 </div>
 <a class="backmark" href="/artists" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<!-- Everything on this page comes from this artist's entry in artists.js. -->
-<div class="wrap" id="artist" data-slug="wolfmanwoof"></div>
+<div class="wrap">
+    <h1 class="name" data-arrive>WOLFMANWOOF<em>.</em></h1>
+
+    <div class="artist-top">
+        <div class="artist-photo"><img src="/img/artists/wolfmanwoof.webp" alt="WOLFMANWOOF" decoding="async"></div>
+        <div class="artist-text">
+            <div class="prose">
+                <p>WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <p class="label">Releases</p>
+        <div class="tiles">
+            <a class="tile" href="https://open.spotify.com/album/57s6rqYzN0SdpJrCWNlE7E" target="_blank" rel="noopener"><div class="shot"><img src="/img/releases/sm/latency.webp" srcset="/img/releases/sm/latency.webp 1200w, /img/releases/latency.webp 3000w" sizes="(max-width: 480px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Latency by WOLFMANWOOF" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Latency</span><span class="m">WOLFMANWOOF</span></div></a>
+            <a class="tile" href="https://open.spotify.com/album/7oEeCfFE0QxOwHwywky7jn" target="_blank" rel="noopener"><div class="shot"><img src="/img/releases/sm/love-you.webp" srcset="/img/releases/sm/love-you.webp 1200w, /img/releases/love-you.webp 3000w" sizes="(max-width: 480px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Love You by WOLFMANWOOF" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Love You</span><span class="m">WOLFMANWOOF</span></div></a>
+            <a class="tile" href="https://open.spotify.com/album/5MZyYI2rvFfai4WuTNTRF7" target="_blank" rel="noopener"><div class="shot"><img src="/img/releases/sm/moonrise.webp" srcset="/img/releases/sm/moonrise.webp 1200w, /img/releases/moonrise.webp 3000w" sizes="(max-width: 480px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Moonrise EP by WOLFMANWOOF" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Moonrise EP</span><span class="m">WOLFMANWOOF</span></div></a>
+            <a class="tile" href="https://open.spotify.com/album/5cUgPduiXyYyJaNWUkYRT9" target="_blank" rel="noopener"><div class="shot"><img src="/img/releases/sm/highwater.webp" srcset="/img/releases/sm/highwater.webp 1200w, /img/releases/highwater.webp 3000w" sizes="(max-width: 480px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Highwater by WOLFMANWOOF" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Highwater</span><span class="m">WOLFMANWOOF</span></div></a>
+        </div>
+    </section>
+</div>
 
 <nav class="exit">
     <a href="/">Audiospatials</a>
@@ -35,11 +92,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
-<script src="/content/music.js"></script>
 <script src="/js/players.js"></script>
-<script src="/js/covers.js"></script>
-<script src="/js/artist.js"></script>
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script>

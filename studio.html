@@ -61,7 +61,15 @@
 
     <section>
         <p class="label">Recent work</p>
-        <ul class="rows plain work" id="work"></ul>
+        <ul class="rows plain work">
+<!-- build:work -->
+            <li><a class="row" href="https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj" target="_blank" rel="noopener"><span class="who"><img class="cover" src="/img/releases/sm/blueberry-pie.webp" alt="Blueberry Pie EP by John Bear" loading="lazy" decoding="async"><span class="n"><span class="title">Blueberry Pie EP</span><small class="label">John Bear</small></span></span><span class="u">produced and mixed by Hunter Bowersmith, mastered by Gregor Egan</span></a></li>
+            <li><a class="row" href="https://open.spotify.com/album/57s6rqYzN0SdpJrCWNlE7E" target="_blank" rel="noopener"><span class="who"><img class="cover" src="/img/releases/sm/latency.webp" alt="Latency by WOLFMANWOOF" loading="lazy" decoding="async"><span class="n"><span class="title">Latency</span><small class="label">WOLFMANWOOF</small></span></span><span class="u">produced, mixed, and mastered by Gregor Egan</span></a></li>
+            <li><a class="row" href="https://open.spotify.com/album/5cUgPduiXyYyJaNWUkYRT9" target="_blank" rel="noopener"><span class="who"><img class="cover" src="/img/releases/sm/highwater.webp" alt="Highwater by WOLFMANWOOF" loading="lazy" decoding="async"><span class="n"><span class="title">Highwater</span><small class="label">WOLFMANWOOF</small></span></span><span class="u">produced by Hunter Bowersmith, mixed and mastered by Gregor Egan</span></a></li>
+            <li><a class="row" href="https://open.spotify.com/album/6bQV8We6TvwaG73aCShgxS" target="_blank" rel="noopener"><span class="who"><img class="cover" src="/img/releases/sm/shifter.webp" alt="Shifter EP by Gregor Egan" loading="lazy" decoding="async"><span class="n"><span class="title">Shifter EP</span><small class="label">Gregor Egan</small></span></span><span class="u">produced, mixed and mastered by Gregor Egan</span></a></li>
+            <li><a class="row" href="https://open.spotify.com/album/7ljzUgOt1JfiFfmEvd7rZy" target="_blank" rel="noopener"><span class="who"><img class="cover" src="/img/releases/sm/medium.webp" alt="Medium EP by Gregor Egan" loading="lazy" decoding="async"><span class="n"><span class="title">Medium EP</span><small class="label">Gregor Egan</small></span></span><span class="u">produced, mixed and mastered by Gregor Egan</span></a></li>
+<!-- /build:work -->
+        </ul>
     </section>
 
     <section class="call">
@@ -76,21 +84,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/music.js"></script>
-<script src="/js/covers.js"></script>
 <script>
-const work = document.getElementById('work');
-STUDIO_ORDER.map(t => RELEASES.find(r => r.title === t)).filter(r => r && r.credit).forEach(r => {
-    const li = document.createElement('li');
-    li.innerHTML = '<a class="row" target="_blank" rel="noopener"><span class="who"><img class="cover" alt="" loading="lazy"><span class="n"><span class="title"></span><small class="label"></small></span></span><span class="u"></span></a>';
-    const a = li.querySelector('a');
-    a.href = r.url;
-    coverImg(li.querySelector('img'), r.cover, true);
-    li.querySelector('.title').textContent = r.title;
-    li.querySelector('small').textContent = r.artist;
-    li.querySelector('.u').textContent = r.credit;
-    work.append(li);
-});
 if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/studio' + location.search + location.hash);
 </script>
 <script src="/js/geo.js"></script>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,16 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "Margo Flow",
+ "url": "https://audiospatials.com/margo-flow",
+ "image": "https://audiospatials.com/assets/share/margo-flow.jpg",
+ "description": "Santa Cruz singer-songwriter. Folk and pop about the inner world and the natural one."
+}
+</script>
 </head>
 <body>
 <div class="corner">
@@ -26,8 +37,25 @@
 </div>
 <a class="backmark" href="/artists" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<!-- Everything on this page comes from this artist's entry in artists.js. -->
-<div class="wrap" id="artist" data-slug="margo-flow"></div>
+<div class="wrap">
+    <h1 class="name" data-arrive>Margo Flow<em>.</em></h1>
+
+    <div class="artist-top">
+        <div class="artist-photo"><img src="/img/artists/margo-flow.webp" alt="Margo Flow" decoding="async"></div>
+        <div class="artist-text">
+            <div class="prose">
+                <p>Margo Flow is a singer-songwriter based in Santa Cruz, CA. Her songs are a patchwork expression of the emotional ebb and flow of her internal landscape along with a calling for hope and appreciation of the natural world and sustainability. Her sound is inspired by 60s folk artists, like Bob Dylan and Joni Mitchell, and modern confessional artists, like Taylor Swift and Lizzy McAlpine. She tries to emulate the song of the natural world in her music through her lyrics and sonic world. Pop, folk, and acoustic genres inspire her sound. She hopes that her songs can serve as a gateway for inspiring others to take steps towards enlivening their own personal dreams and their dreams for the world at large.</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <p class="label">Listen</p>
+        <div class="players">
+            <button type="button" class="player audio" data-src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2042923028&amp;color=%23ff2d00&amp;auto_play=true&amp;visual=false&amp;show_artwork=true" data-title="Margo Flow on SoundCloud" aria-label="Play Margo Flow on SoundCloud on SoundCloud"><span class="play"><i></i><b>Margo Flow on SoundCloud<small class="label">Play on SoundCloud</small></b></span></button>
+        </div>
+    </section>
+</div>
 
 <nav class="exit">
     <a href="/">Audiospatials</a>
@@ -35,11 +63,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
-<script src="/content/music.js"></script>
 <script src="/js/players.js"></script>
-<script src="/js/covers.js"></script>
-<script src="/js/artist.js"></script>
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +18,28 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "MusicGroup",
+ "name": "John Bear",
+ "url": "https://audiospatials.com/john-bear",
+ "image": "https://audiospatials.com/assets/share/john-bear.jpg",
+ "description": "Santa Cruz folk songwriter, originally from Birmingham, Alabama. Blueberry Pie EP out on Audiospatials.",
+ "sameAs": [
+  "https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj",
+  "https://open.spotify.com/artist/1AdQ7OOSbL8yQlqB9KkNVS"
+ ],
+ "album": [
+  {
+   "@type": "MusicAlbum",
+   "name": "Blueberry Pie EP",
+   "url": "https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj",
+   "image": "https://audiospatials.com/img/releases/blueberry-pie.webp"
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <div class="corner">
@@ -26,8 +49,38 @@
 </div>
 <a class="backmark" href="/artists" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<!-- Everything on this page comes from this artist's entry in artists.js. -->
-<div class="wrap" id="artist" data-slug="john-bear"></div>
+<div class="wrap">
+    <h1 class="name" data-arrive>John Bear<em>.</em></h1>
+
+    <div class="artist-top">
+        <div class="artist-photo"><img src="/img/artists/john-bear.webp" alt="John Bear" decoding="async"></div>
+        <div class="artist-text">
+            <p class="lede">John Bear is a folk artist in Santa Cruz.</p>
+            <div class="prose">
+                <p>You know that feeling when you find a new song you love? The song that understands you and speaks to you like a good listener? The music that feels like it's keeping you alive and afloat in a life who's waters are far deeper than your toes can reach? I desire with the wildest reaches of my heart that my songs can be that for people.</p>
+                <p>Writing songs is something I can't help but do. Like trees can't help but grow out of our soil. Sharing the songs is my effort to make the world a kinder place than I found it.</p>
+                <p>John Denver and the Nitty Gritty Dirt Band helped me find my love for music at a young age. I am from Birmingham Alabama but never found home until I found California. And from here I want to be the songs that people can lean on.</p>
+                <p>— John Bear</p>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <p class="label">Listen</p>
+        <div class="players">
+            <button type="button" class="player audio tall" data-src="https://open.spotify.com/embed/album/1BOYiMGrk8CGzkVfN4N7aj?theme=0" data-title="Blueberry Pie EP" aria-label="Play Blueberry Pie EP on Spotify"><span class="play"><i></i><b>Blueberry Pie EP<small class="label">Play on Spotify</small></b></span></button>
+            <button type="button" class="player audio tall" data-src="https://open.spotify.com/embed/artist/1AdQ7OOSbL8yQlqB9KkNVS?theme=0" data-title="John Bear on Spotify" aria-label="Play John Bear on Spotify on Spotify"><span class="play"><i></i><b>John Bear on Spotify<small class="label">Play on Spotify</small></b></span></button>
+        </div>
+        <p class="note label">Blueberry Pie + Rachel Made Coffee produced and mixed by Hunter Bowersmith. Mastered by Gregor Egan on Blueberry Pie EP by John Bear.</p>
+    </section>
+
+    <section>
+        <div class="photos">
+            <img src="/img/artists/john-bear-3.webp" alt="John Bear" loading="lazy" decoding="async">
+            <img src="/img/artists/john-bear-4.webp" alt="John Bear" loading="lazy" decoding="async">
+        </div>
+    </section>
+</div>
 
 <nav class="exit">
     <a href="/">Audiospatials</a>
@@ -35,11 +88,7 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/content/artists.js"></script>
-<script src="/content/music.js"></script>
 <script src="/js/players.js"></script>
-<script src="/js/covers.js"></script>
-<script src="/js/artist.js"></script>
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script>

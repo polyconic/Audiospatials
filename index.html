@@ -16,6 +16,51 @@
     <meta property="og:url" content="https://audiospatials.com/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
+<!-- build:jsonld -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "Audiospatials",
+ "url": "https://audiospatials.com/",
+ "logo": "https://audiospatials.com/assets/favicon.png",
+ "image": "https://audiospatials.com/assets/share/audiospatials.jpg",
+ "description": "Audiospatials makes records with independent artists, from folk to techno. A studio in Santa Cruz and Los Angeles, run by Gregor Egan and Hunter Bowersmith.",
+ "email": "hello@audiospatials.com",
+ "founder": [
+  {
+   "@type": "Person",
+   "name": "Gregor Egan",
+   "url": "https://audiospatials.com/gregor-egan"
+  },
+  {
+   "@type": "Person",
+   "name": "Hunter Bowersmith",
+   "url": "https://audiospatials.com/fennec"
+  }
+ ],
+ "location": [
+  {
+   "@type": "Place",
+   "name": "Santa Cruz, California"
+  },
+  {
+   "@type": "Place",
+   "name": "Los Angeles, California"
+  }
+ ],
+ "knowsAbout": [
+  "Production",
+  "Recording",
+  "Mixing"
+ ],
+ "sameAs": [
+  "https://www.instagram.com/audiospatials/",
+  "https://www.youtube.com/@audiospatials"
+ ]
+}
+</script>
+<!-- /build:jsonld -->
     <script type="speculationrules">
     {"prerender": [{"urls": ["/artists"], "eagerness": "eager"},
                    {"where": {"href_matches": "/*"}, "eagerness": "moderate"}]}
@@ -96,6 +141,13 @@
     <img class="hero" src="/img/header.webp" alt="">
     <a class="flicker-text" href="/artists" aria-label="Audiospatials">AUDIOSPATIALS</a>
     <canvas class="geo" id="geo" aria-hidden="true"></canvas>
+<!-- build:summary -->
+    <div class="geo-text">
+        <h1>Audiospatials</h1>
+        <p>Audiospatials makes records with independent artists, from folk to techno. A studio in Santa Cruz and Los Angeles, run by Gregor Egan and Hunter Bowersmith.</p>
+        <ul><li><a href="/artists">Artists</a></li><li><a href="/music">Music</a></li><li><a href="/studio">Studio</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li></ul>
+    </div>
+<!-- /build:summary -->
 
     <script src="/js/geo.js"></script>
     <script>
