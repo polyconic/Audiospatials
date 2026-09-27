@@ -70,6 +70,22 @@ function embed(kind, url) {
              page: /^https:\/\/soundcloud\.com\//.test(url) ? url : undefined };
 }
 
+// SoundCloud gets our own row instead of its white widget: play button, title,
+// time, and a hairline that fills as it plays. js/players.js drives SoundCloud's
+// widget out of sight once play is pressed; nothing loads before that.
+function track(item) {
+    const src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(item.url) +
+        '&auto_play=true&visual=false&show_artwork=false&hide_related=true&show_comments=false' +
+        '&show_user=false&show_reposts=false&show_teaser=false&color=%23ff2d00';
+    const page = /^https:\/\/soundcloud\.com\//.test(item.url) ? item.url : null;
+    return `<div class="track" data-src="${esc(src)}">` +
+        `<button type="button" class="track-play" aria-label="${esc('Play ' + item.title)}"><i></i></button>` +
+        `<div class="track-name"><span class="track-title">${esc(item.title)}</span>` +
+        `<span class="track-sub label">${esc(item.sub || 'SoundCloud')}</span></div>` +
+        `<span class="track-time label">${page ? `<a href="${esc(page)}" target="_blank" rel="noopener">SoundCloud</a>` : ''}</span>` +
+        `<div class="track-bar" aria-hidden="true"><span></span></div></div>`;
+}
+
 // A button that becomes the player when clicked (js/players.js). The title and
 // a plain link sit in the HTML, so a reader without JavaScript still has them.
 function player(item) {
@@ -124,12 +140,19 @@ function artistPage(a) {
         </div>
     </div>`);
     const listen = [];
-    if (a.listen && a.listen.length) listen.push(`    <section>
-        <p class="label">Listen</p>
+    if (a.listen && a.listen.length) {
+        const sc = a.listen.filter(l => l.kind === 'soundcloud');
+        const rest = a.listen.filter(l => l.kind !== 'soundcloud');
+        listen.push(`    <section>
+        <p class="label">Listen</p>${sc.length ? `
+        <div class="tracks">
+            ${sc.map(track).join('\n            ')}
+        </div>` : ''}${rest.length ? `
         <div class="players">
-            ${a.listen.map(player).join('\n            ')}
-        </div>${a.note ? `\n        <p class="note label">${esc(a.note)}</p>` : ''}
+            ${rest.map(player).join('\n            ')}
+        </div>` : ''}${a.note ? `\n        <p class="note label">${esc(a.note)}</p>` : ''}
     </section>`);
+    }
     if (a.releases) {
         const own = releasesBy(a.releases);
         if (own.length) body.push(`    <section>

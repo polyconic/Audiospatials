@@ -158,3 +158,39 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
                 font-size: 10px; text-align: right; }
 }
 @keyframes drop { from { opacity: 0; transform: translateY(-6px); } }
+
+/* SoundCloud tracks: our own rows, no box. Hairlines like the other lists,
+   an outlined play button, and a hairline that fills red as it plays. */
+.tracks { max-width: 760px; margin-bottom: clamp(14px, 2vw, 22px); }
+.track { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+         column-gap: 16px; padding: 16px 0 0; border-top: 1px solid var(--rule); }
+.track:last-child { border-bottom: 1px solid var(--rule); }
+.track-play { appearance: none; width: 40px; height: 40px; border-radius: 50%; padding: 0;
+              border: 1px solid var(--faint); background: transparent; color: var(--fg);
+              display: grid; place-items: center; cursor: pointer;
+              transition: border-color 0.2s, color 0.2s, background 0.2s; }
+.track-play i { width: 11px; height: 13px; margin-left: 3px; background: currentColor;
+                clip-path: polygon(0 0, 100% 50%, 0 100%); }
+/* Pause: two bars, the second a shadow of the first. */
+.track[data-state="playing"] .track-play i { width: 4px; height: 12px; margin-left: 0; clip-path: none;
+                                             box-shadow: 6px 0 0 currentColor; transform: translateX(-3px); }
+.track[data-state="loading"] .track-play { border-color: var(--dim); }
+.track[data-state="loading"] .track-play i { opacity: 0.4; }
+.track-play:hover, .track-play:focus-visible { border-color: var(--sig); color: var(--sig); }
+.track[data-state="playing"] .track-play { border-color: var(--fg); }
+.track-name { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.track-title { font-size: 15px; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.track[data-state="playing"] .track-title { color: var(--sig); }
+.track-time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.track-time a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.track-time a:hover { color: var(--sig); }
+.track-bar { grid-column: 1 / -1; height: 17px; margin-top: 6px; position: relative; cursor: pointer; }
+.track-bar::before, .track-bar span { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 1px; }
+.track-bar::before { background: var(--rule); }
+.track-bar span { background: var(--sig); transform: scaleX(0); transform-origin: left; transition: transform 0.25s linear; }
+.track[data-state="idle"] .track-bar { cursor: default; }
+/* Out of sight while it plays for us; shown only if the browser won't start it hidden. */
+.track-frame { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; border: 0; }
+.track.native .track-frame { position: static; grid-column: 1 / -1; width: 100%; height: 120px;
+                             opacity: 1; pointer-events: auto; margin: 4px 0 14px; }
+.track.native .track-bar { display: none; }
