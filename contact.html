@@ -18,18 +18,38 @@
     <link rel="stylesheet" href="/base.css">
     <link rel="stylesheet" href="/pages.css">
     <style>
-        .call { margin-top: clamp(30px, 7vh, 70px); }
-        .call a.big { display: inline-block; font-size: clamp(22px, 5vw, 64px); font-weight: 700;
-                letter-spacing: -0.035em; text-decoration: none; color: var(--fg); line-height: 1.05;
-                overflow-wrap: anywhere; transition: color 0.2s; }
-        .call a.big:hover { color: var(--sig); }
-        .call a.big em { font-style: normal; color: var(--sig); }
-        .call p { margin-top: 20px; line-height: 1.9; }
+        .form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 28px;
+                max-width: 760px; margin-top: clamp(30px, 6vh, 60px); }
+        .form .wide { grid-column: 1 / -1; }
+        @media (max-width: 560px) { .form { grid-template-columns: 1fr; } }
+        .form label { display: flex; flex-direction: column; gap: 10px; }
+        .form label i { font-style: normal; color: var(--faint); margin-left: 6px; }
+        .form input, .form select, .form textarea {
+            font: inherit; font-size: 16px; color: var(--fg); background: transparent;
+            border: 0; border-bottom: 1px solid var(--faint); border-radius: 0;
+            padding: 8px 0 10px; outline: none; transition: border-color 0.2s; width: 100%; }
+        .form textarea { resize: vertical; line-height: 1.6; border: 1px solid var(--faint); padding: 12px; }
+        .form select { appearance: none; cursor: pointer; }
+        .form select option { background: var(--bg); }
+        .form input:focus, .form select:focus, .form textarea:focus { border-color: var(--sig); }
+        .form input::placeholder { color: var(--faint); }
+        .honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+        .send { display: flex; align-items: baseline; gap: 24px; flex-wrap: wrap; }
+        .send button { appearance: none; background: none; border: 0; padding: 0; cursor: pointer;
+                       font: inherit; font-size: clamp(26px, 5vw, 56px); font-weight: 700;
+                       letter-spacing: -0.035em; text-transform: uppercase; color: var(--fg);
+                       line-height: 1; transition: color 0.2s; }
+        .send button em { font-style: normal; color: var(--sig); }
+        .send button:hover, .send button:focus-visible { color: var(--sig); }
+        .send button[disabled] { opacity: 0.4; cursor: default; }
+        .status { line-height: 1.9; }
+        .status.ok { color: var(--fg); }
+        .status.err { color: var(--sig); }
     </style>
 </head>
 <body>
 <div class="corner">
-<a class="mailmark" href="mailto:gregor.art@pm.me?subject=Audiospatials" aria-label="Email">
+<a class="mailmark" href="mailto:audiospatials@gmail.com?subject=Audiospatials" aria-label="Email">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5H4L12 11.6 20 5H22V19H2Z"/></svg>
 </a>
 </div>
@@ -37,11 +57,34 @@
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
 <div class="wrap">
     <h1 data-arrive>Let&rsquo;s create<em>.</em></h1>
+    <p class="lede">Tell us about your project.</p>
 
-    <div class="call">
-        <a class="big" href="mailto:gregor.art@pm.me?subject=Audiospatials">gregor.art@pm.me<em>↗</em></a>
-        <p class="label">Tell us about your project: who you are, a link to your music, and what it needs.</p>
-    </div>
+    <!-- FormSubmit forwards each message to Hunter, copying Gregor. No account;
+         the first message ever sent asks hunter@ to click an activation link. -->
+    <form class="form" id="form" action="https://formsubmit.co/hunter@audiospatials.com" method="POST">
+        <input type="hidden" name="_cc" value="gregor@audiospatials.com">
+        <input type="hidden" name="_subject" value="Audiospatials — new message">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://audiospatials.com/contact?sent">
+        <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label><span class="label">Name</span><input name="name" required autocomplete="name"></label>
+        <label><span class="label">Email</span><input name="email" type="email" required autocomplete="email"></label>
+        <label><span class="label">What do you need?</span>
+            <select name="need">
+                <option>Production</option>
+                <option>Recording</option>
+                <option>Mixing</option>
+                <option selected>Not sure yet</option>
+            </select>
+        </label>
+        <label><span class="label">Link to your music <i>optional</i></span><input name="link" type="url" placeholder="https://"></label>
+        <label class="wide"><span class="label">Message</span><textarea name="message" rows="6" required></textarea></label>
+        <div class="send wide">
+            <button type="submit">Send<em>↗</em></button>
+            <p class="status label" id="status" role="status"></p>
+        </div>
+    </form>
 
     <section>
         <p class="label">Audiospatials elsewhere</p>
@@ -62,7 +105,34 @@
 <script src="/geo.js"></script>
 <script src="/nav.js"></script>
 <script>
-if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/contact' + location.search + location.hash);
+const form = document.getElementById('form');
+const status = document.getElementById('status');
+// Back from FormSubmit's own confirmation (no-JS path) with ?sent.
+if (new URLSearchParams(location.search).has('sent')) {
+    status.textContent = 'Sent. We will get back to you.';
+    status.className = 'status label ok';
+}
+form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const button = form.querySelector('button');
+    button.disabled = true;
+    status.className = 'status label';
+    status.textContent = 'Sending…';
+    try {
+        const r = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+            method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok || j.success === 'false' || j.success === false) throw new Error(j.message || r.status);
+        form.reset();
+        status.textContent = 'Sent. We will get back to you.';
+        status.className = 'status label ok';
+    } catch (err) {
+        status.innerHTML = 'That did not go through. Email <a href="mailto:hunter@audiospatials.com,gregor@audiospatials.com">hunter@ and gregor@audiospatials.com</a> instead.';
+        status.className = 'status label err';
+    }
+    button.disabled = false;
+});
+if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/contact' + location.hash);
 </script>
 </body>
 </html>
