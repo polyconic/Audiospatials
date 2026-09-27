@@ -116,10 +116,13 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
 .rows.plain .u { text-transform: none; letter-spacing: 0; font-size: 14px; line-height: 1.5;
                  max-width: 44ch; }
 
-/* The exit bar, centered: sections and the copyright in one centered row.
+/* The exit bar: sections centred, the copyright at the right edge.
    base.css keeps the Visuospatials layout; this overrides it here only. */
 .exit { justify-content: center; text-align: center; }
 .exit .spacer { display: none; }
+.exit .copy { position: absolute; right: max(20px, env(safe-area-inset-right, 0px)); }
+/* Too narrow to keep clear of the centred links: it follows them instead. */
+@media (max-width: 1000px) { .exit .copy { position: static; } }
 
 /* Phones: no bottom bar. The same links drop down from the two-bar button in
    the top right (js/menu.js), under the corner marks. */
@@ -150,6 +153,6 @@ a.row:hover .u, a.row:focus-visible .u { color: var(--sig); }
     html.menu-open .exit::after { display: none; }
     html.menu-open .exit .copy { display: none; }
     .footcopy { display: block; max-width: 1180px; margin: clamp(50px, 10vh, 90px) auto 0;
-                font-size: 10px; text-align: center; }
+                font-size: 10px; text-align: right; }
 }
 @keyframes drop { from { opacity: 0; transform: translateY(-6px); } }
