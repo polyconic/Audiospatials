@@ -18,4 +18,6 @@ const SITE = {
         'https://www.youtube.com/@audiospatials',
     ],
     services: ['Production', 'Recording', 'Mixing'],
+    // Gregor and Hunter's design studio; named on About and Contact.
+    sister: { name: 'Visuospatials', url: 'https://visuospatials.com/' },
 };

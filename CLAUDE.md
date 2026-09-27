@@ -32,6 +32,8 @@ packages. `tools/build.mjs`:
 - only rewrites files whose content changed, so a second run is silent.
 
 **Structured data** (JSON-LD): `Organization` on the front page (founders,
+each marked as also affiliated with Visuospatials via `SITE.sister` — the matching
+tag is on visuospatials.com's front page; deliberately no parent/sub relation —
 places, services, Instagram/YouTube), `MusicGroup` on each artist page (with
 their releases and Spotify links), an `ItemList` of `MusicAlbum`s on Music. No
 `member` list on the Organization — it reads as a collective.
