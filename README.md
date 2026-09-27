@@ -3,6 +3,8 @@
 Audiospatials is a music collective and studio in Santa Cruz and Los Angeles.
 This is its website: static HTML, no build step, no tracking.
 
+Made by Gregor Egan and Hunter Bowersmith. With love.
+
 ## Editing
 
 Most changes are one file:
