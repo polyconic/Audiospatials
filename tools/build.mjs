@@ -119,11 +119,12 @@ function artistPage(a) {
     const body = [];
     body.push(`    <h1 class="name" data-arrive>${esc(a.name)}<em>.</em></h1>`);
     body.push(`    <div class="artist-top">
-        <div class="artist-photo"><img src="/img/artists/${a.photo}" alt="${esc(a.name)}" decoding="async"></div>
+        <div class="artist-photo"><img src="/img/artists/${a.hero || a.photo}" alt="${esc(a.name)}" decoding="async"></div>
         <div class="artist-text">${a.tagline ? `\n            <p class="lede">${esc(a.tagline)}</p>` : ''}${a.bio && a.bio.length ? `\n            <div class="prose">\n${a.bio.map(p => `                <p>${esc(p)}</p>`).join('\n')}\n            </div>` : ''}
         </div>
     </div>`);
-    if (a.listen && a.listen.length) body.push(`    <section>
+    const listen = [];
+    if (a.listen && a.listen.length) listen.push(`    <section>
         <p class="label">Listen</p>
         <div class="players">
             ${a.listen.map(player).join('\n            ')}
@@ -138,11 +139,13 @@ function artistPage(a) {
         </div>
     </section>`);
     }
+    if (!a.listenLast) body.push(...listen);
     if (a.photos && a.photos.length) body.push(`    <section>
         <div class="photos">
             ${a.photos.map(f => `<img src="/img/artists/${f}" alt="${esc(a.name)}" loading="lazy" decoding="async">`).join('\n            ')}
         </div>${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
     </section>`);
+    if (a.listenLast) body.push(...listen);
 
     return `<!DOCTYPE html>
 <!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->

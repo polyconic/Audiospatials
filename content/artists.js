@@ -7,7 +7,8 @@
    slug        the address: 'john-bear' lives at audiospatials.com/john-bear
    name        as it should be written
    description one or two sentences for Google and link previews
-   photo       the picture on the Artists grid, in img/artists/
+   photo       the picture on the Artists grid, in img/artists/. Also the one
+               beside the bio, unless `hero` names a different one for the page
    tagline     optional, one short line under the name
    bio         paragraphs, one string each
    photos      optional, more pictures further down the page
@@ -16,6 +17,7 @@
                url is the address you would share. A player only loads when
                someone clicks it, so nothing tracks a visitor who doesn't.
    note        optional, a small line under the players (credits and the like)
+   listenLast  optional, true puts the players below the photos instead of above
 */
 
 const ARTISTS = [
@@ -66,6 +68,7 @@ const ARTISTS = [
         description: 'LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.',
         name: 'Gregor Egan',
         photo: 'gregor-egan.webp',
+        hero: 'gregor-egan-grain.webp',
         tagline: 'Techno producer and DJ.',
         bio: [
             'Gregor Egan is a Los Angeles-based producer and DJ whose techno draws from jazz training, Chicago house floors, and a sustained obsession with the hypnotic and textural.',
@@ -75,7 +78,8 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HOR' },
         ],
-        photos: ['gregor-egan-stage.webp', 'gregor-egan-grain.webp', 'gregor-egan-red.webp'],
+        photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
+        listenLast: true,
     },
     {
         slug: 'margo-flow',
