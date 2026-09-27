@@ -127,6 +127,7 @@ form.addEventListener('submit', async e => {
         status.textContent = 'Sent. We will get back to you.';
         status.className = 'status label ok';
     } catch (err) {
+        console.warn('FormSubmit:', err.message);
         status.innerHTML = 'That did not go through. Email <a href="mailto:hunter@audiospatials.com,gregor@audiospatials.com">hunter@ and gregor@audiospatials.com</a> instead.';
         status.className = 'status label err';
     }
