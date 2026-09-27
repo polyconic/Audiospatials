@@ -28,6 +28,36 @@
 
 const ARTISTS = [
     {
+        slug: 'luci',
+        description: 'Berlin DJ, originally from California and formed in the Lyon underground. Dark, hypnotic sets drawn from post-rock and goth.',
+        name: 'LUCI',
+        photo: 'luci.webp',
+        hero: 'video/luci-red.mp4',
+        bio: [
+            'LUCI is a Berlin-based DJ, first emerging from the underground Lyon scene and originally from California. She draws inspiration from post-rock and gothic rock. Her captivating, dark, and hypnotic sets have taken her across France, with performances in cities like Paris, Lyon, and Montpellier and in 2026, Berlin.',
+            'Her successful shows have led her to share the stage with renowned artists such as David Löhlein, Cassie Raptor, Nikolina, LOLALITA, FUTUR IS OFFLINE, and MA ČKA.',
+        ],
+        listen: [
+            { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/luci-sucre-lyon-06-10-25', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
+        ],
+        photos: ['luci-stage.webp', 'video/luci-crowd.mp4', 'luci.webp'],
+    },
+    {
+        slug: 'krow',
+        description: 'Minimal house and deep tech DJ with Chicago and San Francisco roots. Played Lollapalooza 2023.',
+        name: 'kröw',
+        photo: 'krow.webp',
+        bio: [
+            'kröw intricately weaves her Chicago roots and San Francisco upbringing into her music. She has curated a unique blend of Minimal House/Deep Tech with her distinctive touch you can only ever understand live.',
+            'A true milestone in her career was her music festival debut at Lollapalooza 2023. Her emphasis on delivering hypnotic beats, along with a fifth sense for what the crowd desires, keeps the dance floor packed all night long. Her dedication to pushing the boundaries of music makes her an unmissable talent.',
+        ],
+        listen: [
+            { kind: 'youtube', url: 'https://www.youtube.com/watch?v=qLlb-5TRAX8', title: 'kröw, live' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stephkrow/steph-lolla-2023', title: 'LIVE @ Lollapalooza 2023 Budlight Backyard Stage' },
+        ],
+        photos: ['krow-live-6.webp', 'krow-live-5.webp', 'krow-press-4.webp', 'krow-show-9.webp'],
+    },
+    {
         slug: 'fennec',
         description: 'A Santa Cruz band blending rock, folk and electronic sound, led by Hunter Bowersmith.',
         name: 'FENNEC',
@@ -36,6 +66,23 @@ const ARTISTS = [
         bio: [],
         photos: ['fennec-poster-1.webp', 'fennec-poster-2.webp', 'fennec-poster-3.webp'],
         credit: 'Poster art by Ross Mantell',
+    },
+    {
+        slug: 'gregor-egan',
+        description: 'LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.',
+        name: 'Gregor Egan',
+        photo: 'gregor-egan.webp',
+        hero: 'gregor-egan-grain.webp',
+        tagline: 'Techno producer and DJ.',
+        bio: [
+            'Gregor Egan is a Los Angeles-based producer and DJ whose techno draws from jazz training, Chicago house floors, and a sustained obsession with the hypnotic and textural.',
+            'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Atmospheric and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
+        ],
+        listen: [
+            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HOR' },
+        ],
+        photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
     },
     {
         slug: 'john-bear',
@@ -57,38 +104,6 @@ const ARTISTS = [
         photos: ['john-bear-3.webp', 'john-bear-4.webp'],
     },
     {
-        slug: 'luci',
-        description: 'Berlin DJ, originally from California and formed in the Lyon underground. Dark, hypnotic sets drawn from post-rock and goth.',
-        name: 'LUCI',
-        photo: 'luci.webp',
-        hero: 'video/luci-red.mp4',
-        bio: [
-            'LUCI is a Berlin-based DJ, first emerging from the underground Lyon scene and originally from California. She draws inspiration from post-rock and gothic rock. Her captivating, dark, and hypnotic sets have taken her across France, with performances in cities like Paris, Lyon, and Montpellier and in 2026, Berlin.',
-            'Her successful shows have led her to share the stage with renowned artists such as David Löhlein, Cassie Raptor, Nikolina, LOLALITA, FUTUR IS OFFLINE, and MA ČKA.',
-        ],
-        listen: [
-            { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/luci-sucre-lyon-06-10-25', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
-        ],
-        photos: ['luci-stage.webp', 'video/luci-crowd.mp4', 'luci.webp'],
-    },
-    {
-        slug: 'gregor-egan',
-        description: 'LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.',
-        name: 'Gregor Egan',
-        photo: 'gregor-egan.webp',
-        hero: 'gregor-egan-grain.webp',
-        tagline: 'Techno producer and DJ.',
-        bio: [
-            'Gregor Egan is a Los Angeles-based producer and DJ whose techno draws from jazz training, Chicago house floors, and a sustained obsession with the hypnotic and textural.',
-            'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Atmospheric and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
-        ],
-        listen: [
-            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HOR' },
-        ],
-        photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
-    },
-    {
         slug: 'margo-flow',
         description: 'Santa Cruz singer-songwriter. Folk and pop about the inner world and the natural one.',
         name: 'Margo Flow',
@@ -99,21 +114,6 @@ const ARTISTS = [
         listen: [
             { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/carpe-diem', title: 'carpe diem' },
         ],
-    },
-    {
-        slug: 'krow',
-        description: 'Minimal house and deep tech DJ with Chicago and San Francisco roots. Played Lollapalooza 2023.',
-        name: 'kröw',
-        photo: 'krow.webp',
-        bio: [
-            'kröw intricately weaves her Chicago roots and San Francisco upbringing into her music. She has curated a unique blend of Minimal House/Deep Tech with her distinctive touch you can only ever understand live.',
-            'A true milestone in her career was her music festival debut at Lollapalooza 2023. Her emphasis on delivering hypnotic beats, along with a fifth sense for what the crowd desires, keeps the dance floor packed all night long. Her dedication to pushing the boundaries of music makes her an unmissable talent.',
-        ],
-        listen: [
-            { kind: 'youtube', url: 'https://www.youtube.com/watch?v=qLlb-5TRAX8', title: 'kröw, live' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/stephkrow/steph-lolla-2023', title: 'LIVE @ Lollapalooza 2023 Budlight Backyard Stage' },
-        ],
-        photos: ['krow-live-6.webp', 'krow-live-5.webp', 'krow-press-4.webp', 'krow-show-9.webp'],
     },
     {
         slug: 'stazrad',
@@ -140,7 +140,6 @@ const ARTISTS = [
         ],
         releases: 'WOLFMANWOOF',
     },
-
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.
     { slug: 'canary', name: 'Canary', photo: '' },
