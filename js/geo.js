@@ -234,8 +234,8 @@
         // the word lands at t = 0 and leaves at t = HOLD. It flickers on as it
         // comes in (ARRIVE: red spans, seconds before landing), holds red, and
         // flickers off as it leaves (LEAVE: red spans, seconds after leaving).
-        const ARRIVE = [[1.7, 1.62], [1.3, 1.2], [0.95, 0.88], [0.72, 0.55], [0.42, 0]];
-        const LEAVE = [[0, 0.1], [0.16, 0.2], [0.3, 0.42], [0.55, 0.6]];
+        const ARRIVE = [[0.9, 0.87], [0.7, 0.66], [0.52, 0.48], [0.38, 0.33], [0.24, 0]];
+        const LEAVE = [[0, 0.05], [0.09, 0.12], [0.17, 0.21], [0.28, 0.3]];
         const lit = (x, spans) => spans.some(([a, z]) => x >= Math.min(a, z) && x < Math.max(a, z));
         function tint(t) {
             const end = CYCLE + HOLD;

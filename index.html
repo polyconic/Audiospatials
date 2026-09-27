@@ -167,7 +167,7 @@
             const s = Math.min(container.getBoundingClientRect().width / width, innerHeight * 0.16);
             return { x: (innerWidth - width * s) / 2, y: (innerHeight - s) / 2, s };
         }, { hold: 5, cycle: 21,
-             sig: { canvas: document.getElementById('geo-sig'), color: getComputedStyle(document.documentElement).getPropertyValue('--sig').trim() } });
+             sig: { canvas: document.getElementById('geo-sig'), color: '#ff1420' } });
         const explode = () => mark.explode();
 
         const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
