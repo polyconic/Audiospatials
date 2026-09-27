@@ -18,7 +18,8 @@
                sub optional, a small line under it. A player only loads when
                someone clicks it, so nothing tracks a visitor who doesn't.
    note        optional, a small line under the players (credits and the like)
-   listenLast  optional, true puts the players below the photos instead of above
+   listenLast  optional, true puts the Spotify/YouTube players below the photos.
+               SoundCloud tracks always sit under the bio.
 */
 
 const ARTISTS = [
@@ -80,7 +81,6 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HOR' },
         ],
         photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
-        listenLast: true,
     },
     {
         slug: 'margo-flow',

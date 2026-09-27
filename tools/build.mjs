@@ -134,26 +134,29 @@ function artistLD(a) {
 
 function artistPage(a) {
     const body = [];
+    // SoundCloud rows sit under the bio, where people are already reading;
+    // the bigger Spotify and YouTube players get their own section below.
+    const sc = (a.listen || []).filter(l => l.kind === 'soundcloud');
+    const rest = (a.listen || []).filter(l => l.kind !== 'soundcloud');
     body.push(`    <h1 class="name" data-arrive>${esc(a.name)}<em>.</em></h1>`);
     body.push(`    <div class="artist-top">
         <div class="artist-photo"><img src="/img/artists/${a.hero || a.photo}" alt="${esc(a.name)}" decoding="async"></div>
-        <div class="artist-text">${a.tagline ? `\n            <p class="lede">${esc(a.tagline)}</p>` : ''}${a.bio && a.bio.length ? `\n            <div class="prose">\n${a.bio.map(p => `                <p>${esc(p)}</p>`).join('\n')}\n            </div>` : ''}
+        <div class="artist-text">${a.tagline ? `\n            <p class="lede">${esc(a.tagline)}</p>` : ''}${a.bio && a.bio.length ? `\n            <div class="prose">\n${a.bio.map(p => `                <p>${esc(p)}</p>`).join('\n')}\n            </div>` : ''}${sc.length ? `
+            <div class="listen-here">
+                <p class="label">Listen</p>
+                <div class="tracks">
+                    ${sc.map(track).join('\n                    ')}
+                </div>
+            </div>` : ''}
         </div>
     </div>`);
     const listen = [];
-    if (a.listen && a.listen.length) {
-        const sc = a.listen.filter(l => l.kind === 'soundcloud');
-        const rest = a.listen.filter(l => l.kind !== 'soundcloud');
-        listen.push(`    <section>
-        <p class="label">Listen</p>${sc.length ? `
-        <div class="tracks">
-            ${sc.map(track).join('\n            ')}
-        </div>` : ''}${rest.length ? `
+    if (rest.length || (a.note && !sc.length)) listen.push(`    <section>
+        <p class="label">${sc.length ? 'More' : 'Listen'}</p>${rest.length ? `
         <div class="players">
             ${rest.map(player).join('\n            ')}
         </div>` : ''}${a.note ? `\n        <p class="note label">${esc(a.note)}</p>` : ''}
     </section>`);
-    }
     if (a.releases) {
         const own = releasesBy(a.releases);
         if (own.length) body.push(`    <section>
