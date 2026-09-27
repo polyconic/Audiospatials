@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nothing here &mdash; Audiospatials</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#0a0a0a">
-    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/css/base.css">
     <style>
         html, body { height: 100%; overflow: hidden; }
         body { display: grid; align-items: end; justify-items: center; }
@@ -35,13 +35,13 @@
     <p class="copy label">&copy; 2026 Audiospatials</p>
 </div>
 
-<script src="/geo.js"></script>
+<script src="/js/geo.js"></script>
 <script>
 Geo.converge(document.getElementById('c'), '404', width => {
     const s = Math.min(innerWidth * 0.62 / width, innerHeight * 0.4);
     return { x: (innerWidth - width * s) / 2, y: innerHeight * 0.41 - s / 2, s };
 }, { cycle: 16 });
 </script>
-<script src="/nav.js"></script>
+<script src="/js/nav.js"></script>
 </body>
 </html>

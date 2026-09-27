@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio &mdash; Audiospatials</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
     <link rel="canonical" href="https://audiospatials.com/studio">
     <meta name="description" content="Production, recording, and mixing for independent artists. Based in Santa Cruz and Los Angeles.">
     <meta name="theme-color" content="#0a0a0a">
     <meta property="og:title" content="Studio — Audiospatials">
     <meta property="og:description" content="Production, recording, and mixing for independent artists. Based in Santa Cruz and Los Angeles.">
-    <meta property="og:image" content="https://audiospatials.com/blur.webp">
+    <meta property="og:image" content="https://audiospatials.com/assets/share/audiospatials.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://audiospatials.com/studio">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/base.css">
-    <link rel="stylesheet" href="/pages.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/pages.css">
     <style>
         .work .row { align-items: center; }
         .work .cover { width: 56px; height: 56px; flex: none; object-fit: cover; background: var(--rule); }
@@ -76,8 +76,8 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/music.js"></script>
-<script src="/covers.js"></script>
+<script src="/content/music.js"></script>
+<script src="/js/covers.js"></script>
 <script>
 const work = document.getElementById('work');
 STUDIO_ORDER.map(t => RELEASES.find(r => r.title === t)).filter(r => r && r.credit).forEach(r => {
@@ -93,7 +93,7 @@ STUDIO_ORDER.map(t => RELEASES.find(r => r.title === t)).filter(r => r && r.cred
 });
 if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/studio' + location.search + location.hash);
 </script>
-<script src="/geo.js"></script>
-<script src="/nav.js"></script>
+<script src="/js/geo.js"></script>
+<script src="/js/nav.js"></script>
 </body>
 </html>

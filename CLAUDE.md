@@ -8,13 +8,13 @@ document.
 **Two people edit this site: Gregor Egan and Hunter Bowersmith.** Hunter needs
 to change content without touching code, which is the whole reason the site
 was on Squarespace. So content lives in two data files he can edit on GitHub's
-web editor — `artists.js` and `music.js` — and page files stay dumb. Keep it
+web editor — `content/artists.js` and `content/music.js` — and page files stay dumb. Keep it
 that way: new content goes in a data file, not hard-coded into a page.
 
 ## Shared with Visuospatials
 
-`base.css`, `geo.js` and `nav.js` are copied from `~/Documents/GitHub/visuospatials`
-unchanged. Read that repo's CLAUDE.md for the geometric alphabet, the
+`css/base.css`, `js/geo.js` and `js/nav.js` are copied from
+`~/Documents/GitHub/visuospatials` unchanged (there they sit at the root). Read that repo's CLAUDE.md for the geometric alphabet, the
 corner marks, the exit bar, view transitions and prerendering — all the same
 here. If one of these changes there, copy it over.
 
@@ -22,18 +22,33 @@ here. If one of these changes there, copy it over.
 
 | File | What it is |
 |---|---|
-| `index.html` | The front: blurred photo (`blur.webp`) and the converging wordmark. The name links to `/artists`. `spatial` explodes it, Konami inverts. |
-| `artists.html` | The grid, built from `artists.js`. |
-| `<slug>.html` | One per artist, same slugs as the old Squarespace site so old links hold. Each is a stub carrying its slug, title and meta; `artist.js` renders it from `artists.js`. |
-| `music.html` | Released-on-Audiospatials grid, then videos. From `music.js`. |
+| `index.html` | The front: the WOLFMANWOOF header (`img/header.webp`: the photo mirrored above, as shot below, repeated to fill) and the converging wordmark. The name links to `/artists`. `spatial` explodes it, Konami inverts. |
+| `artists.html` | The grid, built from `content/artists.js`. |
+| `<slug>.html` | One per artist, same slugs as the old Squarespace site so old links hold. Each is a stub carrying its slug, title and meta; `js/artist.js` renders it from `content/artists.js`. |
+| `music.html` | Released-on-Audiospatials grid, then videos. From `content/music.js`. |
 | `studio.html` | What we do, Recent work (releases with a `credit`, in `STUDIO_ORDER`), Start a project. |
 | `about.html` | The About text verbatim from the old site, plus the two founders. |
 | `contact.html` | Mail and elsewhere. There is no form — no backend. |
 | `404.html` | The 404 in the alphabet. |
-| `pages.css` | Styles the inside pages share (heading, rows, tiles, players). |
-| `players.js` | Click-to-load Spotify / SoundCloud / YouTube players. Nothing third-party loads until a visitor clicks. YouTube uses the nocookie domain. |
-| `covers.js` | Release covers: 1200px copy from `img/releases/sm/` in grids, full file for big screens; falls back to the full file when no small copy exists. |
-| `serve.py` | Local preview that maps `/studio` to `studio.html` like Pages does. `python3 serve.py` → localhost:8765. |
+| `css/pages.css` | Styles the inside pages share (heading, rows, tiles, players). |
+| `js/players.js` | Click-to-load Spotify / SoundCloud / YouTube players. Nothing third-party loads until a visitor clicks. YouTube uses the nocookie domain. |
+| `js/covers.js` | Release covers: 1200px copy from `img/releases/sm/` in grids, full file for big screens; falls back to the full file when no small copy exists. |
+| `tools/serve.py` | Local preview that maps `/studio` to `studio.html` like Pages does. `python3 tools/serve.py` → localhost:8765. |
+
+## Folders
+
+**Pages stay at the root.** Pages serves `x.html` at `/x` only from the top
+level; moving them into a folder would change every address and break the old
+Squarespace links (`/john-bear`, `/studio`). Everything else is foldered:
+`content/` (the two data files), `css/`, `js/`, `img/`, `assets/` (icons and
+`share/`), `tools/`. Paths are root-absolute everywhere.
+
+## Link previews
+
+`og:image` points at JPGs in `assets/share/` — 1200×630 for the site pages
+(`audiospatials.jpg`, cut from the header), 1200×1200 squares per artist
+(`<slug>.jpg`) and for Music. JPG, not webp: iMessage and some other preview
+fetchers don't show webp. A new artist needs one made the same way.
 
 ## Content decisions
 

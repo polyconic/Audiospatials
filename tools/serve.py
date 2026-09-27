@@ -1,8 +1,8 @@
 """Local preview that behaves like GitHub Pages: /studio serves studio.html,
-and a missing page gets 404.html. python3 serve.py, then open localhost:8765."""
+and a missing page gets 404.html. python3 tools/serve.py, then open localhost:8765."""
 import http.server, os, sys
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 class Pages(http.server.SimpleHTTPRequestHandler):
     def send_head(self):

@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audiospatials</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
     <link rel="canonical" href="https://audiospatials.com/">
     <meta name="description" content="Audiospatials is a music collective and studio in Santa Cruz and Los Angeles. We release music by our artists, and produce and mix for others.">
     <meta name="theme-color" content="#0a0a0a">
     <meta property="og:title" content="Audiospatials">
     <meta property="og:description" content="A music collective and studio in Santa Cruz and Los Angeles.">
-    <meta property="og:image" content="https://audiospatials.com/blur.webp">
+    <meta property="og:image" content="https://audiospatials.com/assets/share/audiospatials.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://audiospatials.com/">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/css/base.css">
     <script type="speculationrules">
     {"prerender": [{"urls": ["/artists"], "eagerness": "eager"},
                    {"where": {"href_matches": "/*"}, "eagerness": "moderate"}]}
@@ -37,7 +37,7 @@
             position: absolute;
             inset: 0;
             z-index: 0;
-            background: url("/header.webp") center top / 100% auto repeat-y;
+            background: url("/img/header.webp") center top / 100% auto repeat-y;
             animation: drift 90s ease-in-out infinite alternate;
             pointer-events: none;
         }
@@ -93,7 +93,7 @@
     <a class="flicker-text" href="/artists" aria-label="Audiospatials">AUDIOSPATIALS</a>
     <canvas class="geo" id="geo" aria-hidden="true"></canvas>
 
-    <script src="/geo.js"></script>
+    <script src="/js/geo.js"></script>
     <script>
         const container = document.querySelector('.flicker-text');
         const WORD = container.textContent;

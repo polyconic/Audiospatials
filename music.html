@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music &mdash; Audiospatials</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
     <link rel="canonical" href="https://audiospatials.com/music">
     <meta name="description" content="Every record released on Audiospatials, from folk to techno. Stream it, and see who made it.">
     <meta name="theme-color" content="#0a0a0a">
     <meta property="og:title" content="Music — Audiospatials">
     <meta property="og:description" content="Every record released on Audiospatials, from folk to techno.">
-    <meta property="og:image" content="https://audiospatials.com/img/releases/shifter.webp">
+    <meta property="og:image" content="https://audiospatials.com/assets/share/music.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://audiospatials.com/music">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/base.css">
-    <link rel="stylesheet" href="/pages.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/pages.css">
     <style>
         .videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 28px);
                   margin-top: 16px; }
@@ -52,9 +52,9 @@
     <span class="spacer"></span>
     <span class="copy">&copy; 2026 Audiospatials</span>
 </nav>
-<script src="/music.js"></script>
-<script src="/players.js"></script>
-<script src="/covers.js"></script>
+<script src="/content/music.js"></script>
+<script src="/js/players.js"></script>
+<script src="/js/covers.js"></script>
 <script>
 const releases = document.getElementById('releases');
 RELEASES.filter(r => r.music !== false).forEach(r => {
@@ -75,7 +75,7 @@ const videos = document.getElementById('videos');
 VIDEOS.forEach(v => videos.append(Player({ kind: 'youtube', url: v.id, title: v.title, sub: v.artist })));
 if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/music' + location.search + location.hash);
 </script>
-<script src="/geo.js"></script>
-<script src="/nav.js"></script>
+<script src="/js/geo.js"></script>
+<script src="/js/nav.js"></script>
 </body>
 </html>
