@@ -52,7 +52,7 @@ fetchers don't show webp. A new artist needs one made the same way.
 
 ## Content decisions
 
-- Mastering is **not** offered as a service, by choice. Studio
+- Mastering is **not** offered as a service, by choice, yet. Studio
   lists production and mixing only. Credits may still say "mastered by".
 - Canary, The Silver Spurs, Hunter Ray and Pablo Cervantes were on the old grid
   without pages; they sit commented out in `artists.js` until Hunter decides.
