@@ -86,10 +86,13 @@ Squarespace links (`/john-bear`, `/studio`). Everything else is foldered:
 
 ## Link previews
 
-`og:image` points at JPGs in `assets/share/` — 1200×630 for the site pages
-(`audiospatials.jpg`, cut from the header), 1200×1200 squares per artist
-(`<slug>.jpg`) and for Music. JPG, not webp: iMessage and some other preview
-fetchers don't show webp. A new artist needs one made the same way.
+**Every page's `og:image` is the wordmark**, `assets/share/audiospatials.jpg`:
+the lowercase *audiospatials* logo, white on #0a0a0a, 1200×630, made from
+`~/Desktop/VISUO + AUDIO + DELILAH + INDEXLESS/audiospatials/designs/audiospatials/audio designs logo INSTA.pdf`
+(rendered with `sips`, trimmed, set 680px wide). Greg wants the logo on every
+link preview, not photos (2026-09-27) — per-artist photo previews were made
+and dropped. JPG, not webp: iMessage doesn't show webp. The artist pages'
+structured data still names each artist's photo as their image.
 
 ## Content decisions
 

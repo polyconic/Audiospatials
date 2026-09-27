@@ -107,7 +107,7 @@ function artistLD(a) {
         '@type': 'MusicGroup',
         name: a.name,
         url: abs('/' + a.slug),
-        image: abs(exists(`assets/share/${a.slug}.jpg`) ? `/assets/share/${a.slug}.jpg` : `/img/artists/${a.photo}`),
+        image: abs(`/img/artists/${a.photo}`),
         description: a.description,
         ...(sameAs.length && { sameAs }),
         ...(albums.length && { album: albums.map(r => ({ '@type': 'MusicAlbum', name: r.title, url: r.url, image: abs('/img/releases/' + r.cover) })) }),
@@ -115,7 +115,6 @@ function artistLD(a) {
 }
 
 function artistPage(a) {
-    const share = exists(`assets/share/${a.slug}.jpg`) ? `/assets/share/${a.slug}.jpg` : `/img/artists/${a.photo}`;
     const body = [];
     body.push(`    <h1 class="name" data-arrive>${esc(a.name)}<em>.</em></h1>`);
     body.push(`    <div class="artist-top">
@@ -158,7 +157,7 @@ function artistPage(a) {
     <meta name="theme-color" content="#0a0a0a">
     <meta property="og:title" content="${esc(a.name)} — Audiospatials">
     <meta property="og:description" content="${esc(a.description)}">
-    <meta property="og:image" content="${abs(share)}">
+    <meta property="og:image" content="${abs('/assets/share/audiospatials.jpg')}">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="${abs('/' + a.slug)}">
     <meta name="twitter:card" content="summary_large_image">

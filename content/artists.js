@@ -7,8 +7,7 @@
    slug        the address: 'john-bear' lives at audiospatials.com/john-bear
    name        as it should be written
    description one or two sentences for Google and link previews
-   photo       the picture on the Artists grid, in img/artists/. For link
-               previews, also add a 1200px square JPG as assets/share/<slug>.jpg
+   photo       the picture on the Artists grid, in img/artists/
    tagline     optional, one short line under the name
    bio         paragraphs, one string each
    photos      optional, more pictures further down the page
