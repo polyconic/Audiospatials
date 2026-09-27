@@ -59,10 +59,9 @@
     <h1 data-arrive>Let&rsquo;s create<em>.</em></h1>
     <p class="lede">Tell us about your project.</p>
 
-    <!-- FormSubmit forwards each message to Hunter, copying Gregor. The code in
-         the action stands in for hunter@audiospatials.com so it isn't in the source. -->
-    <form class="form" id="form" action="https://formsubmit.co/c03ed9325dbfdc37e82c3a4540a4a27a" method="POST">
-        <input type="hidden" name="_cc" value="gregor@audiospatials.com">
+    <!-- FormSubmit forwards each message to hello@, which Namecheap forwards to
+         the shared audiospatials@gmail.com inbox that Gregor and Hunter both read. -->
+    <form class="form" id="form" action="https://formsubmit.co/hello@audiospatials.com" method="POST">
         <input type="hidden" name="_subject" value="Audiospatials — new message">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_next" value="https://audiospatials.com/contact?sent">
@@ -128,7 +127,7 @@ form.addEventListener('submit', async e => {
         status.className = 'status label ok';
     } catch (err) {
         console.warn('FormSubmit:', err.message);
-        status.innerHTML = 'That did not go through. Email <a href="mailto:hunter@audiospatials.com,gregor@audiospatials.com">hunter@ and gregor@audiospatials.com</a> instead.';
+        status.innerHTML = 'That did not go through. Email <a href="mailto:hello@audiospatials.com">hello@audiospatials.com</a> instead.';
         status.className = 'status label err';
     }
     button.disabled = false;

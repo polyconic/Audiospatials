@@ -65,12 +65,15 @@ Squarespace until DNS changes. Greg pushes; Claude commits locally and stops.
 ## Contact
 
 - **The form** on `/contact` posts to FormSubmit (formsubmit.co), which emails
-  `hunter@audiospatials.com` and CCs `gregor@audiospatials.com`. No account.
-  Activated 2026-09-27. The form's `action` uses FormSubmit's alias for
-  hunter@ (`c03ed932…`) rather than the address itself, so the address stays
-  out of the page source. The `_cc` to gregor@ is still plain text. With JS the form posts to the `/ajax/`
-  endpoint and shows the result inline; without JS it posts normally and
-  FormSubmit sends people back to `/contact?sent`.
+  `hello@audiospatials.com`. No account. Every `@audiospatials.com` alias
+  (hello, gregor, hunter) forwards at Namecheap to the one shared inbox,
+  `audiospatials@gmail.com`, so one recipient reaches both of them — a CC to
+  a second alias only delivers the message twice. A new recipient needs
+  activating once (FormSubmit emails a link); after that, swap the address in
+  the form's `action` for the alias code FormSubmit sends, to keep it out of the
+  page source. With JS the form posts to the `/ajax/` endpoint and shows the
+  result inline; without JS it posts normally and FormSubmit sends people back
+  to `/contact?sent`.
 - **The mail icon** and every other mailto link go to `audiospatials@gmail.com`.
 - `@audiospatials.com` mail works through **Namecheap email forwarding** (MX
   `eforward*.registrar-servers.com`). When switching the site's DNS to GitHub
