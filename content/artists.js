@@ -71,7 +71,7 @@ const ARTISTS = [
             'Gregor Egan is a Los Angeles-based producer and DJ whose techno draws from jazz training, Chicago house floors, and a sustained obsession with the hypnotic and textural.',
             'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Atmospheric and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
         ],
-        photos: ['gregor-egan-red.webp', 'gregor-egan-live.webp'],
+        photos: ['gregor-egan-red.webp'],
     },
     {
         slug: 'margo-flow',
