@@ -1,6 +1,6 @@
 # audiospatials.com
 
-The Audiospatials collective's site, rebuilt 2026-09-27 from the Squarespace
+Audiospatials' site, rebuilt 2026-09-27 from the Squarespace
 version to mirror visuospatials.com. Static HTML, no build step, no
 dependencies, no analytics. `README.md` is the public face; this is the working
 document.
@@ -54,6 +54,11 @@ Squarespace links (`/john-bear`, `/studio`). Everything else is foldered:
 fetchers don't show webp. A new artist needs one made the same way.
 
 ## Content decisions
+
+- **Never call Audiospatials a "collective"** — Greg and Hunter find it a
+  loaded term. Use the site's own words: a studio; "we make records with
+  independent artists"; "the collaborative project of Gregor Egan and Hunter
+  Bowersmith".
 
 - Mastering is **not** offered as a service, by choice, yet. Studio
   lists production and mixing only. Credits may still say "mastered by".
