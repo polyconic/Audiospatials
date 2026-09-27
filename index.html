@@ -127,8 +127,6 @@
             pointer-events: none;
         }
 
-        .geo.sig { mix-blend-mode: normal; }
-
         body { user-select: none; -webkit-touch-callout: none; }
 
         html.inverted { filter: invert(1) hue-rotate(180deg); }
@@ -143,7 +141,6 @@
     <img class="hero" src="/img/header.webp" alt="">
     <a class="flicker-text" href="/artists" aria-label="Audiospatials">AUDIOSPATIALS</a>
     <canvas class="geo" id="geo" aria-hidden="true"></canvas>
-    <canvas class="geo sig" id="geo-sig" aria-hidden="true"></canvas>
 <!-- build:summary -->
     <div class="geo-text">
         <h1>Audiospatials</h1>
@@ -159,15 +156,13 @@
 
         /* The wordmark, from the shared alphabet in geo.js: it holds assembled for
            5s, comes apart and back together over 21s, then holds another 5s.
-           It flickers red as it comes in, holds red, and flickers back as it leaves.
            It is sized to the link's own text, so the CSS clamp sets the size
            and the clickable box matches the drawing. */
         container.classList.add('drawn');
         const mark = Geo.converge(document.getElementById('geo'), WORD, width => {
             const s = Math.min(container.getBoundingClientRect().width / width, innerHeight * 0.16);
             return { x: (innerWidth - width * s) / 2, y: (innerHeight - s) / 2, s };
-        }, { hold: 5, cycle: 21,
-             sig: { canvas: document.getElementById('geo-sig'), color: '#ff1420' } });
+        }, { hold: 5, cycle: 21 });
         const explode = () => mark.explode();
 
         const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];

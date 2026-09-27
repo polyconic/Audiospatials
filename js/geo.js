@@ -189,11 +189,6 @@
         const HOLD = opts.hold || 0;
         const INK = opts.ink || '#f2f2ef', DIM = opts.dim || '#8c8c88';
         const cx = canvas.getContext('2d');
-        // opts.sig: { canvas, color }. The pieces flicker into that color as
-        // they come in, hold in it, and flicker back out as they leave. It draws
-        // on its own canvas, since the main one's blend would turn red to cyan.
-        const sig = opts.sig && MOVING ? opts.sig : null;
-        const sx = sig && sig.canvas.getContext('2d');
         const { pieces: layoutPieces, width } = layout(text);
         let W = 0, H = 0, pieces = [], box = null;
         let blastAt = -1e9;
@@ -205,7 +200,6 @@
             canvas.width = W * dpr;
             canvas.height = H * dpr;
             cx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            if (sig) { sig.canvas.width = W * dpr; sig.canvas.height = H * dpr; }
             box = place(width);
             let seed = 11;
             const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -230,52 +224,29 @@
             return k * k * k;
         }
 
-        // 0 = its own tones, 1 = the signal color. t is seconds into the cycle;
-        // the word lands at t = 0 and leaves at t = HOLD. It flickers on as it
-        // comes in (ARRIVE: red spans, seconds before landing), holds red, and
-        // flickers off as it leaves (LEAVE: red spans, seconds after leaving).
-        const ARRIVE = [[0.9, 0.87], [0.7, 0.66], [0.52, 0.48], [0.38, 0.33], [0.24, 0]];
-        const LEAVE = [[0, 0.05], [0.09, 0.12], [0.17, 0.21], [0.28, 0.3]];
-        const lit = (x, spans) => spans.some(([a, z]) => x >= Math.min(a, z) && x < Math.max(a, z));
-        function tint(t) {
-            const end = CYCLE + HOLD;
-            if (t >= HOLD) return lit(end - t, ARRIVE) || lit(t - HOLD, LEAVE) ? 1 : 0;
-            return 1;
-        }
-
         function render(sec) {
             if (!pieces.length || W !== innerWidth || H !== innerHeight) build();
             if (!pieces.length) return;
             cx.setTransform(canvas.width / W, 0, 0, canvas.height / H, 0, 0);
             cx.clearRect(0, 0, W, H);
             const t = sec % (CYCLE + HOLD);
-            const warm = sig ? tint(t) : 0;
-            if (sig) {
-                sx.setTransform(sig.canvas.width / W, 0, 0, sig.canvas.height / H, 0, 0);
-                sx.clearRect(0, 0, W, H);
-            }
             const f = Math.max(0, t - HOLD) / CYCLE;
             const warped = f - (HOLD ? 1 : 0.94) * Math.sin(2 * PI * f) / (2 * PI);
             const margin = box.s * 1.3, span = W + 2 * margin;
             const b = blast();
-            const draw = (c, alpha, color) => {
-                if (alpha <= 0) return;
-                c.globalAlpha = alpha;
-                pieces.forEach(q => {
-                    let x = q.ax - q.laps * span * warped;
-                    x = ((x + margin) % span + span) % span - margin;
-                    c.save();
-                    c.translate(x + q.bx * b, box.y + q.by * b);
-                    c.scale(box.s, box.s);
-                    c.fillStyle = c.strokeStyle = color || q.tone;
-                    c.lineWidth = SEAM / box.s;
-                    c.fill(q.path, 'evenodd');
-                    c.stroke(q.path);
-                    c.restore();
-                });
-            };
-            draw(cx, (1 - b) * (1 - warm));
-            if (sig) draw(sx, (1 - b) * warm, sig.color);
+            cx.globalAlpha = 1 - b;
+            pieces.forEach(q => {
+                let x = q.ax - q.laps * span * warped;
+                x = ((x + margin) % span + span) % span - margin;
+                cx.save();
+                cx.translate(x + q.bx * b, box.y + q.by * b);
+                cx.scale(box.s, box.s);
+                cx.fillStyle = cx.strokeStyle = q.tone;
+                cx.lineWidth = SEAM / box.s;
+                cx.fill(q.path, 'evenodd');
+                cx.stroke(q.path);
+                cx.restore();
+            });
         }
 
         if (MOVING) (function loop(ms) { render(ms / 1000); requestAnimationFrame(loop); })(0);
