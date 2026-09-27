@@ -29,21 +29,25 @@
             background: var(--bg);
             position: relative;
         }
-        /* The WOLFMANWOOF header, whole: fitted to the width and repeated down
-           the page wherever one copy doesn't reach. header.webp is the photo
-           twice, mirrored above and as shot below, so the copies alternate.
-           It drifts slowly upward; with the repeat, the drift never shows an edge. */
+        /* The WOLFMANWOOF header, one copy filling the screen. The photo is a
+           wide panorama, so the sides crop; the crop sits on the kicking
+           figure, which is all a phone held upright shows. */
         .hero {
             position: absolute;
             inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 63% center;
             z-index: 0;
-            background: url("/img/header.webp") center top / 100% auto repeat-y;
             animation: drift 90s ease-in-out infinite alternate;
+            /* iOS shrinks an image under a long press to preview it. */
             pointer-events: none;
+            -webkit-user-drag: none;
         }
         @keyframes drift {
-            from { background-position: center 0; }
-            to   { background-position: center -12vh; }
+            from { transform: scale(1.01); }
+            to   { transform: scale(1.05) translate(-0.6%, 0.4%); }
         }
         .flicker-text {
             position: absolute;
@@ -89,7 +93,7 @@
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5H4L12 11.6 20 5H22V19H2Z"/></svg>
 </a>
 </div>
-    <div class="hero" aria-hidden="true"></div>
+    <img class="hero" src="/img/header.webp" alt="">
     <a class="flicker-text" href="/artists" aria-label="Audiospatials">AUDIOSPATIALS</a>
     <canvas class="geo" id="geo" aria-hidden="true"></canvas>
 
