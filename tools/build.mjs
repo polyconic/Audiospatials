@@ -125,6 +125,9 @@ const exitBar = here => `<nav class="exit">
 
 // ---------- artist pages
 
+// The clip's sound toggle: a flat speaker, crossed out while muted (js/players.js swaps them).
+const SOUND_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9H6L11 4.5V19.5L6 15H2Z"/><path d="M14.3 9.4 15.4 8.3 17.5 10.4 19.6 8.3 20.7 9.4 18.6 11.5 20.7 13.6 19.6 14.7 17.5 12.6 15.4 14.7 14.3 13.6 16.4 11.5Z"/></svg>';
+
 // Width and height from a .webp header, so a clip holds its shape before it loads.
 function webpSize(f) {
     const b = fs.readFileSync(path.join(ROOT, f));
@@ -136,14 +139,15 @@ function webpSize(f) {
 }
 
 // An entry in `photos`: a file in img/artists/, or a path under img/ (like
-// 'video/luci-red.mp4'). Videos play silent and looping, only while in view
-// (js/players.js), with a still of the same name (.webp) until then.
+// 'video/luci-red.mp4'). Videos loop, muted, only while in view (js/players.js),
+// with a still of the same name (.webp) until then, and a button for sound.
 function media(f, name) {
     const src = '/img/' + (f.includes('/') ? f : 'artists/' + f);
     if (/\.(mp4|webm|mov)$/i.test(f)) {
         const poster = src.replace(/\.\w+$/, '.webp');
         const size = exists(poster.slice(1)) && webpSize(poster.slice(1));
-        return `<video src="${src}"${size ? ` poster="${poster}" width="${size[0]}" height="${size[1]}"` : ''} muted loop playsinline preload="none" data-inview aria-label="${esc(name)}"></video>`;
+        return `<div class="clip"><video src="${src}"${size ? ` poster="${poster}" width="${size[0]}" height="${size[1]}"` : ''} muted loop playsinline preload="none" data-inview aria-label="${esc(name)}"></video>` +
+            `<button type="button" class="sound" aria-pressed="false" aria-label="Turn sound on">${SOUND_OFF}</button></div>`;
     }
     return `<img src="${src}" alt="${esc(name)}" loading="lazy" decoding="async">`;
 }

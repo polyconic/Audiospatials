@@ -11,8 +11,9 @@
    service's own player instead, so a tap there does it. Spotify plays
    30-second previews to anyone not logged in to Spotify; that's theirs.
 
-   Clips among the photos (video[data-inview]) play silent and looping only
-   while on screen, and load nothing before they first come into view. */
+   Clips (video[data-inview]) loop only while on screen and load nothing
+   before they first come into view. They start muted; each has a sound
+   button, and turning one on turns the others off. */
 (function () {
     document.addEventListener('click', e => {
         const b = e.target.closest && e.target.closest('button.player[data-src]');
@@ -29,7 +30,7 @@
         f.focus();
     });
 
-    const clips = document.querySelectorAll('video[data-inview]');
+    const clips = [...document.querySelectorAll('video[data-inview]')];
     if (clips.length && 'IntersectionObserver' in window) {
         const io = new IntersectionObserver(entries => entries.forEach(e => {
             const v = e.target;
@@ -38,6 +39,25 @@
         }), { rootMargin: '120px' });
         clips.forEach(v => io.observe(v));
     }
+
+    // Sound: off to start; one clip heard at a time. The button's first press
+    // is a tap, so browsers allow the sound.
+    const ON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9H6L11 4.5V19.5L6 15H2Z"/><path d="M14 8.2A5 5 0 0 1 14 15.8L15.1 17.2A6.8 6.8 0 0 0 15.1 6.8Z"/><path d="M16.6 5.1A9 9 0 0 1 16.6 18.9L17.8 20.3A10.8 10.8 0 0 0 17.8 3.7Z"/></svg>';
+    const soundButtons = [...document.querySelectorAll('.clip .sound')];
+    const OFF = soundButtons.length ? soundButtons[0].innerHTML : '';
+    const setSound = (b, on) => {
+        const v = b.parentElement.querySelector('video');
+        v.muted = !on;
+        b.setAttribute('aria-pressed', String(on));
+        b.setAttribute('aria-label', on ? 'Turn sound off' : 'Turn sound on');
+        b.innerHTML = on ? ON : OFF;
+        if (on && v.paused) v.play().catch(() => {});
+    };
+    soundButtons.forEach(b => b.addEventListener('click', () => {
+        const on = b.getAttribute('aria-pressed') !== 'true';
+        if (on) soundButtons.forEach(o => o !== b && setSound(o, false));
+        setSound(b, on);
+    }));
 
     const rows = [...document.querySelectorAll('.track[data-kind]')];
     if (!rows.length) return;
