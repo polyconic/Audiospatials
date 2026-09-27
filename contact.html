@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact &mdash; Audiospatials</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="canonical" href="https://audiospatials.com/contact">
+    <meta name="description" content="Tell us about your project. We work on production, mixing and live instrumentation.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="Contact — Audiospatials">
+    <meta property="og:description" content="Tell us about your project. We work on production, mixing and live instrumentation.">
+    <meta property="og:image" content="https://audiospatials.com/blur.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://audiospatials.com/contact">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/pages.css">
+    <style>
+        .call { margin-top: clamp(30px, 7vh, 70px); }
+        .call a.big { display: inline-block; font-size: clamp(22px, 5vw, 64px); font-weight: 700;
+                letter-spacing: -0.035em; text-decoration: none; color: var(--fg); line-height: 1.05;
+                overflow-wrap: anywhere; transition: color 0.2s; }
+        .call a.big:hover { color: var(--sig); }
+        .call a.big em { font-style: normal; color: var(--sig); }
+        .call p { margin-top: 20px; line-height: 1.9; }
+    </style>
+</head>
+<body>
+<div class="corner">
+<a class="mailmark" href="mailto:gregor.art@pm.me?subject=Audiospatials" aria-label="Email">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5H4L12 11.6 20 5H22V19H2Z"/></svg>
+</a>
+</div>
+<a class="backmark" href="/" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
+<a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
+<div class="wrap">
+    <h1 data-arrive>Let&rsquo;s create<em>.</em></h1>
+
+    <div class="call">
+        <a class="big" href="mailto:gregor.art@pm.me?subject=Audiospatials">gregor.art@pm.me<em>↗</em></a>
+        <p class="label">Tell us about your project: who you are, a link to your music, and what it needs.</p>
+    </div>
+
+    <section>
+        <p class="label">Audiospatials elsewhere</p>
+        <ul class="rows">
+            <li><a class="row" href="https://www.instagram.com/audiospatials/" rel="me noopener" target="_blank"><span class="n">Instagram</span><span class="u">@audiospatials</span></a></li>
+            <li><a class="row" href="https://www.youtube.com/@audiospatials" rel="me noopener" target="_blank"><span class="n">YouTube</span><span class="u">@audiospatials</span></a></li>
+            <li><a class="row" href="https://visuospatials.com/" rel="noopener" target="_blank"><span class="n">Visuospatials</span><span class="u">visuospatials.com</span></a></li>
+        </ul>
+    </section>
+</div>
+
+<nav class="exit">
+    <a href="/">Audiospatials</a>
+    <a href="/artists">Artists</a><a href="/music">Music</a><a href="/studio">Studio</a><a href="/about">About</a><span class="here">Contact</span>
+    <span class="spacer"></span>
+    <span class="copy">&copy; 2026 Audiospatials</span>
+</nav>
+<script src="/geo.js"></script>
+<script src="/nav.js"></script>
+<script>
+if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/contact' + location.search + location.hash);
+</script>
+</body>
+</html>

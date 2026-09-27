@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About &mdash; Audiospatials</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="canonical" href="https://audiospatials.com/about">
+    <meta name="description" content="Audiospatials was founded by Gregor Egan and Hunter Bowersmith, one working in LA techno and one in Santa Cruz folk and rock.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:title" content="About — Audiospatials">
+    <meta property="og:description" content="Audiospatials was founded by Gregor Egan and Hunter Bowersmith, one working in LA techno and one in Santa Cruz folk and rock.">
+    <meta property="og:image" content="https://audiospatials.com/blur.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://audiospatials.com/about">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/base.css">
+    <link rel="stylesheet" href="/pages.css">
+    <style>
+        .founders { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 28px);
+                    margin-top: 16px; max-width: 900px; }
+        .founders figure img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover;
+                               background: var(--rule); }
+        .founders figcaption { padding-top: 10px; }
+        @media (max-width: 480px) { .founders { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="corner">
+<a class="mailmark" href="mailto:gregor.art@pm.me?subject=Audiospatials" aria-label="Email">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5H4L12 11.6 20 5H22V19H2Z"/></svg>
+</a>
+</div>
+<a class="backmark" href="/" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
+<a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
+<div class="wrap">
+    <h1 data-arrive>About<em>.</em></h1>
+
+    <div class="prose">
+        <p>Audiospatials is the collaborative project of Gregor Egan and Hunter Bowersmith - two musicians whose paths crossed at a party in Santa Cruz, CA, where they bonded over a mutual love for experimental sounds and genre-defying music.</p>
+        <p>Gregor, a Chicago-born and trained jazz pianist, began producing IDM and experimental electronic music in 2020. His work gradually evolved into dark and hypnotic techno. He is based in LA.</p>
+        <p>Hunter, a self-taught guitarist, is the creative force behind FENNEC, a project that blends rock, folk, and electronic sounds. He is currently based in Santa Cruz, California.</p>
+        <p>Audiospatials was born to create a space where live instrumentation, music production, mixing, and mastering for all artists comes together. Creative direction in all forms.</p>
+        <p><a href="https://visuospatials.com/" rel="noopener" target="_blank">Visuospatials</a> is the design and visual identity behind the artists.</p>
+    </div>
+
+    <section>
+        <p class="label">Founders</p>
+        <div class="founders">
+            <figure><a href="/gregor-egan"><img src="/img/artists/gregor-egan-live.webp" alt="Gregor Egan" loading="lazy"></a><figcaption class="label">Gregor Egan &mdash; Los Angeles</figcaption></figure>
+            <figure><a href="/fennec"><img src="/img/artists/fennec.webp" alt="Hunter Bowersmith" loading="lazy"></a><figcaption class="label">Hunter Bowersmith &mdash; Santa Cruz</figcaption></figure>
+        </div>
+    </section>
+</div>
+
+<nav class="exit">
+    <a href="/">Audiospatials</a>
+    <a href="/artists">Artists</a><a href="/music">Music</a><a href="/studio">Studio</a><span class="here">About</span><a href="/contact">Contact</a>
+    <span class="spacer"></span>
+    <span class="copy">&copy; 2026 Audiospatials</span>
+</nav>
+<script src="/geo.js"></script>
+<script src="/nav.js"></script>
+<script>
+if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/about' + location.search + location.hash);
+</script>
+</body>
+</html>
