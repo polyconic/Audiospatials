@@ -113,6 +113,9 @@
 </script>
 <!-- /build:jsonld -->
     <style>
+        .label a.vault { color: var(--fg); text-decoration: underline; text-underline-offset: 0.3em;
+                         text-decoration-thickness: 1px; transition: color 0.2s; }
+        .label a.vault:hover, .label a.vault:focus-visible { color: var(--sig); }
         .videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 28px);
                   margin-top: 16px; }
         @media (max-width: 760px) { .videos { grid-template-columns: 1fr; } }
@@ -131,7 +134,7 @@
     <h1 data-arrive>Music<em>.</em></h1>
 
     <section>
-        <p class="label">Released on Audiospatials</p>
+        <p class="label">Released on Audiospatials. Check the <a class="vault" href="https://vault.audiospatials.com/">Vault</a>.</p>
         <div class="tiles" style="margin-top:0">
 <!-- build:releases -->
         <a class="tile" href="https://open.spotify.com/album/6bQV8We6TvwaG73aCShgxS" target="_blank" rel="noopener"><div class="shot"><img src="/img/releases/sm/shifter.webp" srcset="/img/releases/sm/shifter.webp 1200w, /img/releases/shifter.webp 3000w" sizes="(max-width: 480px) 100vw, (max-width: 1000px) 50vw, 33vw" alt="Shifter EP by Gregor Egan" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Shifter EP</span><span class="m">Gregor Egan</span></div></a>
