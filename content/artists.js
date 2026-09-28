@@ -53,6 +53,7 @@ const ARTISTS = [
         ],
         listen: [
             { kind: 'youtube', url: 'https://www.youtube.com/watch?v=qLlb-5TRAX8', title: 'kröw, live' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stephkrow/for-my-angels', title: 'for my angels <3' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/stephkrow/steph-lolla-2023', title: 'LIVE @ Lollapalooza 2023 Budlight Backyard Stage' },
         ],
         photos: ['krow-live-6.webp', 'krow-live-5.webp', 'krow-press-4.webp', 'krow-show-9.webp'],
