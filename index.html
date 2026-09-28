@@ -137,12 +137,12 @@
             pointer-events: none;
         }
 
-        /* The way in, bottom left: the name links too, but nothing says so, and a
+        /* The way in, bottom right: the name links too, but nothing says so, and a
            phone can't hover to find out. Smoked glass, like the clips' sound
            buttons, so it reads on the bright and the dark side of the photo. */
         .enter {
             position: absolute; z-index: 20;
-            left: max(20px, env(safe-area-inset-left, 0px));
+            right: max(20px, env(safe-area-inset-right, 0px));
             bottom: max(20px, env(safe-area-inset-bottom, 0px));
             display: inline-flex; align-items: center; gap: 16px;
             padding: 14px 16px 14px 18px;
