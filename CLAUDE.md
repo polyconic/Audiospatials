@@ -79,6 +79,10 @@ here. If one of these changes there, copy it over.
 | `llms.txt` | Built. The plain-text summary for AI tools. |
 | `tools/serve.py` | Local preview that maps `/studio` to `studio.html` like Pages does. `python3 tools/serve.py` → localhost:8765. |
 
+- **Hover styles go inside `@media (hover: hover)`** (2026-09-27). On iOS a tap
+  on anything with a :hover style is spent showing the hover, so the menu
+  took two taps. Keep `:focus-visible` outside it, for keyboards.
+
 ## Folders
 
 **Pages stay at the root.** Pages serves `x.html` at `/x` only from the top
