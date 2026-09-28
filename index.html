@@ -137,6 +137,29 @@
             pointer-events: none;
         }
 
+        /* The way in, bottom left: the name links too, but nothing says so, and a
+           phone can't hover to find out. Smoked glass, like the clips' sound
+           buttons, so it reads on the bright and the dark side of the photo. */
+        .enter {
+            position: absolute; z-index: 20;
+            left: max(20px, env(safe-area-inset-left, 0px));
+            bottom: max(20px, env(safe-area-inset-bottom, 0px));
+            display: inline-flex; align-items: center; gap: 16px;
+            padding: 14px 16px 14px 18px;
+            border: 1px solid rgba(242, 242, 239, 0.3);
+            background: rgba(10, 10, 10, 0.5);
+            -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+            color: var(--fg); text-decoration: none;
+            font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+        .enter svg { width: 17px; height: 17px; fill: currentColor; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        .enter:focus-visible { color: var(--sig); border-color: var(--sig); }
+        @media (hover: hover) {
+            .enter:hover { color: var(--sig); border-color: var(--sig); background: rgba(10, 10, 10, 0.7); }
+            .enter:hover svg { transform: translateX(4px); }
+        }
+
         body { user-select: none; -webkit-touch-callout: none; }
 
         html.inverted { filter: invert(1) hue-rotate(180deg); }
@@ -151,6 +174,7 @@
     <img class="hero" src="/img/header.webp" alt="">
     <a class="flicker-text" href="/artists" aria-label="Audiospatials">AUDIOSPATIALS</a>
     <canvas class="geo" id="geo" aria-hidden="true"></canvas>
+    <a class="enter" href="/artists">Enter<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12 12 19.5V14H3V10H12V4.5Z"/></svg></a>
 <!-- build:summary -->
     <div class="geo-text">
         <h1>Audiospatials</h1>
