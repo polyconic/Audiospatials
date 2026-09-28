@@ -5,8 +5,8 @@
 const SITE = {
     name: 'Audiospatials',
     url: 'https://audiospatials.com',
-    description: 'Audiospatials makes records with independent artists, from folk to techno. A studio in Santa Cruz and Los Angeles, run by Gregor Egan and Hunter Bowersmith.',
-    short: 'Records made with independent artists, from folk to techno. Santa Cruz and Los Angeles.',
+    description: 'Audiospatials is a catalyst of creativity. We make records with independent artists, from folk to techno. A studio in Santa Cruz and Los Angeles, run by Gregor Egan and Hunter Bowersmith.',
+    short: 'A catalyst of creativity. Records made with independent artists, from folk to techno.',
     email: 'hello@audiospatials.com',
     places: ['Santa Cruz, California', 'Los Angeles, California'],
     founders: [
