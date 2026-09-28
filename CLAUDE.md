@@ -63,7 +63,7 @@ here. If one of these changes there, copy it over.
 
 | File | What it is |
 |---|---|
-| `index.html` | The front: the WOLFMANWOOF header (`img/header.webp`), one copy covering the screen, crop centered on the kicking figure (tiled and mirrored versions were tried 2026-09-27 and dropped) and the converging wordmark. The name links to `/artists`, and so does an **Enter →** box bottom right (smoked glass, 2026-09-27): people didn't see that the name was the way in. `spatial` explodes it, Konami inverts. |
+| `index.html` | The front: the WOLFMANWOOF header (`img/header.webp`), one copy covering the screen, crop centered on the kicking figure (tiled and mirrored versions were tried 2026-09-27 and dropped) and the converging wordmark. The name links to `/artists`, and so does an **Enter →** bottom right (no box, difference blend like the corner marks; 2026-09-27): people didn't see that the name was the way in. `spatial` explodes it, Konami inverts. |
 | `artists.html` | The grid (built block). |
 | `<slug>.html` | One per artist, **entirely built**. Same slugs as the old Squarespace site so old links hold. |
 | `music.html` | Released-on-Audiospatials grid, then videos (built blocks). |

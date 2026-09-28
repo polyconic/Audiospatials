@@ -137,26 +137,23 @@
             pointer-events: none;
         }
 
-        /* The way in, bottom right: the name links too, but nothing says so, and a
-           phone can't hover to find out. Smoked glass, like the clips' sound
-           buttons, so it reads on the bright and the dark side of the photo. */
+        /* The way in, bottom right: the name links too, but nothing says so, and
+           a phone can't hover to find out. No box; the same blend as the corner
+           marks keeps it readable on any part of the photo. */
         .enter {
             position: absolute; z-index: 20;
             right: max(20px, env(safe-area-inset-right, 0px));
             bottom: max(20px, env(safe-area-inset-bottom, 0px));
-            display: inline-flex; align-items: center; gap: 16px;
-            padding: 14px 16px 14px 18px;
-            border: 1px solid rgba(242, 242, 239, 0.3);
-            background: rgba(10, 10, 10, 0.5);
-            -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-            color: var(--fg); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 14px;
+            padding: 10px 0 10px 12px;
+            color: #fff; mix-blend-mode: difference; text-decoration: none;
             font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            transition: color 0.2s;
         }
         .enter svg { width: 17px; height: 17px; fill: currentColor; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-        .enter:focus-visible { color: var(--sig); border-color: var(--sig); }
+        .enter:focus-visible { mix-blend-mode: normal; color: var(--sig); }
         @media (hover: hover) {
-            .enter:hover { color: var(--sig); border-color: var(--sig); background: rgba(10, 10, 10, 0.7); }
+            .enter:hover { mix-blend-mode: normal; color: var(--sig); }
             .enter:hover svg { transform: translateX(4px); }
         }
 
