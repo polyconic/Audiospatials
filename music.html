@@ -115,7 +115,8 @@
     <style>
         .label a.vault { color: var(--fg); text-decoration: underline; text-underline-offset: 0.3em;
                          text-decoration-thickness: 1px; transition: color 0.2s; }
-        .label a.vault:hover, .label a.vault:focus-visible { color: var(--sig); }
+        .label a.vault:focus-visible { color: var(--sig); }
+        @media (hover: hover) { .label a.vault:hover { color: var(--sig); } }
         .videos { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 2vw, 28px);
                   margin-top: 16px; }
         @media (max-width: 760px) { .videos { grid-template-columns: 1fr; } }

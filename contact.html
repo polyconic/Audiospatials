@@ -40,7 +40,8 @@
                        letter-spacing: -0.035em; text-transform: uppercase; color: var(--fg);
                        line-height: 1; transition: color 0.2s; }
         .send button em { font-style: normal; color: var(--sig); }
-        .send button:hover, .send button:focus-visible { color: var(--sig); }
+        .send button:focus-visible { color: var(--sig); }
+        @media (hover: hover) { .send button:hover { color: var(--sig); } }
         .send button[disabled] { opacity: 0.4; cursor: default; }
         .status { line-height: 1.9; }
         .status.ok { color: var(--fg); }
