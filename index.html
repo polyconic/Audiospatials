@@ -138,22 +138,25 @@
         }
 
         /* The way in, bottom right: the name links too, but nothing says so, and
-           a phone can't hover to find out. No box; the same blend as the corner
-           marks keeps it readable on any part of the photo. */
+           a phone can't hover to find out. No box: plain white with a soft
+           dark halo, readable on any shade the crop puts under it (a
+           difference blend vanished over mid-grey). */
         .enter {
             position: absolute; z-index: 20;
             right: max(20px, env(safe-area-inset-right, 0px));
             bottom: max(20px, env(safe-area-inset-bottom, 0px));
             display: inline-flex; align-items: center; gap: 14px;
             padding: 10px 0 10px 12px;
-            color: #fff; mix-blend-mode: difference; text-decoration: none;
+            color: #fff; text-decoration: none;
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.55), 0 1px 12px rgba(0, 0, 0, 0.5);
             font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
             transition: color 0.2s;
         }
-        .enter svg { width: 17px; height: 17px; fill: currentColor; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-        .enter:focus-visible { mix-blend-mode: normal; color: var(--sig); }
+        .enter svg { width: 17px; height: 17px; fill: currentColor;
+                     filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.55)) drop-shadow(0 1px 6px rgba(0, 0, 0, 0.5)); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        .enter:focus-visible { color: var(--sig); }
         @media (hover: hover) {
-            .enter:hover { mix-blend-mode: normal; color: var(--sig); }
+            .enter:hover { color: var(--sig); }
             .enter:hover svg { transform: translateX(4px); }
         }
 
