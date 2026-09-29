@@ -115,7 +115,7 @@ const marks = back => `<div class="corner">
 <a class="backmark" href="${back}" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>`;
 
-const SECTIONS = [['/artists', 'Artists'], ['/music', 'Music'], ['/studio', 'Studio'], ['/about', 'About'], ['/contact', 'Contact']];
+const SECTIONS = [['/artists', 'Artists'], ['/music', 'Music'], ['/studio', 'Studio'], ['https://vault.audiospatials.com/', 'Vault'], ['/about', 'About'], ['/contact', 'Contact']];
 const exitBar = here => `<nav class="exit">
     <a href="/">Audiospatials</a>
     ${SECTIONS.map(([h, t]) => t === here ? `<span class="here">${t}</span>` : `<a href="${h}">${t}</a>`).join('')}

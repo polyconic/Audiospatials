@@ -85,11 +85,11 @@ here. If one of these changes there, copy it over.
 
 ## The Vault
 
-`vault.audiospatials.com` (repo `polyconic/AudiospatialsVault`) is live but
-**unlinked from this site on purpose** (Greg, 2026-09-28: he's still working
-on it). It was in the menu between Studio and About (the build's `SECTIONS`
-plus each hand-written page's `.exit`) and in Music's label ("Released on
-Audiospatials. Check the Vault."). Put those back when he says it's ready.
+`vault.audiospatials.com` (repo `polyconic/AudiospatialsVault`) is linked in
+the menu between Studio and About (the build's `SECTIONS` plus each
+hand-written page's `.exit`) and from Music's label ("Released on
+Audiospatials. Check the Vault."). It was unlinked 2026-09-28 while Greg
+worked on it, and linked again 2026-09-29.
 
 ## Folders
 
