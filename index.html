@@ -143,7 +143,7 @@
         .enter {
             position: absolute; z-index: 20;
             left: 50%; transform: translateX(-50%);
-            bottom: max(20px, env(safe-area-inset-bottom, 0px));
+            bottom: max(clamp(40px, 8vh, 90px), env(safe-area-inset-bottom, 0px));
             display: inline-flex; align-items: center; gap: 14px;
             padding: 10px 6px;
             color: #fff; mix-blend-mode: difference; text-decoration: none; font-weight: 700;
