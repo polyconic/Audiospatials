@@ -137,15 +137,15 @@
             pointer-events: none;
         }
 
-        /* The way in, bottom right: the name links too, but nothing says so, and
+        /* The way in, bottom center: the name links too, but nothing says so, and
            a phone can't hover to find out. No box; the same difference blend as
            the corner marks, and bold so it holds up on mid-grey. */
         .enter {
             position: absolute; z-index: 20;
-            right: max(20px, env(safe-area-inset-right, 0px));
+            left: 50%; transform: translateX(-50%);
             bottom: max(20px, env(safe-area-inset-bottom, 0px));
             display: inline-flex; align-items: center; gap: 14px;
-            padding: 10px 0 10px 12px;
+            padding: 10px 6px;
             color: #fff; mix-blend-mode: difference; text-decoration: none; font-weight: 700;
             font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
             transition: color 0.2s;
