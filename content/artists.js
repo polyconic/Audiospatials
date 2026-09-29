@@ -144,6 +144,8 @@ const ARTISTS = [
             'WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.',
         ],
         releases: 'WOLFMANWOOF',
+        // Was the front page's photo until 2026-09-29.
+        photos: ['wolfmanwoof-blur.webp'],
     },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.

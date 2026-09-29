@@ -63,7 +63,7 @@ here. If one of these changes there, copy it over.
 
 | File | What it is |
 |---|---|
-| `index.html` | The front: the WOLFMANWOOF header (`img/header.webp`), one copy covering the screen, crop centered on the kicking figure (tiled and mirrored versions were tried 2026-09-27 and dropped) and the converging wordmark. The name links to `/artists`, and so does an **Enter →** bottom center (no box, bold, difference blend like the corner marks; a white-with-shadow version was tried and dropped; 2026-09-27): people didn't see that the name was the way in. `spatial` explodes it, Konami inverts. |
+| `index.html` | The front: black with a very faint moving static (`.static`: one 180px noise tile drawn at load, stepped around at 7% opacity; still under reduced motion) and the converging wordmark. Until 2026-09-29 it was the blurred WOLFMANWOOF photo, which now closes WOLFMANWOOF's page full width (`img/artists/wolfmanwoof-blur.webp`). The name links to `/artists`, and so does an **Enter →** bottom center (no box, bold, difference blend like the corner marks; a white-with-shadow version was tried and dropped; 2026-09-27): people didn't see that the name was the way in. `spatial` explodes it, Konami inverts. |
 | `artists.html` | The grid (built block). |
 | `<slug>.html` | One per artist, **entirely built**. Same slugs as the old Squarespace site so old links hold. |
 | `music.html` | Released-on-Audiospatials grid, then videos (built blocks). |
