@@ -81,7 +81,7 @@ const ARTISTS = [
         ],
         listen: [
             { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HOR' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HÖR' },
         ],
         photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
     },
