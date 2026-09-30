@@ -88,7 +88,7 @@ here. If one of these changes there, copy it over.
 `vault.audiospatials.com` (repo `polyconic/AudiospatialsVault`) is linked in
 the menu between Studio and About (the build's `SECTIONS` plus each
 hand-written page's `.exit`) and from Music's label ("Released on
-Audiospatials. Check the Vault."). It was unlinked 2026-09-28 while Greg
+Audiospatials. Check the Vault for unreleased music and sketches."). It was unlinked 2026-09-28 while Greg
 worked on it, and linked again 2026-09-29.
 
 ## Folders
