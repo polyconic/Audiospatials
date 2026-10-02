@@ -125,7 +125,7 @@ structured data still names each artist's photo as their image.
   bio, tagline or music yet, and her `description` is a placeholder line. Her
   photos are Greg's shoot of 2026-09-29; originals in
   `~/Desktop/VISUO + AUDIO + DELILAH + INDEXLESS/audiospatials/artists/canary/`.
-  She's last in the roster, which makes the grid a 3×3.
+  The grid is a 3×3: Canary sits where John Bear did (row 2, middle) and John Bear is last (Greg swapped them, 2026-10-02).
 - "Hunty Ray" is Hunter Ray's alias and stays on the corridor song credit.
 
 ## Images

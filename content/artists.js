@@ -89,23 +89,16 @@ const ARTISTS = [
         photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
     },
     {
-        slug: 'john-bear',
-        description: 'Santa Cruz folk songwriter, originally from Birmingham, Alabama. Blueberry Pie EP out on Audiospatials.',
-        name: 'John Bear',
-        photo: 'john-bear.webp',
-        tagline: 'John Bear is a folk artist in Santa Cruz.',
-        bio: [
-            "You know that feeling when you find a new song you love? The song that understands you and speaks to you like a good listener? The music that feels like it's keeping you alive and afloat in a life who's waters are far deeper than your toes can reach? I desire with the wildest reaches of my heart that my songs can be that for people.",
-            "Writing songs is something I can't help but do. Like trees can't help but grow out of our soil. Sharing the songs is my effort to make the world a kinder place than I found it.",
-            "John Denver and the Nitty Gritty Dirt Band helped me find my love for music at a young age. I am from Birmingham Alabama but never found home until I found California. And from here I want to be the songs that people can lean on.",
-            "— John Bear",
+        slug: 'canary',
+        description: 'Canary is an artist on Audiospatials.',
+        name: 'Canary',
+        photo: 'canary.webp',
+        hero: 'canary-5.webp',
+        links: [
+            { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
+            { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
         ],
-        listen: [
-            { kind: 'spotify', url: 'https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj', title: 'Blueberry Pie EP', sub: 'EP' },
-            { kind: 'spotify', url: 'https://open.spotify.com/artist/1AdQ7OOSbL8yQlqB9KkNVS', title: 'John Bear', sub: 'Top tracks' },
-        ],
-        note: 'Blueberry Pie + Rachel Made Coffee produced and mixed by Hunter Bowersmith. Mastered by Gregor Egan on Blueberry Pie EP by John Bear.',
-        photos: ['john-bear-3.webp', 'john-bear-4.webp'],
+        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp'],
     },
     {
         slug: 'margo-flow',
@@ -151,16 +144,23 @@ const ARTISTS = [
         photos: ['wolfmanwoof-blur.webp'],
     },
     {
-        slug: 'canary',
-        description: 'Canary is an artist on Audiospatials.',
-        name: 'Canary',
-        photo: 'canary.webp',
-        hero: 'canary-5.webp',
-        links: [
-            { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
-            { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
+        slug: 'john-bear',
+        description: 'Santa Cruz folk songwriter, originally from Birmingham, Alabama. Blueberry Pie EP out on Audiospatials.',
+        name: 'John Bear',
+        photo: 'john-bear.webp',
+        tagline: 'John Bear is a folk artist in Santa Cruz.',
+        bio: [
+            "You know that feeling when you find a new song you love? The song that understands you and speaks to you like a good listener? The music that feels like it's keeping you alive and afloat in a life who's waters are far deeper than your toes can reach? I desire with the wildest reaches of my heart that my songs can be that for people.",
+            "Writing songs is something I can't help but do. Like trees can't help but grow out of our soil. Sharing the songs is my effort to make the world a kinder place than I found it.",
+            "John Denver and the Nitty Gritty Dirt Band helped me find my love for music at a young age. I am from Birmingham Alabama but never found home until I found California. And from here I want to be the songs that people can lean on.",
+            "— John Bear",
         ],
-        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp'],
+        listen: [
+            { kind: 'spotify', url: 'https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj', title: 'Blueberry Pie EP', sub: 'EP' },
+            { kind: 'spotify', url: 'https://open.spotify.com/artist/1AdQ7OOSbL8yQlqB9KkNVS', title: 'John Bear', sub: 'Top tracks' },
+        ],
+        note: 'Blueberry Pie + Rachel Made Coffee produced and mixed by Hunter Bowersmith. Mastered by Gregor Egan on Blueberry Pie EP by John Bear.',
+        photos: ['john-bear-3.webp', 'john-bear-4.webp'],
     },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.
