@@ -15,8 +15,6 @@
    photos      optional, more pictures further down the page. A name with a
                slash is a path under img/ — 'video/luci-red.mp4' plays silent
                and looping, with img/video/luci-red.webp as its still
-   stack       optional, true lays `photos` as two columns: the first alone at
-               the left, the rest stacked at the right, centered against it
    flip        optional, true puts the photo on the right of the bio
    credit      optional, a line under the photos (poster artist, photographer)
    listen      optional, players. kind is 'spotify', 'soundcloud' or 'youtube';
@@ -163,7 +161,6 @@ const ARTISTS = [
             { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
         ],
         photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp'],
-        stack: true,
     },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.

@@ -152,6 +152,27 @@ function media(f, name) {
     return `<img src="${src}" alt="${esc(name)}" loading="lazy" decoding="async">`;
 }
 
+// An artist's photos as two columns, each photo dealt to whichever column is
+// shorter so far (heights come from the files), the columns centered against
+// each other in CSS. `--i` keeps the order they were written in for a phone,
+// which shows them one at a time.
+function gallery(photos, name) {
+    if (photos.length === 1) return `<div class="photos">\n            ${media(photos[0], name)}\n        </div>`;
+    const ratio = f => {
+        const rel = 'img/' + (f.includes('/') ? f : 'artists/' + f);
+        const still = /\.(mp4|webm|mov)$/i.test(f) ? rel.replace(/\.\w+$/, '.webp') : rel;
+        const size = still.endsWith('.webp') && exists(still) && webpSize(still);
+        return size ? size[1] / size[0] : 1;
+    };
+    const cols = [[], []], h = [0, 0];
+    photos.forEach((f, i) => {
+        const c = h[1] < h[0] ? 1 : 0;
+        cols[c].push(media(f, name).replace(/^<(\w+)/, `<$1 style="--i:${i}"`));
+        h[c] += ratio(f);
+    });
+    return `<div class="photos cols">\n${cols.map(c => `            <div class="col">\n                ${c.join('\n                ')}\n            </div>`).join('\n')}\n        </div>`;
+}
+
 const releasesBy = name => RELEASES.filter(r => r.artist === name);
 
 function artistLD(a) {
@@ -211,9 +232,7 @@ function artistPage(a) {
     }
     if (!a.listenLast) body.push(...listen);
     if (a.photos && a.photos.length) body.push(`    <section>
-        ${(shots => a.stack && shots.length > 1
-            ? `<div class="photos stack">\n            ${shots[0]}\n            <div class="side">\n                ${shots.slice(1).join('\n                ')}\n            </div>\n        </div>`
-            : `<div class="photos">\n            ${shots.join('\n            ')}\n        </div>`)(a.photos.map(f => media(f, a.name)))}${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
+        ${gallery(a.photos, a.name)}${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
     </section>`);
     if (a.listenLast) body.push(...listen);
 
