@@ -155,7 +155,7 @@ function media(f, name) {
 const releasesBy = name => RELEASES.filter(r => r.artist === name);
 
 function artistLD(a) {
-    const sameAs = (a.listen || []).map(l => embed(l.kind, l.url).page).filter(Boolean);
+    const sameAs = [...(a.listen || []).map(l => embed(l.kind, l.url).page), ...(a.links || []).map(l => l.url)].filter(Boolean);
     const albums = releasesBy(a.releases || a.name);
     return ld({
         '@type': 'MusicGroup',
@@ -184,6 +184,12 @@ function artistPage(a) {
                 <div class="tracks">
                     ${sc.map(track).join('\n                    ')}
                 </div>${a.note ? `\n                <p class="note label">${esc(a.note)}</p>` : ''}
+            </div>` : ''}${a.links && a.links.length ? `
+            <div class="elsewhere">
+                <p class="label">Elsewhere</p>
+                <ul class="rows">
+                    ${a.links.map(l => `<li><a class="row" href="${esc(l.url)}" rel="me noopener" target="_blank"><span class="n">${esc(l.title)}</span><span class="u">${esc(l.handle)}</span></a></li>`).join('\n                    ')}
+                </ul>
             </div>` : ''}
         </div>
     </div>`);

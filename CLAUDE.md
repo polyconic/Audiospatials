@@ -68,7 +68,7 @@ here. If one of these changes there, copy it over.
 | `<slug>.html` | One per artist, **entirely built**. Same slugs as the old Squarespace site so old links hold. |
 | `music.html` | Released-on-Audiospatials grid, then videos (built blocks). |
 | `studio.html` | What we do, Recent work (releases with a `credit`, in `STUDIO_ORDER`), Start a project. |
-| — | Artist options in `artists.js`: `hero` (page photo ≠ grid photo; a clip as hero runs full width with the words under it, `.artist-top.wide` — LUCI), `flip` (photo right of the bio — Stäzrad), `photos` may include clips as `video/<name>.mp4` under `img/video/` with a `.webp` still of the same name; they loop only while on screen, start muted, and each carries a sound button (bottom right; turning one on mutes the others); the build reads the still's size so the clip holds its shape. **Encode clips with their audio** (`-c:a aac -b:a 160k`) — the button has nothing to play otherwise. An artist with exactly four releases gets them as a centred 2×2 square (`.tiles.cube` — WOLFMANWOOF). |
+| — | Artist options in `artists.js`: `links` (Instagram, YouTube…: `{ title, handle, url }`, shown as ruled rows under an "Elsewhere" label in the Contact page's style, and added to the structured data's `sameAs`; the only content Canary has so far), `hero` (page photo ≠ grid photo; a clip as hero runs full width with the words under it, `.artist-top.wide` — LUCI), `flip` (photo right of the bio — Stäzrad), `photos` may include clips as `video/<name>.mp4` under `img/video/` with a `.webp` still of the same name; they loop only while on screen, start muted, and each carries a sound button (bottom right; turning one on mutes the others); the build reads the still's size so the clip holds its shape. **Encode clips with their audio** (`-c:a aac -b:a 160k`) — the button has nothing to play otherwise. An artist with exactly four releases gets them as a centred 2×2 square (`.tiles.cube` — WOLFMANWOOF). |
 | `about.html` | The About text verbatim from the old site, with the two founders beside it, staggered as on the old Squarespace page: Hunter high at the far right, Gregor lower and inset (`margin-top: 34%`, a share of the pair's width so it scales). Stacks under the text on a phone, stagger kept. |
 | `contact.html` | The form (see Contact) and elsewhere. |
 | `404.html` | The 404 in the alphabet. |
@@ -118,8 +118,13 @@ structured data still names each artist's photo as their image.
 
 - Mastering is **not** offered as a service, by choice, yet. Studio
   lists production and mixing only. Credits may still say "mastered by".
-- Canary, The Silver Spurs, Hunter Ray and Pablo Cervantes were on the old grid
+- The Silver Spurs, Hunter Ray and Pablo Cervantes were on the old grid
   without pages; they sit commented out in `artists.js` until Hunter decides.
+- **Canary** was added 2026-10-02 (Greg's call) with photos and links only: no
+  bio, tagline or music yet, and her `description` is a placeholder line. Her
+  photos are Greg's shoot of 2026-09-29; originals in
+  `~/Desktop/VISUO + AUDIO + DELILAH + INDEXLESS/audiospatials/artists/canary/`.
+  She's last in the roster, which makes the grid a 3×3.
 - "Hunty Ray" is Hunter Ray's alias and stays on the corridor song credit.
 
 ## Images

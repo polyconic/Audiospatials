@@ -22,6 +22,9 @@
                sub optional, a small line under it. A player only loads when
                someone clicks it, so nothing tracks a visitor who doesn't.
    note        optional, a small line under the players (credits and the like)
+   links       optional, where else to find them: { title: 'Instagram',
+               handle: '@name', url } in the Contact page's ruled-row style,
+               under the bio and players; also listed as sameAs for search
    listenLast  optional, true puts the Spotify/YouTube players below the photos.
                SoundCloud tracks always sit under the bio.
 */
@@ -147,9 +150,19 @@ const ARTISTS = [
         // Was the front page's photo until 2026-09-29.
         photos: ['wolfmanwoof-blur.webp'],
     },
+    {
+        slug: 'canary',
+        description: 'Canary is an artist on Audiospatials.',
+        name: 'Canary',
+        photo: 'canary.webp',
+        links: [
+            { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
+            { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
+        ],
+        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp', 'canary-5.webp'],
+    },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.
-    { slug: 'canary', name: 'Canary', photo: '' },
     { slug: 'the-silver-spurs', name: 'The Silver Spurs', photo: '' },
     { slug: 'hunter-ray', name: 'Hunter Ray', photo: '' },
     { slug: 'pablo-cervantes', name: 'Pablo Cervantes', photo: '' },
