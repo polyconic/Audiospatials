@@ -158,6 +158,16 @@ Claude commits locally and stops.
   page source. With JS the form posts to the `/ajax/` endpoint and shows the
   result inline; without JS it posts normally and FormSubmit sends people back
   to `/contact?sent`.
+- **The message box's typing cursor** is a 3px red bar drawn by an inline script
+  in `contact.html` (2026-10-02, Greg wanted it thicker; CSS can't change the
+  real caret's width, only its color). A hidden mirror of the text (the rest of
+  the text after the caret goes in a probe span, so a caret at a line wrap lands
+  where the next word starts) finds the caret's position, and the real caret is
+  made transparent only once the script has run; without JS the thin red native
+  caret (`caret-color: var(--sig)`, on every field) stays. It hides while text is
+  selected. The name, email and link fields keep the native caret (email inputs
+  don't expose a caret position). Test in a *foregrounded* preview tab: a hidden
+  tab pauses `requestAnimationFrame`, which the bar's placement uses.
 - **The mail icon** and every other mailto link go to `hello@audiospatials.com`.
   Nothing on the site names the Gmail address or a personal alias.
 - `@audiospatials.com` mail works through **Namecheap email forwarding** (MX
