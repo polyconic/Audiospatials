@@ -211,9 +211,9 @@ function artistPage(a) {
     }
     if (!a.listenLast) body.push(...listen);
     if (a.photos && a.photos.length) body.push(`    <section>
-        <div class="photos">
-            ${a.photos.map(f => media(f, a.name)).join('\n            ')}
-        </div>${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
+        ${(shots => a.stack && shots.length > 1
+            ? `<div class="photos stack">\n            ${shots[0]}\n            <div class="side">\n                ${shots.slice(1).join('\n                ')}\n            </div>\n        </div>`
+            : `<div class="photos">\n            ${shots.join('\n            ')}\n        </div>`)(a.photos.map(f => media(f, a.name)))}${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
     </section>`);
     if (a.listenLast) body.push(...listen);
 
