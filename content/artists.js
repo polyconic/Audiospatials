@@ -155,11 +155,12 @@ const ARTISTS = [
         description: 'Canary is an artist on Audiospatials.',
         name: 'Canary',
         photo: 'canary.webp',
+        hero: 'canary-5.webp',
         links: [
             { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
             { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
         ],
-        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp', 'canary-5.webp'],
+        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp'],
     },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.
