@@ -98,7 +98,7 @@ const ARTISTS = [
             { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
             { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
         ],
-        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp'],
+        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp', 'video/canary-room.mp4'],
     },
     {
         slug: 'margo-flow',
@@ -158,6 +158,7 @@ const ARTISTS = [
         listen: [
             { kind: 'spotify', url: 'https://open.spotify.com/album/1BOYiMGrk8CGzkVfN4N7aj', title: 'Blueberry Pie EP', sub: 'EP' },
             { kind: 'spotify', url: 'https://open.spotify.com/artist/1AdQ7OOSbL8yQlqB9KkNVS', title: 'John Bear', sub: 'Top tracks' },
+            { kind: 'youtube', url: 'https://youtu.be/W0M-0-JVSZM', title: 'Short Song For a Long Love', sub: 'Official music video' },
         ],
         note: 'Blueberry Pie + Rachel Made Coffee produced and mixed by Hunter Bowersmith. Mastered by Gregor Egan on Blueberry Pie EP by John Bear.',
         photos: ['john-bear-3.webp', 'john-bear-4.webp'],
