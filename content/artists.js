@@ -134,6 +134,18 @@ const ARTISTS = [
         photos: ['john-bear-3.webp', 'john-bear-4.webp'],
     },
     {
+        slug: 'wolfmanwoof',
+        description: 'Two producers, one from techno and one from experimental synth-rock, meeting in between. Moonrise EP out now.',
+        name: 'WOLFMANWOOF',
+        photo: 'wolfmanwoof.webp',
+        bio: [
+            'WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.',
+        ],
+        releases: 'WOLFMANWOOF',
+        // Was the front page's photo until 2026-09-29.
+        photos: ['wolfmanwoof-blur.webp'],
+    },
+    {
         slug: 'stazrad',
         description: 'A folk song that turns hardcore. Emo, prog and finger-picked acoustic songs from a Bay Area artist born in St. Louis.',
         name: 'Stäzrad',
@@ -150,18 +162,6 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/salad-for-life-tk0-mp3', title: 'salad for life tk0.mp3' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/sets/originals', title: 'Originals', sub: 'Playlist' },
         ],
-    },
-    {
-        slug: 'wolfmanwoof',
-        description: 'Two producers, one from techno and one from experimental synth-rock, meeting in between. Moonrise EP out now.',
-        name: 'WOLFMANWOOF',
-        photo: 'wolfmanwoof.webp',
-        bio: [
-            'WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.',
-        ],
-        releases: 'WOLFMANWOOF',
-        // Was the front page's photo until 2026-09-29.
-        photos: ['wolfmanwoof-blur.webp'],
     },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.

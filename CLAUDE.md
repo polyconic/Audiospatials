@@ -125,7 +125,7 @@ structured data still names each artist's photo as their image.
   bio, tagline or music yet, and her `description` is a placeholder line. Her
   photos are Greg's shoot of 2026-09-29; originals in
   `~/Desktop/VISUO + AUDIO + DELILAH + INDEXLESS/audiospatials/artists/canary/`.
-  The grid is a 3×3: Canary sits where John Bear did (row 2, middle) (Greg swapped them, 2026-10-02); then John Bear and Stäzrad traded places (2026-10-05), so row 3 reads John Bear, Stäzrad, WOLFMANWOOF.
+  The grid is a 3×3: Canary sits where John Bear did (row 2, middle) (Greg swapped them, 2026-10-02); then John Bear and Stäzrad traded places (2026-10-05), WOLFMANWOOF staying in the middle: row 3 reads John Bear, WOLFMANWOOF, Stäzrad.
 - "Hunty Ray" is Hunter Ray's alias and stays on the corridor song credit.
 
 ## Images
