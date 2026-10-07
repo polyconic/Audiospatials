@@ -113,7 +113,7 @@
     <a href="/">Audiospatials</a>
     <a href="/artists">Artists</a><a href="/music">Music</a><a href="/studio">Studio</a><a href="https://vault.audiospatials.com/">Vault</a><a href="/about">About</a><a href="/contact">Contact</a>
     <span class="spacer"></span>
-    <span class="copy">&copy; 2026 Audiospatials</span>
+    <span class="copy">&copy; <span data-yr>2026</span> Audiospatials</span>
 </nav>
 <script src="/js/players.js"></script>
 <script src="/js/geo.js"></script>
@@ -122,5 +122,6 @@
 <script>
 if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', location.pathname.slice(0, -5) + location.search + location.hash);
 </script>
+<script>document.querySelectorAll("[data-yr]").forEach(function(e){e.textContent=new Date().getFullYear()})</script>
 </body>
 </html>

@@ -120,7 +120,7 @@ const exitBar = here => `<nav class="exit">
     <a href="/">Audiospatials</a>
     ${SECTIONS.map(([h, t]) => t === here ? `<span class="here">${t}</span>` : `<a href="${h}">${t}</a>`).join('')}
     <span class="spacer"></span>
-    <span class="copy">&copy; 2026 Audiospatials</span>
+    <span class="copy">&copy; <span data-yr>2026</span> Audiospatials</span>
 </nav>`;
 
 // ---------- artist pages
@@ -275,6 +275,7 @@ ${exitBar(null)}
 <script>
 if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', location.pathname.slice(0, -5) + location.search + location.hash);
 </script>
+<script>document.querySelectorAll("[data-yr]").forEach(function(e){e.textContent=new Date().getFullYear()})</script>
 </body>
 </html>
 `;
