@@ -16,6 +16,8 @@
                slash is a path under img/ — 'video/luci-red.mp4' plays silent
                and looping, with img/video/luci-red.webp as its still
    flip        optional, true puts the photo on the right of the bio
+   captions    optional, { 'photo-file.webp': 'text' }: a small line under that
+               photo in the gallery, written as given (not capitalized)
    credit      optional, a line under the photos (poster artist, photographer)
    listen      optional, players. kind is 'spotify', 'soundcloud' or 'youtube';
                url is the address you would share; title as it should read;
@@ -83,7 +85,7 @@ const ARTISTS = [
         ],
         bio: [
             'Gregor Egan is a Los Angeles-based producer and DJ whose techno draws from jazz training, Chicago house floors, and a sustained obsession with the hypnotic and textural.',
-            'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Atmospheric and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
+            'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Textural and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
         ],
         listen: [
             { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
@@ -185,6 +187,7 @@ const ARTISTS = [
             { title: 'Apple Music', handle: 'TADEVSZ', url: 'https://music.apple.com/us/artist/tadevsz/1795599218' },
         ],
         photos: ['tadeusz-4.webp', 'tadeusz-3.webp'],
+        captions: { 'tadeusz-3.webp': 'day by day 2025' },
     },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.

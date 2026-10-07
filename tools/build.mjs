@@ -156,8 +156,9 @@ function media(f, name) {
 // shorter so far (heights come from the files), the columns centered against
 // each other in CSS. `--i` keeps the order they were written in for a phone,
 // which shows them one at a time.
-function gallery(photos, name) {
-    if (photos.length === 1) return `<div class="photos">\n            ${media(photos[0], name)}\n        </div>`;
+function gallery(photos, name, captions = {}) {
+    const show = f => captions[f] ? `<figure>${media(f, name)}<figcaption>${esc(captions[f])}</figcaption></figure>` : media(f, name);
+    if (photos.length === 1) return `<div class="photos">\n            ${show(photos[0])}\n        </div>`;
     const ratio = f => {
         const rel = 'img/' + (f.includes('/') ? f : 'artists/' + f);
         const still = /\.(mp4|webm|mov)$/i.test(f) ? rel.replace(/\.\w+$/, '.webp') : rel;
@@ -167,7 +168,7 @@ function gallery(photos, name) {
     const cols = [[], []], h = [0, 0];
     photos.forEach((f, i) => {
         const c = h[1] < h[0] ? 1 : 0;
-        cols[c].push(media(f, name).replace(/^<(\w+)/, `<$1 style="--i:${i}"`));
+        cols[c].push(show(f).replace(/^<(\w+)/, `<$1 style="--i:${i}"`));
         h[c] += ratio(f);
     });
     return `<div class="photos cols">\n${cols.map(c => `            <div class="col">\n                ${c.join('\n                ')}\n            </div>`).join('\n')}\n        </div>`;
@@ -234,7 +235,7 @@ function artistPage(a) {
     }
     if (!a.listenLast) body.push(...listen);
     if (a.photos && a.photos.length) body.push(`    <section>
-        ${gallery(a.photos, a.name)}${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
+        ${gallery(a.photos, a.name, a.captions)}${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
     </section>`);
     if (a.listenLast) body.push(...listen);
 
