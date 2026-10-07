@@ -79,7 +79,6 @@ const ARTISTS = [
         name: 'Gregor Egan',
         photo: 'gregor-egan.webp',
         hero: 'gregor-egan-grain.webp',
-        tagline: 'Techno producer and DJ.',
         links: [
             { title: 'Website', handle: 'gregoregan.com', url: 'https://gregoregan.com/' },
         ],
