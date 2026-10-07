@@ -173,6 +173,8 @@ function gallery(photos, name) {
     return `<div class="photos cols">\n${cols.map(c => `            <div class="col">\n                ${c.join('\n                ')}\n            </div>`).join('\n')}\n        </div>`;
 }
 
+// Every release is on Audiospatials; recordLabel only exists on MusicRelease.
+const labelRelease = r => ({ '@type': 'MusicRelease', url: r.url, recordLabel: { '@type': 'Organization', name: SITE.name, url: SITE.url + '/' } });
 const releasesBy = name => RELEASES.filter(r => r.artist === name);
 
 function artistLD(a) {
@@ -185,7 +187,7 @@ function artistLD(a) {
         image: abs(`/img/artists/${a.photo}`),
         description: a.description,
         ...(sameAs.length && { sameAs }),
-        ...(albums.length && { album: albums.map(r => ({ '@type': 'MusicAlbum', name: r.title, url: r.url, image: abs('/img/releases/' + r.cover) })) }),
+        ...(albums.length && { album: albums.map(r => ({ '@type': 'MusicAlbum', name: r.title, url: r.url, image: abs('/img/releases/' + r.cover), albumRelease: labelRelease(r) })) }),
     });
 }
 
@@ -250,7 +252,7 @@ function artistPage(a) {
     <meta name="theme-color" content="#0a0a0a">
     <meta property="og:title" content="${esc(a.name)} — Audiospatials">
     <meta property="og:description" content="${esc(a.description)}">
-    <meta property="og:image" content="${abs('/assets/share/audiospatials.jpg')}">
+    <meta property="og:image" content="${abs('/assets/share/' + a.slug + '.jpg')}">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="${abs('/' + a.slug)}">
     <meta name="twitter:card" content="summary_large_image">
@@ -315,6 +317,7 @@ const musicLD = ld({
     name: 'Released on Audiospatials',
     itemListElement: onMusic.map((r, i) => ({ '@type': 'ListItem', position: i + 1, item: {
         '@type': 'MusicAlbum', name: r.title, url: r.url, image: abs('/img/releases/' + r.cover),
+        albumRelease: labelRelease(r),
         byArtist: { '@type': 'MusicGroup', name: r.artist } } })),
 });
 
