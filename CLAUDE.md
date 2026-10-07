@@ -51,7 +51,7 @@ branch". The deployed site leaves out `tools/`, `.github/`, `CLAUDE.md` and
 one glyph: **the D** was fixed here on 2026-09-27 — its bowl was centred inside
 the bar, so the bar's corners stuck out past the curve. Visuospatials never
 draws a D, so it still has the old one; carry the fix over if it ever does.
-And **the bottom bar on phones** (2026-09-27): `.exit` pads by
+And **page transitions** (2026-10-07, Greg: "smoother"): the old page fades out in 0.22s, the new one fades in over 0.5s while rising 10px, starting at 0.16s; the bar and corner marks carry `view-transition-name`s so they hold still across pages. Visuospatials still has the plain fade. And **the bottom bar on phones** (2026-09-27): `.exit` pads by
 `env(safe-area-inset-bottom)` and paints `--bg` below itself (`.exit::after`),
 with `viewport-fit=cover` on every page (and in the build's artist template),
 so the page can't show between the bar and the screen edge while Safari's
