@@ -166,6 +166,19 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/sets/originals', title: 'Originals', sub: 'Playlist' },
         ],
     },
+    {
+        slug: 'tadevsz',
+        description: 'TADEVSZ (Tadeusz Valadrian-Smith) is a producer and performer who has worked with Portland artists since 2015. Rap, reggaeton and DnB.',
+        name: 'TADEVSZ',
+        photo: 'tadeusz.webp',
+        hero: 'tadeusz-2.webp',
+        bio: [
+            'TADEVSZ (Tadeusz Valadrian-Smith) is the name he uses when producing, performing, and portraying the person he wants to be. He has been producing since 2015, collaborating with other Portland artists and working toward a sound unique to his values, lived experience, and culture.',
+            'He grew up with an American mom who listened to Morrissey and the Beastie Boys and a Colombian dad who listened to Willie Colón and Manu Chao, and he has always struggled to find a balance between all the sounds and rhythms that make him move. That balance is the goal. He wants to make people bounce, to set aside his inner dialogue and transmit himself faithfully through sound.',
+            'His debut album ranges across genres, all aimed at making his own head nod: rap, reggaeton, DnB. He makes the types of music that inspire him, and he hopes others enjoy it as much as he enjoys making it.',
+        ],
+        photos: ['tadeusz-4.webp', 'tadeusz-3.webp'],
+    },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
        has a photo, description and bio, and its page is built with the rest.
     { slug: 'the-silver-spurs', name: 'The Silver Spurs', photo: '' },
