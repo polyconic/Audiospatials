@@ -84,7 +84,7 @@ const ARTISTS = [
             { title: 'Website', handle: 'gregoregan.com', url: 'https://gregoregan.com/' },
         ],
         bio: [
-            'Gregor Egan is a Los Angeles-based producer and DJ whose techno draws from jazz training, Chicago house floors, and a sustained obsession with the hypnotic and textural.',
+            'Gregor Egan is a Los Angeles-based producer and DJ.',
             'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Textural and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
         ],
         listen: [
