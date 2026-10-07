@@ -125,8 +125,8 @@ structured data still names each artist's photo as their image.
   bio, tagline or music yet, and her `description` is a placeholder line. Her
   photos are Greg's shoot of 2026-09-29; originals in
   `~/Desktop/VISUO + AUDIO + DELILAH + INDEXLESS/audiospatials/artists/canary/`.
-  The grid is a 3×3: Canary sits where John Bear did (row 2, middle) (Greg swapped them, 2026-10-02); then John Bear and Stäzrad traded places (2026-10-05), WOLFMANWOOF staying in the middle: row 3 reads John Bear, WOLFMANWOOF, Stäzrad.
-- **TADEVSZ** (Tadeusz Valadrian-Smith) was added 2026-10-07: bio rewritten in the third person from his own first-person text (spelling fixed: Morrissey, Colón), three photos, no links or music yet. He is the tenth artist, so he sits alone, centered, under the 3×3. Originals in `~/Desktop/VISUO + AUDIO + DELILAH + INDEXLESS/audiospatials/artists/tadeusz/`.
+  **The grid is five across (2026-10-07)**: ten artists make two full rows (`.tiles.centered` `--cols: 5`; two across under 1000px, one under 480px; an odd count leaves the last row centered). Before TADEVSZ it was a 3×3: Canary sits where John Bear did (row 2, middle) (Greg swapped them, 2026-10-02); then John Bear and Stäzrad traded places (2026-10-05), WOLFMANWOOF staying in the middle: row 3 reads John Bear, WOLFMANWOOF, Stäzrad.
+- **TADEVSZ** (Tadeusz Valadrian-Smith) was added 2026-10-07: bio rewritten in the third person from his own first-person text (spelling fixed: Morrissey, Colón), three photos; Spotify (a Top tracks row), SoundCloud and Apple Music (Elsewhere rows) added the same day. He is the tenth artist, last on the grid. Originals in `~/Desktop/VISUO + AUDIO + DELILAH + INDEXLESS/audiospatials/artists/tadeusz/`.
 - "Hunty Ray" is Hunter Ray's alias and stays on the corridor song credit.
 
 ## Images

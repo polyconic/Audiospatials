@@ -177,6 +177,13 @@ const ARTISTS = [
             'He grew up with an American mom who listened to Morrissey and the Beastie Boys and a Colombian dad who listened to Willie Colón and Manu Chao, and he has always struggled to find a balance between all the sounds and rhythms that make him move. That balance is the goal. He wants to make people bounce, to set aside his inner dialogue and transmit himself faithfully through sound.',
             'His debut album ranges across genres, all aimed at making his own head nod: rap, reggaeton, DnB. He makes the types of music that inspire him, and he hopes others enjoy it as much as he enjoys making it.',
         ],
+        listen: [
+            { kind: 'spotify', url: 'https://open.spotify.com/artist/3ktJvEuNd4W6KV16KfbYci', title: 'TADEVSZ', sub: 'Top tracks' },
+        ],
+        links: [
+            { title: 'SoundCloud', handle: 'TADEVSZ', url: 'https://soundcloud.com/user-976868861-143056506' },
+            { title: 'Apple Music', handle: 'TADEVSZ', url: 'https://music.apple.com/us/artist/tadevsz/1795599218' },
+        ],
         photos: ['tadeusz-4.webp', 'tadeusz-3.webp'],
     },
     /* On the old site's grid but without pages yet. Uncomment an entry once it
