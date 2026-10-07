@@ -193,7 +193,7 @@ const ARTISTS = [
         photo: 'tadeusz.webp',
         hero: 'tadeusz-2.webp',
         bio: [
-            'TADEVSZ (Tadeusz Valadrian-Smith) is the name he uses when producing, performing, and portraying the person he wants to be. He has been producing since 2015, collaborating with other Portland artists and working toward a sound unique to his values, lived experience, and culture.',
+            'Based in Portland, OR, TADEVSZ (Tadeusz Valadrian-Smith) is the name he uses when producing, performing, and portraying the person he wants to be. He has been producing since 2015, collaborating with other Portland artists and working toward a sound unique to his values, lived experience, and culture.',
             'He grew up with an American mom who listened to Morrissey and the Beastie Boys and a Colombian dad who listened to Willie Colón and Manu Chao, and he has always struggled to find a balance between all the sounds and rhythms that make him move. That balance is the goal. He wants to make people bounce, to set aside his inner dialogue and transmit himself faithfully through sound.',
             'His debut album ranges across genres, all aimed at making his own head nod: rap, reggaeton, DnB. He makes the types of music that inspire him, and he hopes others enjoy it as much as he enjoys making it.',
         ],
