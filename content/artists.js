@@ -46,6 +46,9 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/luci-sucre-lyon-06-10-25', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
         ],
         photos: ['luci-stage.webp', 'video/luci-crowd.mp4', 'luci.webp'],
+        links: [
+            { title: 'Instagram', handle: '@luci._luci._', url: 'https://www.instagram.com/luci._luci._/' },
+        ],
     },
     {
         slug: 'krow',
@@ -62,6 +65,9 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/stephkrow/steph-lolla-2023', title: 'LIVE @ Lollapalooza 2023 Budlight Backyard Stage' },
         ],
         photos: ['krow-live-6.webp', 'krow-live-5.webp', 'krow-press-4.webp', 'krow-show-9.webp'],
+        links: [
+            { title: 'Instagram', handle: '@stephkrow', url: 'https://www.instagram.com/stephkrow/' },
+        ],
     },
     {
         slug: 'fennec',
@@ -72,6 +78,9 @@ const ARTISTS = [
         bio: [],
         photos: ['fennec-poster-1.webp', 'fennec-poster-2.webp', 'fennec-poster-3.webp'],
         credit: 'Poster art by Ross Mantell',
+        links: [
+            { title: 'Instagram', handle: '@heyitsfennec', url: 'https://www.instagram.com/heyitsfennec/' },
+        ],
     },
     {
         slug: 'gregor-egan',
@@ -80,10 +89,11 @@ const ARTISTS = [
         photo: 'gregor-egan.webp',
         hero: 'gregor-egan-grain.webp',
         links: [
+            { title: 'Instagram', handle: '@gregor.egan', url: 'https://www.instagram.com/gregor.egan/' },
             { title: 'Website', handle: 'gregoregan.com', url: 'https://gregoregan.com/' },
         ],
         bio: [
-            'Gregor Egan is a Los Angeles-based producer and DJ.',
+            'Gregor Egan is a Los Angeles-based techno producer and DJ.',
             'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Textural and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
         ],
         listen: [
@@ -116,6 +126,9 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/children', title: 'children' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/nyc', title: 'nyc' },
         ],
+        links: [
+            { title: 'Instagram', handle: '@margoflow', url: 'https://www.instagram.com/margoflow/' },
+        ],
     },
     {
         slug: 'john-bear',
@@ -136,6 +149,9 @@ const ARTISTS = [
         ],
         note: 'Blueberry Pie + Rachel Made Coffee produced and mixed by Hunter Bowersmith. Mastered by Gregor Egan on Blueberry Pie EP by John Bear.',
         photos: ['john-bear-3.webp', 'john-bear-4.webp'],
+        links: [
+            { title: 'Instagram', handle: '@johnbearradio', url: 'https://www.instagram.com/johnbearradio/' },
+        ],
     },
     {
         slug: 'wolfmanwoof',
@@ -165,6 +181,9 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/they-themestry', title: 'they/themestry' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/salad-for-life-tk0-mp3', title: 'salad for life tk0.mp3' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/sets/originals', title: 'Originals', sub: 'Playlist' },
+        ],
+        links: [
+            { title: 'Instagram', handle: '@stazrad', url: 'https://www.instagram.com/stazrad/' },
         ],
     },
     {
