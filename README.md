@@ -6,7 +6,7 @@ Made by Gregor Egan and Hunter Bowersmith. With love.
 
 Website designed by Gregor Egan.
 
-## Editing
+## Editing (for Hunter)
 
 Content lives in `content/`, and `node tools/build.mjs` writes it into the pages
 (GitHub runs it by itself on every push). Most changes are one file:
