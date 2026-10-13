@@ -22,9 +22,6 @@ const RELEASES = [
     { title: 'Latency', artist: 'WOLFMANWOOF', cover: 'latency.webp',
       url: 'https://open.spotify.com/album/57s6rqYzN0SdpJrCWNlE7E',
       credit: 'produced, mixed, and mastered by Gregor Egan' },
-    { title: 'Medium EP', artist: 'Gregor Egan', cover: 'medium.webp',
-      url: 'https://open.spotify.com/album/7ljzUgOt1JfiFfmEvd7rZy',
-      credit: 'produced, mixed and mastered by Gregor Egan' },
     { title: 'Love You', artist: 'WOLFMANWOOF', cover: 'love-you.webp',
       url: 'https://open.spotify.com/album/7oEeCfFE0QxOwHwywky7jn',
       credit: 'produced and mixed by Hunter Bowersmith' },
@@ -41,7 +38,7 @@ const RELEASES = [
 ];
 
 // Recent work on the Studio page, by title.
-const STUDIO_ORDER = ['Blueberry Pie EP', 'Latency', 'Highwater', 'Love You', 'Moonrise EP', 'Shifter EP', 'Medium EP'];
+const STUDIO_ORDER = ['Blueberry Pie EP', 'Latency', 'Highwater', 'Love You', 'Moonrise EP', 'Shifter EP'];
 
 const VIDEOS = [
     { id: '5LAzm3qv7Lk', title: 'Dragonfly', artist: 'CANARY' },
