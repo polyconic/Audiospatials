@@ -270,6 +270,7 @@
         const NS = 'http://www.w3.org/2000/svg';
         const shown = document.createElement('span');
         shown.setAttribute('aria-hidden', 'true');
+        shown.setAttribute('data-nosnippet', '');
         const letters = [];
         (function walk(node, into) {
             [...node.childNodes].forEach(c => {
