@@ -83,6 +83,18 @@ const ARTISTS = [
         ],
     },
     {
+        slug: 'canary',
+        description: 'Canary is an artist on Audiospatials.',
+        name: 'Canary',
+        photo: 'canary.webp',
+        hero: 'canary-5.webp',
+        links: [
+            { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
+            { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
+        ],
+        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp', 'video/canary-room.mp4'],
+    },
+    {
         slug: 'gregor-egan',
         description: 'LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.',
         name: 'Gregor Egan',
@@ -101,18 +113,6 @@ const ARTISTS = [
             { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HÖR' },
         ],
         photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
-    },
-    {
-        slug: 'canary',
-        description: 'Canary is an artist on Audiospatials.',
-        name: 'Canary',
-        photo: 'canary.webp',
-        hero: 'canary-5.webp',
-        links: [
-            { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
-            { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
-        ],
-        photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp', 'video/canary-room.mp4'],
     },
     {
         slug: 'margo-flow',
