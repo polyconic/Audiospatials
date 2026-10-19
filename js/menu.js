@@ -1,6 +1,5 @@
-/* Phones: the bottom bar becomes a dropdown from a two-bar button in the top
-   right corner, beside the mail mark. The links are the bar's own (.exit), so
-   the section list still lives in one place. css/pages.css does the layout. */
+/* phone menu. turns the nav bar into a dropdown from a button next to the mail icon.
+   reuses the bar's links so the list only lives in one place. layout is in css/pages.css */
 (function () {
     const bar = document.querySelector('.exit');
     const corner = document.querySelector('.corner');
@@ -19,7 +18,7 @@
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + OPEN + '</svg>';
     corner.append(btn);
 
-    // The copyright stays out of the dropdown; on phones it closes the page instead.
+    // copyright goes at the bottom of the page, not in the dropdown
     const copy = bar.querySelector('.copy');
     if (copy) {
         const foot = document.createElement('p');
@@ -42,6 +41,6 @@
     });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) { set(false); btn.focus(); } });
     bar.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
-    // Back from another page with the menu left open (bfcache): start closed.
+    // close the menu if you hit back and the page comes back with it still open
     addEventListener('pageshow', () => set(false));
 })();

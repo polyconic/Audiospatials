@@ -35,9 +35,8 @@
         .form input:focus, .form select:focus, .form textarea:focus { border-color: var(--sig); }
         .form input::placeholder { color: var(--faint); }
 
-        /* The message box's typing cursor: a thicker red bar, drawn by the
-           script below. Browsers leave a page no say over the real caret's
-           width, so once the script runs the real one is made invisible. */
+        /* thicker red cursor in the message box, drawn by the script below. you can't
+           change the real cursor's width so it gets hidden once the script runs */
         .form label.wide { position: relative; }
         .form textarea.fakecaret { caret-color: transparent; }
         .caretclip { position: absolute; overflow: hidden; pointer-events: none; visibility: hidden; }
@@ -73,8 +72,7 @@
     <h1 class="still" data-arrive>Let&rsquo;s create<em>.</em></h1>
     <p class="lede">Tell us about your project.</p>
 
-    <!-- FormSubmit forwards each message to hello@, which Namecheap forwards to
-         the shared hello@audiospatials.com inbox that Gregor and Hunter both read. -->
+    <!-- formsubmit sends to hello@, which forwards to our shared inbox -->
     <div data-nosnippet>
     <form class="form" id="form" action="https://formsubmit.co/hello@audiospatials.com" method="POST">
         <input type="hidden" name="_subject" value="Audiospatials — new message">
@@ -122,9 +120,8 @@
 <script src="/js/nav.js"></script>
 <script src="/js/menu.js"></script>
 <script>
-/* A thicker red typing cursor in the message box. A hidden copy of the text
-   (the mirror) finds where the real caret would sit, and a bar is placed
-   there. Without JavaScript the browser's own thin red caret stays. */
+/* thick red cursor. a hidden copy of the text figures out where the real cursor
+   is and puts the bar there. without javascript you just get the normal red one */
 (function () {
     const box = document.querySelector('textarea[name="message"]');
     if (!box) return;
@@ -154,8 +151,7 @@
         COPY.forEach(k => { mirror.style[k] = cs[k]; });
         mirror.style.width = box.clientWidth + parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth) + 'px';
         mirror.textContent = box.value.slice(0, box.selectionStart);
-        // The rest of the text sits in the probe, so a caret at a line wrap is measured
-        // where the next word begins, as the browser draws it.
+        // rest of the text goes in the probe so the cursor lands right at line wraps
         probe.textContent = box.value.slice(box.selectionStart) || '.';
         mirror.append(probe);
         const size = parseFloat(cs.fontSize);
@@ -164,7 +160,7 @@
         clip.style.cssText = `left:${box.offsetLeft + box.clientLeft}px;top:${box.offsetTop + box.clientTop}px;width:${box.clientWidth}px;height:${box.clientHeight}px`;
         bar.style.height = h + 'px';
         bar.style.transform = `translate(${probe.offsetLeft - box.scrollLeft - 1}px, ${probe.offsetTop - box.scrollTop + (line - h) / 2}px)`;
-        // Solid while typing or moving, then blinking again.
+        // stop blinking while typing
         bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
     }
     const queue = () => { if (!frame) frame = requestAnimationFrame(place); };
@@ -182,14 +178,14 @@
 <script>
 const form = document.getElementById('form');
 const status = document.getElementById('status');
-// Back from FormSubmit's own confirmation (no-JS path) with ?sent.
+// coming back from formsubmit's page with ?sent (no javascript)
 if (new URLSearchParams(location.search).has('sent')) {
     status.textContent = 'Sent. We will get back to you.';
     status.className = 'status label ok';
 }
 form.addEventListener('submit', async e => {
     e.preventDefault();
-    // People type links without the https://; add it so the email's link works.
+    // add https:// if they left it off so the link works in the email
     const link = form.elements.link;
     link.value = link.value.trim();
     if (link.value && !/^[a-z][a-z0-9+.-]*:\/\//i.test(link.value)) link.value = 'https://' + link.value;

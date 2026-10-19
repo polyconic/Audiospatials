@@ -13,12 +13,8 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Pages fade through each other: the old one leaves quickly, and the new one
-   rises a few pixels into place as it fades in, starting just as the old one
-   is nearly gone, so two layouts never sit on top of each other. The bar and
-   the corner marks are the same on every page, so they hold still while the
-   page changes under them (only the bar's current section crossfades).
-   Browsers without cross-document view transitions just navigate as before. */
+/* page transitions. old page fades out fast, new one fades up from a little
+   lower. bar and corner marks stay put. browsers that can't do this just load normally */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
   ::view-transition-group(*) { animation-duration: 0.45s; animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
@@ -40,7 +36,7 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   min-height: 100%;
-  /* Headings assemble from pieces that start off to the right. */
+  /* headings fly in from the right, don't let them make a sideways scroll */
   overflow-x: clip;
   background: var(--bg);
   color: var(--fg);
@@ -74,20 +70,19 @@ a { color: inherit; }
 
 .rule { border: 0; border-top: 1px solid var(--rule); }
 
-/* Headings drawn in the geometric alphabet (geo.js). The SVG is one cap
-   height tall; the real text stays alongside for readers and search. */
+/* drawn headings (geo.js). real text is still there, hidden, for screen readers and google */
 .geo { display: block; height: 0.72em; width: auto; overflow: visible; }
-/* The seam stroke is in screen pixels whatever the drawing's scale. */
+/* thin stroke to hide seams between pieces, same width at any size */
 .geo path { fill: currentColor; stroke: currentColor; stroke-width: 0.7px; vector-effect: non-scaling-stroke; }
 .arrive { display: inline-block; white-space: pre; }
-/* The alphabet's arrow set inline with ordinary type: cap height, on the baseline. */
+/* the drawn arrow sitting inline with normal text */
 .geo.arrow { display: inline-block; height: 0.72em; width: 0.36em; margin-left: 0.1em; vertical-align: baseline; }
 .geo-text {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip-path: inset(50%); white-space: nowrap;
 }
 
-/* Site-wide back-of-house bar. Every room has one so no room is a dead end. */
+/* the nav bar, on every page */
 .exit {
   position: fixed;
   left: 0;
@@ -98,10 +93,9 @@ a { color: inherit; }
   flex-wrap: wrap;
   gap: 5px 22px;
   align-items: center;
-  /* Solid, with a hairline on top: the old fade let work scroll visibly
-     behind the bar, which on a phone (two lines tall) read as floating. */
+  /* solid, not a fade. the fade looked like it was floating on phones */
   padding: 12px 20px;
-  /* Down past the home indicator on phones (needs viewport-fit=cover). */
+  /* clear the iphone home bar (needs viewport-fit=cover) */
   padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
   background: var(--bg);
   border-top: 1px solid var(--rule);
@@ -110,9 +104,7 @@ a { color: inherit; }
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-/* Solid ground below the bar too. While Safari's toolbar slides in and out,
-   the bar and the screen's bottom edge part for a moment; this keeps the page
-   from showing through that gap. */
+/* fills the gap under the bar when safari's toolbar slides around */
 .exit::after {
   content: "";
   position: absolute;
@@ -137,7 +129,7 @@ a { color: inherit; }
   }
 }
 
-/* Corner marks: back and home. Both are flat shapes like the alphabet. */
+/* back and home marks, top left */
 .backmark, .homemark {
   position: fixed;
   top: 13px;
@@ -173,7 +165,7 @@ a { color: inherit; }
 .homemark, .backmark, .exit { transition: opacity 0.3s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
 
 
-/* Top right: mail. */
+/* mail, top right */
 .corner {
   position: fixed;
   top: 13px;

@@ -1,21 +1,16 @@
-/* Players. tools/build.mjs writes them into the page; nothing from Spotify,
-   SoundCloud or YouTube loads until one is pressed.
+/* players. the build writes them into the page. nothing from spotify,
+   soundcloud or youtube loads until you press something.
 
-   YouTube: the button becomes YouTube's own player.
+   youtube: the button just turns into youtube's player.
 
-   SoundCloud and Spotify: our own row (.track). As a row nears the screen,
-   the service's embed API and its player load out of sight, unstarted, so a
-   single tap can start it (Safari won't allow sound that starts later than
-   the tap). The row drives it:
-   play and pause, elapsed and total time, a hairline that fills as it plays
-   and seeks when clicked. One track plays at a time across the page. If the
-   browser won't start the hidden player (iOS can refuse), the row shows the
-   service's own player instead, so a tap there does it. Spotify plays
-   30-second previews to anyone not logged in to Spotify; that's theirs.
+   soundcloud and spotify: our own track rows. the real player loads hidden
+   when the row gets close to the screen so one tap can start it (safari won't
+   play sound that starts after the tap). one track at a time. if the browser
+   won't play the hidden one (ios sometimes), we show the real player instead.
+   spotify only plays 30 sec previews if you're not logged in, nothing we can do.
 
-   Clips (video[data-inview]) loop only while on screen and load nothing
-   before they first come into view. They start muted; each has a sound
-   button, and turning one on turns the others off. */
+   videos (video[data-inview]) only loop while on screen and don't load till
+   you scroll to them. muted to start, turning sound on for one mutes the rest */
 (function () {
     document.addEventListener('click', e => {
         const b = e.target.closest && e.target.closest('button.player[data-src]');
@@ -42,8 +37,7 @@
         clips.forEach(v => io.observe(v));
     }
 
-    // Sound: off to start; one clip heard at a time. The button's first press
-    // is a tap, so browsers allow the sound.
+    // sound off to start, only one video with sound at a time
     const ON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9H6L11 4.5V19.5L6 15H2Z"/><path d="M14 8.2A5 5 0 0 1 14 15.8L15.1 17.2A6.8 6.8 0 0 0 15.1 6.8Z"/><path d="M16.6 5.1A9 9 0 0 1 16.6 18.9L17.8 20.3A10.8 10.8 0 0 0 17.8 3.7Z"/></svg>';
     const soundButtons = [...document.querySelectorAll('.clip .sound')];
     const OFF = soundButtons.length ? soundButtons[0].innerHTML : '';
@@ -77,9 +71,8 @@
     const spotifyApi = () => spApi || (spApi = script('https://open.spotify.com/embed/iframe-api/v1',
         ok => { window.onSpotifyIframeApiReady = ok; }));
 
-    // Each engine loads its player into `slot` without starting it, reports
-    // back through `on`, and resolves with its controls once the player is
-    // ready — or rejects if the service's API won't load.
+    // each one loads its player into `slot` without playing, talks back through `on`,
+    // and hands back play/pause/seek when it's ready (or fails if the api won't load)
     const engines = {
         async soundcloud(row, slot, on) {
             const frame = document.createElement('iframe');
@@ -111,7 +104,7 @@
                     on.progress(d.position, d.duration);
                 });
                 c.addListener('ready', () => done({
-                    // The first play starts the release; after that, carry on where it stopped.
+                    // first play starts it, after that resume where it left off
                     play: () => { if (begun) c.resume(); else { begun = true; c.play(); } },
                     pause: () => c.pause(),
                     seek: ms => c.seek(ms / 1000),
@@ -148,9 +141,7 @@
             },
         };
 
-        // Load the player, unstarted, before anyone presses play: Safari only
-        // lets sound start inside the tap itself, so by the time of the tap the
-        // player has to be ready to take it.
+        // load the player early so it's ready when they tap (safari thing)
         const prepare = () => prep || (prep = (async () => {
             row.append(slot);
             try { ctl = await engines[row.dataset.kind](row, slot, on); }
@@ -158,8 +149,7 @@
             if (want) start();
         })());
 
-        // Play from a tap. If nothing has started a few seconds later, the
-        // browser refused: show the service's own player to tap instead.
+        // if it hasn't started after a few seconds the browser blocked it, show the real player
         const start = () => {
             ctl.play();
             clearTimeout(watch);
@@ -183,7 +173,7 @@
         return { row, prepare, pause: () => ctl && playing && ctl.pause() };
     });
 
-    // Get each player ready as its row nears the screen.
+    // get players ready as you scroll near them
     if ('IntersectionObserver' in window) {
         const near = new IntersectionObserver(entries => entries.forEach(e => {
             if (!e.isIntersecting) return;

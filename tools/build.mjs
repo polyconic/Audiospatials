@@ -1,18 +1,17 @@
-/* Writes the content files into the pages, so every page carries its full
-   text in its own HTML — for search engines, and for AI crawlers, which read
-   the HTML without running any JavaScript.
+/* puts everything from content/ into the actual html so google and ai crawlers
+   (which don't run javascript) can read the whole site.
 
    node tools/build.mjs
 
-   It writes:
-   - <slug>.html      one page per artist in content/artists.js (and removes
-                      pages of artists no longer listed)
-   - artists.html     the grid          } between <!-- build:x --> and
-   - music.html       releases, videos  } <!-- /build:x --> markers; the rest
-   - studio.html      recent work       } of those pages is hand-written
-   - index.html       the hidden summary and structured data
+   what it writes:
+   - <slug>.html      a page per artist in content/artists.js (and deletes
+                      pages for artists that got removed)
+   - artists.html     the grid          } only between the <!-- build:x --> and
+   - music.html       releases, videos  } <!-- /build:x --> markers, everything
+   - studio.html      recent work       } else on those pages is by hand
+   - index.html       hidden summary and search engine data
    - sitemap.xml, llms.txt
-   Run it after changing anything in content/. GitHub runs it on every push. */
+   run it after changing anything in content/. github runs it on every push */
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -70,9 +69,8 @@ function embed(kind, url) {
              page: /^https:\/\/soundcloud\.com\//.test(url) ? url : undefined };
 }
 
-// SoundCloud and Spotify get our own row instead of their widgets: play button, title,
-// time, and a hairline that fills as it plays. js/players.js drives SoundCloud's
-// widget out of sight once play is pressed; nothing loads before that.
+// soundcloud and spotify get our own row instead of their ugly widgets. play button,
+// title, time, progress line. js/players.js runs the real player hidden behind it
 function track(item) {
     let data, page;
     if (item.kind === 'spotify') {
@@ -96,8 +94,8 @@ function track(item) {
         `<div class="track-bar" aria-hidden="true"><span></span></div></div>`;
 }
 
-// A button that becomes the player when clicked (js/players.js). The title and
-// a plain link sit in the HTML, so a reader without JavaScript still has them.
+// button that turns into the player when clicked (js/players.js). title is in
+// the html so it still shows without javascript
 function player(item) {
     const e = embed(item.kind, item.url);
     const title = item.title || NAMES[item.kind];
@@ -125,10 +123,10 @@ const exitBar = here => `<nav class="exit">
 
 // ---------- artist pages
 
-// The clip's sound toggle: a flat speaker, crossed out while muted (js/players.js swaps them).
+// muted speaker icon for videos (js/players.js swaps it)
 const SOUND_OFF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9H6L11 4.5V19.5L6 15H2Z"/><path d="M14.3 9.4 15.4 8.3 17.5 10.4 19.6 8.3 20.7 9.4 18.6 11.5 20.7 13.6 19.6 14.7 17.5 12.6 15.4 14.7 14.3 13.6 16.4 11.5Z"/></svg>';
 
-// Width and height from a .webp header, so a clip holds its shape before it loads.
+// read a webp's size so videos don't jump around while loading
 function webpSize(f) {
     const b = fs.readFileSync(path.join(ROOT, f));
     const chunk = b.toString('ascii', 12, 16);
@@ -138,9 +136,9 @@ function webpSize(f) {
     return null;
 }
 
-// An entry in `photos`: a file in img/artists/, or a path under img/ (like
-// 'video/luci-red.mp4'). Videos loop, muted, only while in view (js/players.js),
-// with a still of the same name (.webp) until then, and a button for sound.
+// one thing from `photos`. a file in img/artists/ or a path under img/ (like
+// 'video/luci-red.mp4'). videos loop muted while on screen, with a .webp still
+// of the same name before that, plus a sound button
 function media(f, name) {
     const src = '/img/' + (f.includes('/') ? f : 'artists/' + f);
     if (/\.(mp4|webm|mov)$/i.test(f)) {
@@ -152,10 +150,8 @@ function media(f, name) {
     return `<img src="${src}" alt="${esc(name)}" loading="lazy" decoding="async">`;
 }
 
-// An artist's photos as two columns, each photo dealt to whichever column is
-// shorter so far (heights come from the files), the columns centered against
-// each other in CSS. `--i` keeps the order they were written in for a phone,
-// which shows them one at a time.
+// splits the photos into two columns, each one goes to whichever column is
+// shorter. `--i` keeps the original order for phones
 function gallery(photos, name, captions = {}) {
     const show = f => captions[f] ? `<figure>${media(f, name)}<figcaption>${esc(captions[f])}</figcaption></figure>` : media(f, name);
     if (photos.length === 1) return `<div class="photos">\n            ${show(photos[0])}\n        </div>`;
@@ -174,7 +170,7 @@ function gallery(photos, name, captions = {}) {
     return `<div class="photos cols">\n${cols.map(c => `            <div class="col">\n                ${c.join('\n                ')}\n            </div>`).join('\n')}\n        </div>`;
 }
 
-// Every release is on Audiospatials; recordLabel only exists on MusicRelease.
+// all of these are our releases. recordLabel only works on MusicRelease
 const labelRelease = r => ({ '@type': 'MusicRelease', url: r.url, recordLabel: { '@type': 'Organization', name: SITE.name, url: SITE.url + '/' } });
 const releasesBy = name => RELEASES.filter(r => r.artist === name);
 
@@ -194,8 +190,7 @@ function artistLD(a) {
 
 function artistPage(a) {
     const body = [];
-    // SoundCloud rows sit under the bio, where people are already reading;
-    // the bigger Spotify and YouTube players get their own section below.
+    // soundcloud/spotify rows go right under the bio, youtube gets its own section below
     const sc = (a.listen || []).filter(l => l.kind === 'soundcloud' || l.kind === 'spotify');
     const rest = (a.listen || []).filter(l => l.kind === 'youtube');
     body.push(`    <h1 class="name" data-arrive>${esc(a.name)}<em>.</em></h1>`);
@@ -240,7 +235,7 @@ function artistPage(a) {
     if (a.listenLast) body.push(...listen);
 
     return `<!DOCTYPE html>
-<!-- Built by tools/build.mjs from content/artists.js. Edit that, not this. -->
+<!-- built by tools/build.mjs from content/artists.js, edit that not this -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -323,8 +318,7 @@ const musicLD = ld({
         byArtist: { '@type': 'MusicGroup', name: r.artist } } })),
 });
 
-// What the front page says to anything that reads its HTML: the wordmark is a
-// drawing, so the name, the line and the way in sit here, visually hidden.
+// hidden text on the front page for google etc, since the logo is a drawing
 const summary = `    <div class="geo-text">
         <h1>${esc(SITE.name)}</h1>
         <p>${esc(SITE.description)}</p>
@@ -335,7 +329,7 @@ const summary = `    <div class="geo-text">
 
 const built = new Set(ARTISTS.map(a => a.slug + '.html'));
 for (const f of fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !built.has(f)))
-    if (read(f).includes('Built by tools/build.mjs from content/artists.js')) { fs.unlinkSync(path.join(ROOT, f)); console.log('removed', f); }
+    if (read(f).includes('built by tools/build.mjs from content/artists.js')) { fs.unlinkSync(path.join(ROOT, f)); console.log('removed', f); }
 for (const a of ARTISTS) write(a.slug + '.html', artistPage(a));
 
 fill('artists.html', 'tiles', artistTiles);

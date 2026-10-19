@@ -1,18 +1,17 @@
-/* Releases and videos. Newest first in each list.
+/* releases and videos, newest first.
 
-   RELEASES feed the Music page, and any release with a `credit` is also listed
-   under Recent work on the Studio page, in the order of STUDIO_ORDER.
+   RELEASES go on the music page. anything with a `credit` also shows up under
+   recent work on the studio page, in STUDIO_ORDER order.
 
    title    the release
-   artist   as written on it
+   artist   how it's written on the release
    cover    in img/releases/
-   url      where to listen (Spotify, Bandcamp, anywhere)
-   credit   optional, who made it: 'produced, mixed and mastered by Gregor Egan'
-   music    set to false to keep a release off the Music page (Studio only)
+   url      where to listen (spotify, bandcamp, wherever)
+   credit   optional, who did what: 'produced, mixed and mastered by Gregor Egan'
+   music    false keeps it off the music page (studio page only)
 
-   VIDEOS feed the lower half of the Music page. `id` is the part of the
-   YouTube address after v= ; the thumbnail lives in img/videos/<id>.webp.
-   The player only loads when someone clicks it.
+   VIDEOS go at the bottom of the music page. `id` is the bit of the youtube
+   link after v= , thumbnail goes in img/videos/<id>.webp
 */
 
 const RELEASES = [
@@ -37,7 +36,7 @@ const RELEASES = [
       music: false },
 ];
 
-// Recent work on the Studio page, by title.
+// recent work order on the studio page, by title
 const STUDIO_ORDER = ['Blueberry Pie EP', 'Latency', 'Highwater', 'Love You', 'Moonrise EP', 'Shifter EP'];
 
 const VIDEOS = [

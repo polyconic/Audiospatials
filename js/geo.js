@@ -1,9 +1,6 @@
-/* The geometric alphabet. Every letter is a few flat primitives — bars,
-   triangles, half discs, ring slices — in a box one unit tall, so the
-   wordmark, the headings and the 404 are all drawn from the same parts.
-   Each piece is an SVG path string in those units; holes are extra subpaths
-   filled even-odd. The front page and the 404 draw them on a canvas through
-   Path2D, the headings as inline SVG. */
+/* the geometric alphabet. every letter is built from a few flat shapes (bars,
+   triangles, half circles, ring slices) in a box 1 unit tall. the logo, headings
+   and 404 all use these. front page and 404 draw on a canvas, headings are inline svg */
 (function () {
     const T = 0.2;
     const PI = Math.PI;
@@ -14,10 +11,10 @@
     const poly = (...p) => 'M' + p.reduce((s, v, i) => s + (i % 2 ? ' ' + n(v) : (i ? 'L' : '') + n(v)), '') + 'Z';
     const arcTo = (r, a0, a1, cw, cx, cy) =>
         `A${n(r)} ${n(r)} 0 ${Math.abs(a1 - a0) > PI ? 1 : 0} ${cw ? 1 : 0} ${pt(cx + r * Math.cos(a1), cy + r * Math.sin(a1))}`;
-    // A filled slice of a disc, a0 to a1 clockwise (screen angles, y down).
+    // pie slice, a0 to a1 clockwise (y goes down)
     const half = (cx, cy, r, a0, a1) =>
         `M${pt(cx, cy)}L${pt(cx + r * Math.cos(a0), cy + r * Math.sin(a0))}${arcTo(r, a0, a1, true, cx, cy)}Z`;
-    // A slice of an annulus; a full turn becomes two circles with the inner one cut.
+    // slice of a ring. full turn = two circles with the middle cut out
     const ring = (cx, cy, R, r, a0, a1) => {
         if (a1 - a0 >= 2 * PI - 1e-6) {
             const circle = rad => `M${pt(cx + rad, cy)}A${n(rad)} ${n(rad)} 0 1 1 ${pt(cx - rad, cy)}A${n(rad)} ${n(rad)} 0 1 1 ${pt(cx + rad, cy)}Z`;
@@ -26,7 +23,7 @@
         return `M${pt(cx + R * Math.cos(a0), cy + R * Math.sin(a0))}${arcTo(R, a0, a1, true, cx, cy)}` +
                `L${pt(cx + r * Math.cos(a1), cy + r * Math.sin(a1))}${arcTo(r, a1, a0, false, cx, cy)}Z`;
     };
-    // Mirror a path string top to bottom inside the unit box.
+    // flip a shape upside down
     const flip = d => d.replace(/([MLHVAZ])([^MLHVAZ]*)/g, (m, c, args) => {
         const v = args.trim() ? args.trim().split(/\s+/).map(Number) : [];
         if (c === 'V') return 'V' + n(1 - v[0]);
@@ -35,19 +32,16 @@
         return m;
     });
 
-    // Heavy strokes: a short, narrow notch. Drawn as one outline, not a cut-out
-    // hole, so the seam stroke can't trace a line across the notch's mouth.
+    // the v. drawn as one outline instead of a cutout so no seam line shows across the notch
     const vee = [poly(0, 0, 0.3, 0, 0.43, 0.32, 0.56, 0, 0.86, 0, 0.43, 1)];
     const oh = [ring(0.45, 0.5, 0.45, 0.25, 0, 2 * PI)];
 
-    // w is the advance; parts are the pieces that move independently.
+    // w is the letter width, parts are the pieces that move on their own
     const G = {
         A: { w: 0.86, parts: vee.map(flip) },
         B: { w: 0.47, parts: [rect(0, 0, T, 1), half(T, 0.25, 0.25, -PI / 2, PI / 2), half(T, 0.75, 0.25, -PI / 2, PI / 2)] },
         C: { w: 0.8, parts: [ring(0.45, 0.5, 0.45, 0.25, PI / 4, 7 * PI / 4)] },
-        // The bowl is centred on the bar's right edge, so it leaves the bar
-        // flush at the top and bottom. Centred inside the bar, the bar's corners
-        // stuck out past the curve.
+        // curve starts at the bar's right edge so the corners don't poke out
         D: { w: 0.7, parts: [rect(0, 0, T, 1), ring(T, 0.5, 0.5, 0.3, -PI / 2, PI / 2)] },
         E: { w: 0.56, parts: [rect(0, 0, T, 1), rect(T, 0, 0.36, T), rect(T, 0.4, 0.26, T), rect(T, 0.8, 0.36, T)] },
         F: { w: 0.56, parts: [rect(0, 0, T, 1), rect(T, 0, 0.36, T), rect(T, 0.4, 0.26, T)] },
@@ -63,9 +57,8 @@
         P: { w: 0.49, parts: [rect(0, 0, T, 1), half(T, 0.29, 0.29, -PI / 2, PI / 2)] },
         Q: { w: 0.95, parts: [...oh, poly(0.6, 0.72, 0.74, 0.6, 0.95, 0.94, 0.8, 1)] },
         R: { w: 0.62, parts: [rect(0, 0, T, 1), half(T, 0.29, 0.29, -PI / 2, PI / 2), poly(0.22, 0.52, 0.42, 0.52, 0.62, 1, 0.42, 1)] },
-        // When an S's bar lands in a different tone from the half disc it meets,
-        // even the seam stroke reads as an overlap, so that bar swaps to its
-        // `clear` shape, stopping a hair short. Same tones keep touching.
+        // if an s bar ends up a different color than the curve next to it, use the
+        // `clear` version that stops just short so it doesn't look overlapped
         S: { w: 0.56, parts: [half(0.28, 0.25, 0.25, PI / 2, 3 * PI / 2), rect(0.28, 0, 0.28, T), half(0.28, 0.75, 0.25, -PI / 2, PI / 2), rect(0, 0.8, 0.28, T)],
              clear: { 1: [0, rect(0.286, 0, 0.274, T)], 3: [2, rect(0, 0.8, 0.274, T)] } },
         T: { w: 0.72, parts: [rect(0, 0, 0.72, T), rect(0.26, T, T, 1 - T)] },
@@ -83,7 +76,7 @@
         ' ': { w: 0.3, parts: [] },
     };
 
-    // Shift every x in a path string; used for the second V of the W.
+    // slide a shape over, for the second v in w
     function shift(d, dx) {
         return d.replace(/([MLHA])([^MLHVAZ]*)/g, (m, c, args) => {
             const v = args.trim().split(/\s+/).map(Number);
@@ -94,13 +87,11 @@
     }
 
     const GAP = 0.16;
-    // Pieces that butt up against each other leave an anti-aliased seam; a
-    // hairline stroke in the same colour closes it. It is a fixed fraction of a
-    // screen pixel, not a fraction of the letter, or at large sizes it grows
-    // wide enough to spill visibly over a neighbouring piece of another tone.
+    // thin stroke to hide the seams between pieces. fixed in screen pixels so it
+    // doesn't get fat and bleed into other pieces when the letters are big
     const SEAM = 0.7;
 
-    // Lay a string out: one entry per piece, with its x offset in units.
+    // lay out a word, every piece with its x position
     function layout(text) {
         const out = [];
         let x = 0;
@@ -114,11 +105,9 @@
 
     const MOVING = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* Replace an element's text with the drawn word. Colours are read off each
-       character's own element first, so an <em> or a .slash keeps its colour.
-       Everything else takes currentColor. The real text stays for readers and
-       search, visually hidden. With
-       assemble, the pieces slide in from the right once and settle. */
+    /* swaps an element's text for the drawn version. keeps colors from things like
+       <em> or .slash. real text stays hidden for screen readers and google.
+       with assemble the pieces fly in from the right once */
     function heading(el, opts) {
         opts = opts || {};
         const chars = [];
@@ -128,7 +117,7 @@
                 else if (c.nodeType === 1) walk(c);
             });
         })(el);
-        // Collapse runs of whitespace the way the page would, keeping colours aligned.
+        // squash extra spaces like html would, keep the colors lined up
         const kept = chars.reduce((a, c) => {
             const space = /\s/.test(c.ch);
             if (space && (!a.length || a[a.length - 1].ch === ' ')) return a;
@@ -149,8 +138,7 @@
             path.setAttribute('d', p.d);
             path.setAttribute('fill-rule', 'evenodd');
             path.setAttribute('transform', `translate(${n(p.x)} 0)`);
-            // Pieces in the heading's own colour follow it (hover included);
-            // only a differently coloured span, like an <em>, is pinned.
+            // only pin the color on pieces that differ (like an <em>), the rest follow hover etc
             if (kept[p.index].color !== own) path.style.fill = path.style.stroke = kept[p.index].color;
             path.style.strokeWidth = SEAM + 'px';
             svg.appendChild(path);
@@ -177,12 +165,10 @@
         return svg;
     }
 
-    /* The looping version, on a canvas: every piece slides left at 1, 2 or 3
-       laps a cycle and wraps, so they only line up into the word once a cycle.
-       Time is warped to slow around that moment so the word holds; with
-       opts.hold it also sits still, assembled, for that many seconds each
-       time it lines up, starting from the first frame. place()
-       returns the word's left edge, top and unit size for the current window. */
+    /* the looping logo on the front page. pieces slide left at different speeds and
+       only line up into the word once per cycle. it slows down around that moment,
+       and opts.hold pauses it for that many seconds. place() gives the word's
+       position and size for the window */
     function converge(canvas, text, place, opts) {
         opts = opts || {};
         const CYCLE = opts.cycle || 26;
@@ -215,7 +201,7 @@
             pieces.forEach(q => { q.path = new Path2D(q.d); });
         }
 
-        // Blows out over 6s and settles back over 2.5s.
+        // explodes over 6s, comes back over 2.5s
         function blast() {
             const t = (performance.now() - blastAt) / 1000;
             if (t < 0 || t > 8.5) return 0;
@@ -263,9 +249,7 @@
         };
     }
 
-    /* The same arrival as an assembling heading, but the letters stay in the
-       page's own type: each character slides in from the right once and
-       settles. A ↗ becomes the alphabet's arrow, drawn at cap height. */
+    /* same fly-in but with normal text instead of drawn letters. ↗ becomes the drawn arrow */
     function arrive(el) {
         const NS = 'http://www.w3.org/2000/svg';
         const shown = document.createElement('span');
@@ -319,8 +303,7 @@
 
     window.Geo = { glyphs: G, layout, heading, arrive, converge, T };
 
-    // data-geo redraws an element in the alphabet and assembles it once;
-    // data-arrive keeps its type and only borrows the motion.
+    // data-geo = drawn letters, data-arrive = normal text that just flies in
     const run = () => {
         document.querySelectorAll('[data-geo]').forEach(el => heading(el, { assemble: true }));
         document.querySelectorAll('[data-arrive]').forEach(arrive);

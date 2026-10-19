@@ -1,5 +1,5 @@
-# Builds the pages from content/ and publishes the site on every push to main.
-# Repo setting this needs: Settings → Pages → Source: GitHub Actions.
+# builds from content/ and publishes the site on every push to main.
+# needs settings → pages → source set to github actions
 name: Publish
 
 on:

@@ -1,34 +1,32 @@
-/* The roster. One entry per artist, in the order they appear on /artists.
+/* the artists, in the order they show on /artists.
 
-   Edit an entry, or add one, and the pages are rebuilt from this file:
-   the artist's own page, the Artists grid, the sitemap and llms.txt.
-   Locally: node tools/build.mjs. On GitHub it happens by itself on push.
+   change or add one here and the build redoes their page, the artists grid,
+   the sitemap and llms.txt. locally run node tools/build.mjs, on github it
+   just happens when you push.
 
-   slug        the address: 'john-bear' lives at audiospatials.com/john-bear
-   name        as it should be written
-   description one or two sentences for Google and link previews
-   photo       the picture on the Artists grid, in img/artists/. Also the one
-               beside the bio, unless `hero` names a different one for the page
-               (a photo, or a clip like 'video/luci-red.mp4')
-   tagline     optional, one short line under the name
+   slug        the url: 'john-bear' is audiospatials.com/john-bear
+   name        how they write it
+   description a sentence or two for google and link previews
+   photo       the grid photo, in img/artists/. also the one next to the bio
+               unless `hero` says otherwise (photo or video like 'video/luci-red.mp4')
+   tagline     optional, short line under the name
    bio         paragraphs, one string each
-   photos      optional, more pictures further down the page. A name with a
-               slash is a path under img/ — 'video/luci-red.mp4' plays silent
-               and looping, with img/video/luci-red.webp as its still
-   flip        optional, true puts the photo on the right of the bio
-   captions    optional, { 'photo-file.webp': 'text' }: a small line under that
-               photo in the gallery, written as given (not capitalized)
-   credit      optional, a line under the photos (poster artist, photographer)
-   listen      optional, players. kind is 'spotify', 'soundcloud' or 'youtube';
-               url is the address you would share; title as it should read;
-               sub optional, a small line under it. A player only loads when
-               someone clicks it, so nothing tracks a visitor who doesn't.
-   note        optional, a small line under the players (credits and the like)
+   photos      optional, more photos further down. anything with a slash is a
+               path under img/, so 'video/luci-red.mp4' is a silent loop with
+               img/video/luci-red.webp as the still
+   flip        optional, true puts the photo on the right
+   captions    optional, { 'photo-file.webp': 'text' }, small line under that
+               photo, left exactly as typed
+   credit      optional, line under the photos (photographer, poster artist)
+   listen      optional, players. kind is 'spotify', 'soundcloud' or 'youtube',
+               url is the normal share link, title how it should read, sub is an
+               optional small line under it. nothing loads till someone clicks
+   note        optional, small line under the players (credits etc)
    links       optional, where else to find them: { title: 'Instagram',
-               handle: '@name', url } in the Contact page's ruled-row style,
-               under the bio and players; also listed as sameAs for search
-   listenLast  optional, true puts the Spotify/YouTube players below the photos.
-               SoundCloud tracks always sit under the bio.
+               handle: '@name', url }. shows as rows under the bio, also goes
+               in the search engine data
+   listenLast  optional, true moves spotify/youtube players below the photos.
+               soundcloud always stays under the bio
 */
 
 const ARTISTS = [
@@ -162,7 +160,7 @@ const ARTISTS = [
             'WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.',
         ],
         releases: 'WOLFMANWOOF',
-        // Was the front page's photo until 2026-09-29.
+        // used to be the front page photo
         photos: ['wolfmanwoof-blur.webp'],
     },
     {
@@ -207,8 +205,8 @@ const ARTISTS = [
         photos: ['tadeusz-4.webp', 'tadeusz-3.webp'],
         captions: { 'tadeusz-3.webp': 'day by day 2025' },
     },
-    /* On the old site's grid but without pages yet. Uncomment an entry once it
-       has a photo, description and bio, and its page is built with the rest.
+    /* on the old squarespace grid, no pages yet. uncomment once they have a
+       photo, description and bio
     { slug: 'the-silver-spurs', name: 'The Silver Spurs', photo: '' },
     { slug: 'hunter-ray', name: 'Hunter Ray', photo: '' },
     { slug: 'pablo-cervantes', name: 'Pablo Cervantes', photo: '' },
