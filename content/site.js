@@ -8,7 +8,8 @@ const SITE = {
     description: 'Independent record label in Santa Cruz and LA, making records with artists from folk to techno. Production and mixing too. Run by Gregor Egan and Hunter Bowersmith.',
     short: 'A catalyst of creativity. Records made with independent artists, from folk to techno.',
     email: 'hello@audiospatials.com',
-    places: ['Santa Cruz, California', 'Los Angeles, California'],
+    // Where the studio is. LA stays on Gregor below; there's no room there.
+    places: ['Santa Cruz, California'],
     founders: [
         { name: 'Gregor Egan', slug: 'gregor-egan', place: 'Los Angeles' },
         { name: 'Hunter Bowersmith', slug: 'fennec', place: 'Santa Cruz' },
