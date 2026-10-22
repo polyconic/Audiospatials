@@ -9,6 +9,7 @@ Audiospatials is the collaborative project of Gregor Egan (Los Angeles) and Hunt
 - [Artists](https://audiospatials.com/artists): the roster
 - [Music](https://audiospatials.com/music): records released on Audiospatials, and videos
 - [Studio](https://audiospatials.com/studio): what we do, and recent work with credits
+- [Vault](https://vault.audiospatials.com/): unreleased music and sketches
 - [About](https://audiospatials.com/about): how it started
 - [Contact](https://audiospatials.com/contact): send a project
 

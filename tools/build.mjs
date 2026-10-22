@@ -358,6 +358,7 @@ Audiospatials is the collaborative project of ${SITE.founders.map(f => `${f.name
 - [Artists](${abs('/artists')}): the roster
 - [Music](${abs('/music')}): records released on Audiospatials, and videos
 - [Studio](${abs('/studio')}): what we do, and recent work with credits
+- [Vault](https://vault.audiospatials.com/): unreleased music and sketches
 - [About](${abs('/about')}): how it started
 - [Contact](${abs('/contact')}): send a project
 
