@@ -226,6 +226,12 @@ section:has(> .tiles.cube) > .label { text-align: center; }
     html.menu-open .exit .copy { display: none; }
 }
 @keyframes drop { from { opacity: 0; transform: translateY(-6px); } }
+/* phones with javascript off get no menu button, so the bar sits at the end of the page instead */
+@media (max-width: 760px) and (scripting: none) {
+    .exit { display: flex; position: static; gap: 14px 22px;
+            padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+            border-bottom: 0; border-top: 1px solid var(--rule); }
+}
 
 /* soundcloud under the bio */
 .listen-here, .elsewhere { margin-top: clamp(30px, 5vh, 50px); }
