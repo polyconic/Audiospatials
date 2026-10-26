@@ -70,7 +70,13 @@ a.row:focus-visible .u { color: var(--sig); }
 /* artists page is wider so five across isn't tiny */
 body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px, 3.5vw, 56px); }
 .roster .wrap { max-width: 1760px; }
-@media (min-width: 761px) { body.roster { padding-bottom: 28px; } .roster .footcopy { margin-top: 60px; } }
+/* the page fills the screen: the grid sits centered in the room under the title, the © line at the bottom */
+@media (min-width: 761px) {
+    body.roster { padding-bottom: 28px; min-height: 100svh; display: flex; flex-direction: column; }
+    .roster .wrap { flex: 1; width: 100%; display: flex; flex-direction: column; }
+    .roster .tiles.centered { margin-block: auto; }
+    .roster .footcopy { margin-top: 60px; }
+}
 
 /* flex instead of grid so a short last row stays centered. five across, two under 1000px */
 .tiles.centered { --gap: clamp(14px, 2vw, 28px); --cols: 5;
