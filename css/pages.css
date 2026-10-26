@@ -76,11 +76,14 @@ body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px,
 .tiles.centered { --gap: clamp(14px, 2vw, 28px); --cols: 5;
                   display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); }
 .tiles.centered > .tile { width: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); }
-/* music page is three across */
+/* music page is three across. artists is six, so eleven sit as six over five,
+   and four between 1000 and 1200px where six would get too small */
 .tiles.centered.third { --cols: 3; }
-@media (max-width: 1000px) { .tiles.centered, .tiles.centered.third { --cols: 2; } }
+.roster .tiles.centered { --cols: 6; }
+@media (max-width: 1200px) { .roster .tiles.centered { --cols: 4; } }
+@media (max-width: 1000px) { .tiles.centered, .tiles.centered.third, .roster .tiles.centered { --cols: 2; } }
 /* one per row on phones, extra gap so the name goes with the photo above it */
-@media (max-width: 480px)  { .tiles.centered, .tiles.centered.third { --cols: 1; row-gap: 40px; } }
+@media (max-width: 480px)  { .tiles.centered, .tiles.centered.third, .roster .tiles.centered { --cols: 1; row-gap: 40px; } }
 
 /* artist page top: photo next to the bio, stacked on phones */
 .artist-top { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);

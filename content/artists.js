@@ -164,6 +164,20 @@ const ARTISTS = [
         photos: ['wolfmanwoof-blur.webp'],
     },
     {
+        slug: 'ses-eye-ohm',
+        description: 'Live looping artist from Los Angeles, now in Santa Cruz. Hip hop, reggae, bossa nova and R&B, built from the ground up in real time.',
+        name: 'Ses Eye Ohm',
+        photo: 'ses-eye-ohm.webp',
+        bio: [
+            'Ses Eye Ohm is a live looping artist who builds each song from the ground up in front of you, layering vocals, rhythms, and melodies into a groove that feels both spontaneous and deeply intentional. His sound lives where hip hop, reggae, bossa nova, and R&B meet, pairing laid-back warmth with lyrical depth.',
+            'Born and raised in Los Angeles and now based in Santa Cruz, California, Ses Eye Ohm carries the creative pulse of the city he grew up in along with the easygoing spirit of the coast he now calls home. That mix shows in the music, which is rooted in rhythm, open-hearted, and always moving.',
+            'Every performance is a one-person-band experience, unfolding in real time. Whether on an intimate session stage like The Recordium or at a festival, Ses Eye Ohm invites audiences to listen closely, move freely, and find their own place in the space in between.',
+        ],
+        listen: [
+            { kind: 'youtube', url: 'https://youtu.be/q0nHvDBi7Dk', title: 'The Space In Between', sub: 'Live at The Recordium' },
+        ],
+    },
+    {
         slug: 'stazrad',
         description: 'A folk song that turns hardcore. Emo, prog and finger-picked acoustic songs from a Bay Area artist born in St. Louis.',
         name: 'Stäzrad',
