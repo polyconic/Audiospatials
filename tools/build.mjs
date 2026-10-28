@@ -190,34 +190,21 @@ function artistLD(a) {
 
 const isClip = f => /\.(mp4|webm|mov)$/i.test(f || '');
 
-// the two photos on the cover: the page photo (hero, or the grid photo), then `second` if set,
-// else the grid photo when the hero is a different one, else the first gallery photo when there
-// are at least two (a lone gallery photo stays where it is, like WOLFMANWOOF's blurred closer)
-function coverPhotos(a) {
-    const first = a.hero || a.photo;
-    let second = a.second;
-    if (second === undefined) {
-        const rest = (a.photos || []).filter(f => !isClip(f));
-        second = a.hero && a.hero !== a.photo ? a.photo : (a.photos || []).length > 1 ? rest[0] : null;
-    }
-    return [first, second || null];
-}
-
-function coverMedia(f, name, first) {
+function coverMedia(f, name) {
     if (isClip(f)) return media(f, name);
-    return `<img src="/img/${f.includes('/') ? '' : 'artists/'}${f}" alt="${esc(name)}" decoding="async"${first ? ' fetchpriority="high"' : ''}>`;
+    return `<img src="/img/${f.includes('/') ? '' : 'artists/'}${f}" alt="${esc(name)}" decoding="async" fetchpriority="high">`;
 }
 
 function artistPage(a) {
     const body = [];
-    const [first, second] = coverPhotos(a);
-    const photos = (a.photos || []).filter(f => f !== first && f !== second);
+    // the cover photo: the hero, or the grid photo. it doesn't repeat in the gallery
+    const first = a.hero || a.photo;
+    const photos = (a.photos || []).filter(f => f !== first);
     // soundcloud/spotify rows go right under the bio, youtube gets its own section below
     const sc = (a.listen || []).filter(l => l.kind === 'soundcloud' || l.kind === 'spotify');
     const rest = (a.listen || []).filter(l => l.kind === 'youtube');
-    body.push(`    <section class="cover${second ? '' : ' solo'}${a.flip ? ' flip' : ''}">
-        <div class="c1">${coverMedia(first, a.name, true)}</div>${second ? `
-        <div class="c2">${coverMedia(second, a.name)}</div>` : ''}
+    body.push(`    <section class="cover${isClip(first) ? ' wide' : ''}${a.flip ? ' flip' : ''}">
+        <div class="c1">${coverMedia(first, a.name)}</div>
         <h1>${esc(a.name)}<em>.</em></h1>
     </section>`);
     body.push(`    <div class="artist-top">
