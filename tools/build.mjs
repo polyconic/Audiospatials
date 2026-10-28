@@ -113,7 +113,7 @@ const marks = back => `<div class="corner">
 <a class="backmark" href="${back}" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
 <a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>`;
 
-const SECTIONS = [['/artists', 'Artists'], ['/music', 'Music'], ['/studio', 'Studio'], ['https://vault.audiospatials.com/', 'Vault'], ['/about', 'About'], ['/contact', 'Contact']];
+const SECTIONS = [['/music', 'Music'], ['/studio', 'Studio'], ['https://vault.audiospatials.com/', 'Vault'], ['/about', 'About'], ['/contact', 'Contact']];
 const exitBar = here => `<nav class="exit">
     <a href="/">Audiospatials</a>
     ${SECTIONS.map(([h, t]) => t === here ? `<span class="here">${t}</span>` : `<a href="${h}">${t}</a>`).join('')}
@@ -281,7 +281,7 @@ function artistPage(a) {
 ${artistLD(a)}
 </head>
 <body class="artist">
-${marks('/artists')}
+${marks('/')}
 <div class="wrap">
 ${body.join('\n\n')}
 </div>
@@ -359,7 +359,7 @@ for (const f of fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !built.h
     if (read(f).includes('built by tools/build.mjs from content/artists.js')) { fs.unlinkSync(path.join(ROOT, f)); console.log('removed', f); }
 for (const a of ARTISTS) write(a.slug + '.html', artistPage(a));
 
-fill('artists.html', 'tiles', artistTiles);
+fill('index.html', 'tiles', artistTiles);
 fill('music.html', 'releases', onMusic.map(r => '        ' + releaseTile(r)).join('\n'));
 fill('music.html', 'videos', videoPlayers);
 fill('music.html', 'jsonld', musicLD);
@@ -367,7 +367,7 @@ fill('studio.html', 'work', work);
 fill('index.html', 'summary', summary);
 fill('index.html', 'jsonld', orgLD);
 
-const pages = ['/', '/artists', '/music', '/studio', '/about', '/contact', ...ARTISTS.map(a => '/' + a.slug)];
+const pages = ['/', '/music', '/studio', '/about', '/contact', ...ARTISTS.map(a => '/' + a.slug)];
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(p => `  <url><loc>${abs(p === '/' ? '/' : p)}</loc></url>`).join('\n')}
@@ -382,7 +382,7 @@ Audiospatials is the collaborative project of ${SITE.founders.map(f => `${f.name
 
 ## Pages
 
-- [Artists](${abs('/artists')}): the roster
+- [Artists](${abs('/')}): the roster, which is the front page
 - [Music](${abs('/music')}): records released on Audiospatials, and videos
 - [Studio](${abs('/studio')}): what we do, and recent work with credits
 - [Vault](https://vault.audiospatials.com/): unreleased music and sketches

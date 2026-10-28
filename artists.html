@@ -2,61 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- the artists list is the front page now (2026-10-28). this keeps old /artists links working -->
     <title>Artists &mdash; Audiospatials</title>
-    <link rel="icon" type="image/png" href="/assets/favicon.png">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-    <link rel="canonical" href="https://audiospatials.com/artists">
-    <meta name="description" content="The Audiospatials roster: songwriters, bands, producers and DJs from Santa Cruz to Berlin.">
-    <meta name="theme-color" content="#0a0a0a">
-    <meta property="og:title" content="Artists — Audiospatials">
-    <meta property="og:description" content="The Audiospatials roster: songwriters, bands, producers and DJs from Santa Cruz to Berlin.">
-    <meta property="og:image" content="https://audiospatials.com/assets/share/audiospatials.jpg">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://audiospatials.com/artists">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/pages.css">
+    <link rel="canonical" href="https://audiospatials.com/">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="0; url=/">
+    <script>location.replace('/' + location.hash)</script>
 </head>
-<body class="roster">
-<div class="corner">
-<a class="mailmark" href="mailto:hello@audiospatials.com?subject=Audiospatials" aria-label="Email">
-<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5H4L12 11.6 20 5H22V19H2Z"/></svg>
-</a>
-</div>
-<a class="backmark" href="/" aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4.5V10H21V14H12V19.5Z"/></svg></a>
-<a class="homemark" href="/" aria-label="Front page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 22 11.5H19V21H13.8V15H10.2V21H5V11.5H2Z"/></svg></a>
-<div class="wrap">
-    <h1 class="geo-text">Artists</h1>
-    <ul class="names">
-<!-- build:tiles -->
-        <li><a href="/luci" style="--photo:url('/img/artists/sm/luci.webp')"><span>LUCI</span></a></li>
-        <li><a href="/krow" style="--photo:url('/img/artists/sm/krow.webp')"><span>kröw</span></a></li>
-        <li><a href="/fennec" style="--photo:url('/img/artists/sm/fennec.webp')"><span>FENNEC</span></a></li>
-        <li><a href="/canary" style="--photo:url('/img/artists/sm/canary.webp')"><span>Canary</span></a></li>
-        <li><a href="/gregor-egan" style="--photo:url('/img/artists/sm/gregor-egan.webp')"><span>Gregor Egan</span></a></li>
-        <li><a href="/margo-flow" style="--photo:url('/img/artists/sm/margo-flow.webp')"><span>Margo Flow</span></a></li>
-        <li><a href="/john-bear" style="--photo:url('/img/artists/sm/john-bear.webp')"><span>John Bear</span></a></li>
-        <li><a href="/wolfmanwoof" style="--photo:url('/img/artists/sm/wolfmanwoof.webp')"><span>WOLFMANWOOF</span></a></li>
-        <li><a href="/ses-eye-ohm" style="--photo:url('/img/artists/sm/ses-eye-ohm.webp')"><span>Ses Eye Ohm</span></a></li>
-        <li><a href="/stazrad" style="--photo:url('/img/artists/sm/stazrad.webp')"><span>Stäzrad</span></a></li>
-        <li><a href="/tadevsz" style="--photo:url('/img/artists/sm/tadeusz.webp')"><span>TADEVSZ</span></a></li>
-<!-- /build:tiles -->
-    </ul>
-</div>
-
-<nav class="exit">
-    <a href="/">Audiospatials</a>
-    <span class="here">Artists</span><a href="/music">Music</a><a href="/studio">Studio</a><a href="https://vault.audiospatials.com/">Vault</a><a href="/about">About</a><a href="/contact">Contact</a>
-    <span class="spacer"></span>
-    <span class="copy">&copy; <span data-yr>2026</span> Audiospatials</span>
-</nav>
-<script>
-if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/artists' + location.search + location.hash);
-</script>
-<script src="/js/geo.js"></script>
-<script src="/js/nav.js"></script>
-<script src="/js/menu.js"></script>
-<script>document.querySelectorAll("[data-yr]").forEach(function(e){e.textContent=new Date().getFullYear()})</script>
+<body style="background:#0a0a0a">
+    <a href="/" style="color:#f2f2ef">Audiospatials</a>
 </body>
 </html>

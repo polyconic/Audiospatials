@@ -1,5 +1,10 @@
 /* styles for the inside pages. base.css has the sitewide stuff */
 
+/* no grey text: what base.css draws in --dim (labels, the nav, the © line) is white here (2026-10-28).
+   the nav goes red on hover instead, since it can't go from grey to white any more */
+:root { --dim: var(--fg); }
+@media (hover: hover) { .exit a:hover { color: var(--sig); } }
+
 /* the wide font, for artist names (the artists list and the top of each artist page).
    archivo at its widest and heaviest, from google fonts, kept here so nothing loads from elsewhere */
 @font-face { font-family: "Archivo Expanded"; src: url("/assets/fonts/archivo-expanded-800.woff2") format("woff2");

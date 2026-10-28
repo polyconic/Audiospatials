@@ -16,6 +16,7 @@
     <meta property="og:url" content="https://audiospatials.com/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/pages.css">
 <!-- build:jsonld -->
 <script type="application/ld+json">
 {
@@ -67,156 +68,50 @@
 }
 </script>
 <!-- /build:jsonld -->
-    <script type="speculationrules">
-    {"prerender": [{"urls": ["/artists"], "eagerness": "eager"},
-                   {"where": {"href_matches": "/*"}, "eagerness": "moderate"}]}
-    </script>
-    <style>
-        html, body { height: 100%; width: 100%; overflow: hidden; }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg);
-            position: relative;
-        }
-        /* black with faint static moving over it. one noise tile made at load and
-           shuffled around so it's cheap. stays still for reduced motion */
-        .static {
-            position: absolute; inset: -50%; z-index: 0; pointer-events: none;
-            opacity: 0.07; background-size: 180px 180px; image-rendering: pixelated;
-            animation: static 0.9s steps(9) infinite;
-        }
-        @keyframes static {
-            0% { transform: translate(0, 0); }       11% { transform: translate(-7%, 3%); }
-            22% { transform: translate(4%, -9%); }   33% { transform: translate(-11%, -2%); }
-            44% { transform: translate(9%, 6%); }    55% { transform: translate(-3%, 11%); }
-            66% { transform: translate(12%, -5%); }  77% { transform: translate(-9%, -8%); }
-            88% { transform: translate(5%, 9%); }    100% { transform: translate(0, 0); }
-        }
-        @media (prefers-reduced-motion: reduce) { .static { animation: none; } }
-        .flicker-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: var(--sans);
-            font-size: clamp(16px, 7vw, 160px);
-            letter-spacing: 0.25em;
-            color: #5c5c58;
-            font-weight: 700;
-            text-transform: uppercase;
-            user-select: none;
-            z-index: 10;
-            white-space: nowrap;
-            text-decoration: none;
-            cursor: pointer;
-            /* bigger tap area for phones */
-            padding: 0.4em 0;
-        }
-        /* the drawing is the logo, the text underneath is just the clickable bit and for screen readers */
-        .flicker-text.drawn { color: transparent; }
-
-        /* difference blend so it stays readable over anything bright */
-        .geo {
-            mix-blend-mode: difference;
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        /* enter button at the bottom. the name is a link too but nobody could tell,
-           especially on phones. same blend as the corner marks */
-        .enter {
-            position: absolute; z-index: 20;
-            left: 50%; transform: translateX(-50%);
-            bottom: max(clamp(40px, 8vh, 90px), env(safe-area-inset-bottom, 0px));
-            display: inline-flex; align-items: center; gap: 14px;
-            padding: 10px 6px;
-            color: #fff; mix-blend-mode: difference; text-decoration: none; font-weight: 700;
-            font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase;
-            transition: color 0.2s;
-        }
-        .enter svg { width: 17px; height: 17px; fill: currentColor; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-        .enter:focus-visible { mix-blend-mode: normal; color: var(--sig); }
-        @media (hover: hover) {
-            .enter:hover { mix-blend-mode: normal; color: var(--sig); }
-            .enter:hover svg { transform: translateX(4px); }
-        }
-
-        body { user-select: none; -webkit-touch-callout: none; }
-
-        html.inverted { filter: invert(1) hue-rotate(180deg); }
-    </style>
 </head>
-<body>
+<body class="roster home">
 <div class="corner">
 <a class="mailmark" href="mailto:hello@audiospatials.com?subject=Audiospatials" aria-label="Email">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5H4L12 11.6 20 5H22V19H2Z"/></svg>
 </a>
 </div>
-    <div class="static" aria-hidden="true"></div>
-    <a class="flicker-text" href="/artists" aria-label="Audiospatials">AUDIOSPATIALS</a>
-    <canvas class="geo" id="geo" aria-hidden="true"></canvas>
-    <a class="enter" href="/artists">Enter<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12 12 19.5V14H3V10H12V4.5Z"/></svg></a>
+<div class="wrap">
 <!-- build:summary -->
     <div class="geo-text">
         <h1>Audiospatials</h1>
         <p>Independent record label in Santa Cruz and LA, making records with artists from folk to techno. Production and mixing too. Run by Gregor Egan and Hunter Bowersmith.</p>
-        <ul><li><a href="/artists">Artists</a></li><li><a href="/music">Music</a></li><li><a href="/studio">Studio</a></li><li><a href="https://vault.audiospatials.com/">Vault</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li></ul>
+        <ul><li><a href="/music">Music</a></li><li><a href="/studio">Studio</a></li><li><a href="https://vault.audiospatials.com/">Vault</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li></ul>
     </div>
 <!-- /build:summary -->
+    <ul class="names">
+<!-- build:tiles -->
+        <li><a href="/luci" style="--photo:url('/img/artists/sm/luci.webp')"><span>LUCI</span></a></li>
+        <li><a href="/krow" style="--photo:url('/img/artists/sm/krow.webp')"><span>kröw</span></a></li>
+        <li><a href="/fennec" style="--photo:url('/img/artists/sm/fennec.webp')"><span>FENNEC</span></a></li>
+        <li><a href="/canary" style="--photo:url('/img/artists/sm/canary.webp')"><span>Canary</span></a></li>
+        <li><a href="/gregor-egan" style="--photo:url('/img/artists/sm/gregor-egan.webp')"><span>Gregor Egan</span></a></li>
+        <li><a href="/margo-flow" style="--photo:url('/img/artists/sm/margo-flow.webp')"><span>Margo Flow</span></a></li>
+        <li><a href="/john-bear" style="--photo:url('/img/artists/sm/john-bear.webp')"><span>John Bear</span></a></li>
+        <li><a href="/wolfmanwoof" style="--photo:url('/img/artists/sm/wolfmanwoof.webp')"><span>WOLFMANWOOF</span></a></li>
+        <li><a href="/ses-eye-ohm" style="--photo:url('/img/artists/sm/ses-eye-ohm.webp')"><span>Ses Eye Ohm</span></a></li>
+        <li><a href="/stazrad" style="--photo:url('/img/artists/sm/stazrad.webp')"><span>Stäzrad</span></a></li>
+        <li><a href="/tadevsz" style="--photo:url('/img/artists/sm/tadeusz.webp')"><span>TADEVSZ</span></a></li>
+<!-- /build:tiles -->
+    </ul>
+</div>
 
-    <script>
-        (function () {
-            const c = document.createElement('canvas');
-            c.width = c.height = 180;
-            const x = c.getContext('2d'), img = x.createImageData(180, 180);
-            for (let i = 0; i < img.data.length; i += 4) {
-                const v = Math.random() * 255;
-                img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
-                img.data[i + 3] = 255;
-            }
-            x.putImageData(img, 0, 0);
-            document.querySelector('.static').style.backgroundImage = `url(${c.toDataURL()})`;
-        })();
-    </script>
-    <script src="/js/geo.js"></script>
-    <script>
-        const container = document.querySelector('.flicker-text');
-        const WORD = container.textContent;
-
-        /* the logo (geo.js). holds for 5s, comes apart and back over 21s, repeat.
-           sized off the link text so the css sets the size and the click area matches */
-        container.classList.add('drawn');
-        const mark = Geo.converge(document.getElementById('geo'), WORD, width => {
-            const s = Math.min(container.getBoundingClientRect().width / width, innerHeight * 0.16);
-            return { x: (innerWidth - width * s) / 2, y: (innerHeight - s) / 2, s };
-        }, { hold: 5, cycle: 21 });
-        const explode = () => mark.explode();
-
-        const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-        let konamiAt = 0;
-        let typed = '';
-
-        document.addEventListener('keydown', e => {
-            konamiAt = (e.key === konami[konamiAt] || e.key.toLowerCase() === konami[konamiAt]) ? konamiAt + 1 : 0;
-            if (konamiAt === konami.length) {
-                konamiAt = 0;
-                document.documentElement.classList.toggle('inverted');
-            }
-
-            if (e.key.length === 1) {
-                typed = (typed + e.key.toLowerCase()).slice(-9);
-                if (typed.endsWith('spatial')) explode();
-            }
-        });
-
-        console.log('%cAUDIOSPATIALS', 'font: 700 42px/1 Helvetica Neue, Arial; color:#ff2d00');
-        console.log('%cclick the name. or type: spatial', 'font: 12px/1.6 monospace; color:#787874');
-    </script>
+<nav class="exit">
+    <span class="here">Audiospatials</span>
+    <a href="/music">Music</a><a href="/studio">Studio</a><a href="https://vault.audiospatials.com/">Vault</a><a href="/about">About</a><a href="/contact">Contact</a>
+    <span class="spacer"></span>
+    <span class="copy">&copy; <span data-yr>2026</span> Audiospatials</span>
+</nav>
+<script>
+if (location.pathname.endsWith('.html')) history.replaceState(history.state, '', '/' + location.search + location.hash);
+</script>
+<script src="/js/geo.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/menu.js"></script>
+<script>document.querySelectorAll("[data-yr]").forEach(function(e){e.textContent=new Date().getFullYear()})</script>
 </body>
 </html>
