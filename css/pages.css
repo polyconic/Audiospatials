@@ -92,7 +92,12 @@ body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px,
               -webkit-background-clip: text; background-clip: text; }
 .names a:focus-visible { color: transparent; outline: none; }
 @media (hover: hover) { .names a:hover { color: transparent; } }
-@media (max-width: 760px) { .names a { font-size: clamp(22px, 7.2vw, 44px); } }
+/* phones: the names spread top to bottom to fill the screen */
+@media (max-width: 760px) {
+    .names { display: flex; flex-direction: column; justify-content: space-between;
+             min-height: calc(100svh - 62px - 28px); }
+    .names a { font-size: clamp(22px, 7.2vw, 44px); line-height: 1; }
+}
 
 /* flex instead of grid so a short last row stays centered. five across, two under 1000px */
 .tiles.centered { --gap: clamp(14px, 2vw, 28px); --cols: 5;
