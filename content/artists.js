@@ -7,14 +7,20 @@
    slug        the url: 'john-bear' is audiospatials.com/john-bear
    name        how they write it
    description a sentence or two for google and link previews
-   photo       the grid photo, in img/artists/. also the one next to the bio
-               unless `hero` says otherwise (photo or video like 'video/luci-red.mp4')
+   photo       the artist's photo, in img/artists/. fills their name on the artists list
+               (from its 1200px copy in img/artists/sm/, make one when adding an artist)
+               and opens their page unless `hero` says otherwise (photo or video like
+               'video/luci-red.mp4')
+   second      optional, the second photo at the top of the page (top right). left out,
+               it's `photo` when there's a different hero, else the first of `photos`
+               when there are two or more. false for none. whichever it is doesn't
+               repeat further down
    tagline     optional, short line under the name
    bio         paragraphs, one string each
    photos      optional, more photos further down. anything with a slash is a
                path under img/, so 'video/luci-red.mp4' is a silent loop with
                img/video/luci-red.webp as the still
-   flip        optional, true puts the photo on the right
+   flip        optional, true mirrors the top of the page: big photo on the right
    captions    optional, { 'photo-file.webp': 'text' }, small line under that
                photo, left exactly as typed
    credit      optional, line under the photos (photographer, poster artist)
@@ -72,6 +78,8 @@ const ARTISTS = [
         description: 'A Santa Cruz band blending rock, folk and electronic sound, led by Hunter Bowersmith.',
         name: 'FENNEC',
         photo: 'fennec.webp',
+        // the posters stay uncropped further down
+        second: false,
         tagline: 'A Santa Cruz-based band.',
         bio: [],
         photos: ['fennec-poster-1.webp', 'fennec-poster-2.webp', 'fennec-poster-3.webp'],

@@ -188,15 +188,39 @@ function artistLD(a) {
     });
 }
 
+const isClip = f => /\.(mp4|webm|mov)$/i.test(f || '');
+
+// the two photos on the cover: the page photo (hero, or the grid photo), then `second` if set,
+// else the grid photo when the hero is a different one, else the first gallery photo when there
+// are at least two (a lone gallery photo stays where it is, like WOLFMANWOOF's blurred closer)
+function coverPhotos(a) {
+    const first = a.hero || a.photo;
+    let second = a.second;
+    if (second === undefined) {
+        const rest = (a.photos || []).filter(f => !isClip(f));
+        second = a.hero && a.hero !== a.photo ? a.photo : (a.photos || []).length > 1 ? rest[0] : null;
+    }
+    return [first, second || null];
+}
+
+function coverMedia(f, name, first) {
+    if (isClip(f)) return media(f, name);
+    return `<img src="/img/${f.includes('/') ? '' : 'artists/'}${f}" alt="${esc(name)}" decoding="async"${first ? ' fetchpriority="high"' : ''}>`;
+}
+
 function artistPage(a) {
     const body = [];
+    const [first, second] = coverPhotos(a);
+    const photos = (a.photos || []).filter(f => f !== first && f !== second);
     // soundcloud/spotify rows go right under the bio, youtube gets its own section below
     const sc = (a.listen || []).filter(l => l.kind === 'soundcloud' || l.kind === 'spotify');
     const rest = (a.listen || []).filter(l => l.kind === 'youtube');
-    body.push(`    <h1 class="name" data-arrive>${esc(a.name)}<em>.</em></h1>`);
-    const wide = /\.(mp4|webm|mov)$/i.test(a.hero || '');
-    body.push(`    <div class="artist-top${a.flip ? ' flip' : ''}${wide ? ' wide' : ''}">
-        <div class="artist-photo">${/\.(mp4|webm|mov)$/i.test(a.hero || '') ? media(a.hero, a.name) : `<img src="/img/${(a.hero || a.photo).includes('/') ? '' : 'artists/'}${a.hero || a.photo}" alt="${esc(a.name)}" decoding="async">`}</div>
+    body.push(`    <section class="cover${second ? '' : ' solo'}${a.flip ? ' flip' : ''}">
+        <div class="c1">${coverMedia(first, a.name, true)}</div>${second ? `
+        <div class="c2">${coverMedia(second, a.name)}</div>` : ''}
+        <h1>${esc(a.name)}<em>.</em></h1>
+    </section>`);
+    body.push(`    <div class="artist-top">
         <div class="artist-text">${a.tagline ? `\n            <p class="lede">${esc(a.tagline)}</p>` : ''}${a.bio && a.bio.length ? `\n            <div class="prose">\n${a.bio.map(p => `                <p>${esc(p)}</p>`).join('\n')}\n            </div>` : ''}${sc.length ? `
             <div class="listen-here">
                 <p class="label">Listen</p>
@@ -229,8 +253,8 @@ function artistPage(a) {
     </section>`);
     }
     if (!a.listenLast) body.push(...listen);
-    if (a.photos && a.photos.length) body.push(`    <section>
-        ${gallery(a.photos, a.name, a.captions)}${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
+    if (photos.length) body.push(`    <section>
+        ${gallery(photos, a.name, a.captions)}${a.credit ? `\n        <p class="note label">${esc(a.credit)}</p>` : ''}
     </section>`);
     if (a.listenLast) body.push(...listen);
 
@@ -256,7 +280,7 @@ function artistPage(a) {
     <link rel="stylesheet" href="/css/pages.css">
 ${artistLD(a)}
 </head>
-<body>
+<body class="artist">
 ${marks('/artists')}
 <div class="wrap">
 ${body.join('\n\n')}
@@ -285,8 +309,11 @@ function fill(file, name, content) {
     write(file, src.replace(re, `$1\n${content}\n$2`));
 }
 
-const artistTiles = ARTISTS.map(a =>
-    `        <a class="tile" href="/${a.slug}"><div class="shot"><img src="/img/artists/${a.photo}" alt="${esc(a.name)}" loading="lazy" decoding="async"></div><div class="cap"><span class="t">${esc(a.name)}</span></div></a>`).join('\n');
+// the artists list. the 1200px copy of each grid photo fills the name on hover (full size if there's no copy)
+const artistTiles = ARTISTS.map(a => {
+    const fill = exists('img/artists/sm/' + a.photo) ? 'sm/' + a.photo : a.photo;
+    return `        <li><a href="/${a.slug}" style="--photo:url('/img/artists/${fill}')"><span>${esc(a.name)}</span></a></li>`;
+}).join('\n');
 
 const onMusic = RELEASES.filter(r => r.music !== false);
 const videoPlayers = VIDEOS.map(v => '        ' + player({ kind: 'youtube', url: v.id, title: v.title, sub: v.artist })).join('\n');
