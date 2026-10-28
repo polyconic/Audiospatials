@@ -6,9 +6,10 @@
 @media (hover: hover) { .exit a:hover { color: var(--sig); } }
 
 /* the wide font, for artist names (the artists list and the top of each artist page).
-   archivo at its widest and heaviest, from google fonts, kept here so nothing loads from elsewhere */
+   archivo at its widest and heaviest, from google fonts, kept here so nothing loads from elsewhere.
+   font-display: block plus the preload in each page's head, so the names never flash up in helvetica first */
 @font-face { font-family: "Archivo Expanded"; src: url("/assets/fonts/archivo-expanded-800.woff2") format("woff2");
-             font-weight: 800; font-stretch: 125%; font-display: swap; }
+             font-weight: 800; font-stretch: 125%; font-display: block; }
 .names a, .cover h1 { font-family: "Archivo Expanded", var(--sans); font-weight: 800; font-stretch: 125%;
                       font-variation-settings: "wdth" 125; letter-spacing: 0; text-transform: uppercase; }
 

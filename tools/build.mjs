@@ -263,6 +263,7 @@ function artistPage(a) {
     <meta property="og:type" content="profile">
     <meta property="og:url" content="${abs('/' + a.slug)}">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" href="/assets/fonts/archivo-expanded-800.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/pages.css">
 ${artistLD(a)}
