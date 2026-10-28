@@ -86,8 +86,7 @@ const ARTISTS = [
         slug: 'canary',
         description: 'Canary is an artist on Audiospatials.',
         name: 'Canary',
-        photo: 'canary.webp',
-        hero: 'canary-5.webp',
+        photo: 'canary-5.webp',
         links: [
             { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
             { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
