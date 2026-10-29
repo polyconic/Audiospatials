@@ -5,13 +5,9 @@
 :root { --dim: var(--fg); }
 @media (hover: hover) { .exit a:hover { color: var(--sig); } }
 
-/* the wide font, for artist names (the artists list and the top of each artist page).
-   archivo at its widest and heaviest, from google fonts, kept here so nothing loads from elsewhere.
-   font-display: block plus the preload in each page's head, so the names never flash up in helvetica first */
-@font-face { font-family: "Archivo Expanded"; src: url("/assets/fonts/archivo-expanded-800.woff2") format("woff2");
-             font-weight: 800; font-stretch: 125%; font-display: block; }
-.names a, .cover h1 { font-family: "Archivo Expanded", var(--sans); font-weight: 800; font-stretch: 125%;
-                      font-variation-settings: "wdth" 125; letter-spacing: 0; text-transform: uppercase; }
+/* artist names (the artists list and the top of each artist page): helvetica bold caps like the page
+   titles. they were archivo expanded until 2026-10-29, when Gregor went back to helvetica sitewide */
+.names a, .cover h1 { font-weight: 700; letter-spacing: -0.03em; text-transform: uppercase; }
 
 body { padding: clamp(30px, 8vh, 90px) clamp(20px, 7vw, 110px) 110px; }
 @media (max-width: 620px) { body { padding-top: 62px; padding-bottom: 150px; } }
@@ -156,7 +152,7 @@ section.cover { --navh: 49px; display: grid; grid-template-columns: 60% 40%;
 .cover img, .cover .clip, .cover .clip video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .cover h1 { align-self: end; justify-self: end; text-align: right; margin: 0;
             padding: 0 clamp(20px, 3vw, 48px) clamp(24px, 5vh, 56px) 20px;
-            font-size: clamp(24px, 3.1vw, 64px); line-height: 0.95; overflow-wrap: normal; white-space: nowrap; }
+            font-size: clamp(30px, 4vw, 82px); line-height: 0.95; overflow-wrap: normal; white-space: nowrap; }
 .cover.flip { grid-template-columns: 40% 60%; }
 /* a video cover (LUCI) is landscape, so it gets more of the width */
 .cover.wide { grid-template-columns: 70% 30%; }
