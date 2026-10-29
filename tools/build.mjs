@@ -9,7 +9,7 @@
    - artists.html     the grid          } only between the <!-- build:x --> and
    - music.html       releases, videos  } <!-- /build:x --> markers, everything
    - studio.html      recent work       } else on those pages is by hand
-   - index.html       hidden summary and search engine data
+   - index.html       artists list, "out now" line, hidden summary, search engine data
    - sitemap.xml, llms.txt
    run it after changing anything in content/. github runs it on every push */
 
@@ -304,6 +304,10 @@ const artistTiles = ARTISTS.map(a => {
 }).join('\n');
 
 const onMusic = RELEASES.filter(r => r.music !== false);
+
+// the small "out now" line top left of the front page, from the first release marked announce
+const fresh = RELEASES.find(r => r.announce);
+const news = fresh ? `<a class="news" href="${esc(fresh.url)}" target="_blank" rel="noopener"><i></i>Out now<span>${esc(fresh.title)} &mdash; ${esc(fresh.artist)}</span></a>` : '';
 const videoPlayers = VIDEOS.map(v => '        ' + player({ kind: 'youtube', url: v.id, title: v.title, sub: v.artist })).join('\n');
 
 const work = STUDIO_ORDER.map(t => RELEASES.find(r => r.title === t)).filter(r => r && r.credit).map(r =>
@@ -348,6 +352,7 @@ for (const f of fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !built.h
 for (const a of ARTISTS) write(a.slug + '.html', artistPage(a));
 
 fill('index.html', 'tiles', artistTiles);
+fill('index.html', 'news', news);
 fill('music.html', 'releases', onMusic.map(r => '        ' + releaseTile(r)).join('\n'));
 fill('music.html', 'videos', videoPlayers);
 fill('music.html', 'jsonld', musicLD);

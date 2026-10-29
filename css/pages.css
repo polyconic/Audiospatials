@@ -92,6 +92,25 @@ body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px,
               -webkit-background-clip: text; background-clip: text; }
 .names a:focus-visible { color: transparent; outline: none; }
 @media (hover: hover) { .names a:hover { color: transparent; } }
+/* "out now" line top left of the front page, set from content/music.js. sits in the bar's
+   row on desktop, next to the icons on phones. red dot is the only color */
+.news { position: fixed; z-index: 61; top: calc(18px + env(safe-area-inset-top, 0px));
+        left: clamp(20px, 3.5vw, 56px); max-width: calc(50vw - 250px - clamp(20px, 3.5vw, 56px));
+        display: flex; align-items: center; gap: 10px; white-space: nowrap;
+        font-family: var(--sans); font-size: 10px; line-height: 12px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--fg); text-decoration: none; transition: color 0.2s; }
+.news i { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--sig); }
+.news span { overflow: hidden; text-overflow: ellipsis; }
+.news span::before { content: "\00a0"; }
+@media (hover: hover) { .news:hover { color: var(--sig); } }
+/* not enough room beside the centered bar links, so just under the bar instead */
+@media (min-width: 761px) and (max-width: 1000px) {
+    .news { position: absolute; top: calc(62px + env(safe-area-inset-top, 0px)); max-width: none; }
+}
+@media (max-width: 760px) {
+    .news { position: absolute; top: calc(13px + env(safe-area-inset-top, 0px)); height: 28px;
+            max-width: calc(100% - 2 * clamp(20px, 3.5vw, 56px) - 80px); }
+}
 /* phones: the names spread top to bottom to fill the screen */
 @media (max-width: 760px) {
     .names { display: flex; flex-direction: column; justify-content: space-between;

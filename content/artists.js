@@ -27,6 +27,8 @@
    links       optional, where else to find them: { title: 'Instagram',
                handle: '@name', url }. shows as rows under the bio, also goes
                in the search engine data
+   releases    optional, shows their records from content/music.js, matched by
+               the artist name as written there ('CANARY')
    listenLast  optional, true moves spotify/youtube players below the photos.
                soundcloud always stays under the bio
 */
@@ -90,7 +92,9 @@ const ARTISTS = [
         links: [
             { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
             { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
+            { title: 'Spotify', handle: 'CANARY', url: 'https://open.spotify.com/artist/24kq3vkcI4KzzE3W2d2FUA' },
         ],
+        releases: 'CANARY',
         photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp', 'video/canary-room.mp4'],
     },
     {

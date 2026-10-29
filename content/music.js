@@ -9,12 +9,17 @@
    url      where to listen (spotify, bandcamp, wherever)
    credit   optional, who did what: 'produced, mixed and mastered by Gregor Egan'
    music    false keeps it off the music page (studio page only)
+   announce true puts a small "out now" line top left of the front page.
+            only the first one counts. take it off when it's not new anymore
 
    VIDEOS go at the bottom of the music page. `id` is the bit of the youtube
    link after v= , thumbnail goes in img/videos/<id>.webp
 */
 
 const RELEASES = [
+    { title: 'gentle', artist: 'CANARY', cover: 'gentle.webp',
+      url: 'https://open.spotify.com/track/3sCwz65jI7B7WFCzaVsoIw',
+      announce: true },
     { title: 'Shifter EP', artist: 'Gregor Egan', cover: 'shifter.webp',
       url: 'https://open.spotify.com/album/6bQV8We6TvwaG73aCShgxS',
       credit: 'produced, mixed and mastered by Gregor Egan' },
