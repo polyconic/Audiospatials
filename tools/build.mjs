@@ -9,7 +9,7 @@
    - artists.html     the grid          } only between the <!-- build:x --> and
    - music.html       releases, videos  } <!-- /build:x --> markers, everything
    - studio.html      recent work       } else on those pages is by hand
-   - index.html       artists list, "out now" line, hidden summary, search engine data
+   - index.html       artists list, photo reel, "out now" line, hidden summary, search engine data
    - sitemap.xml, llms.txt
    run it after changing anything in content/. github runs it on every push */
 
@@ -303,6 +303,12 @@ const artistTiles = ARTISTS.map(a => {
     return `        <li><a href="/${a.slug}" style="--photo:url('/img/artists/${fill}')"><span>${esc(a.name)}</span></a></li>`;
 }).join('\n');
 
+// the photos dissolving into each other on the right of the front page (js/reel.js). the script
+// loads them one ahead and only on wide screens; the noscript copy covers no-js
+const reel = `    <div class="reel" aria-hidden="true">
+${ARTISTS.map((a, i) => `        <a href="/${a.slug}" tabindex="-1"${i ? '' : ' class="on"'}><img data-src="/img/artists/${a.photo}" alt="" decoding="async"${a.focus ? ` style="object-position: ${esc(a.focus)}"` : ''}>${i ? '' : `<noscript><img src="/img/artists/${a.photo}" alt="" loading="lazy"></noscript>`}</a>`).join('\n')}
+    </div>`;
+
 const onMusic = RELEASES.filter(r => r.music !== false);
 
 // the small "out now" line top left of the front page, from the first release marked announce
@@ -353,6 +359,7 @@ for (const a of ARTISTS) write(a.slug + '.html', artistPage(a));
 
 fill('index.html', 'tiles', artistTiles);
 fill('index.html', 'news', news);
+fill('index.html', 'reel', reel);
 fill('music.html', 'releases', onMusic.map(r => '        ' + releaseTile(r)).join('\n'));
 fill('music.html', 'videos', videoPlayers);
 fill('music.html', 'jsonld', musicLD);

@@ -102,6 +102,21 @@
         <li><a href="/tadevsz" style="--photo:url('/img/artists/sm/tadeusz.webp')"><span>TADEVSZ</span></a></li>
 <!-- /build:tiles -->
     </ul>
+<!-- build:reel -->
+    <div class="reel" aria-hidden="true">
+        <a href="/luci" tabindex="-1" class="on"><img data-src="/img/artists/luci.webp" alt="" decoding="async"><noscript><img src="/img/artists/luci.webp" alt="" loading="lazy"></noscript></a>
+        <a href="/krow" tabindex="-1"><img data-src="/img/artists/krow.webp" alt="" decoding="async"></a>
+        <a href="/fennec" tabindex="-1"><img data-src="/img/artists/fennec.webp" alt="" decoding="async"></a>
+        <a href="/canary" tabindex="-1"><img data-src="/img/artists/canary-5.webp" alt="" decoding="async"></a>
+        <a href="/gregor-egan" tabindex="-1"><img data-src="/img/artists/gregor-egan.webp" alt="" decoding="async"></a>
+        <a href="/margo-flow" tabindex="-1"><img data-src="/img/artists/margo-flow.webp" alt="" decoding="async"></a>
+        <a href="/john-bear" tabindex="-1"><img data-src="/img/artists/john-bear.webp" alt="" decoding="async"></a>
+        <a href="/wolfmanwoof" tabindex="-1"><img data-src="/img/artists/wolfmanwoof.webp" alt="" decoding="async" style="object-position: 10% 50%"></a>
+        <a href="/ses-eye-ohm" tabindex="-1"><img data-src="/img/artists/ses-eye-ohm.webp" alt="" decoding="async"></a>
+        <a href="/stazrad" tabindex="-1"><img data-src="/img/artists/stazrad.webp" alt="" decoding="async"></a>
+        <a href="/tadevsz" tabindex="-1"><img data-src="/img/artists/tadeusz.webp" alt="" decoding="async"></a>
+    </div>
+<!-- /build:reel -->
 </div>
 
 <nav class="exit">
@@ -116,6 +131,7 @@ if (location.pathname.endsWith('.html')) history.replaceState(history.state, '',
 <script src="/js/geo.js"></script>
 <script src="/js/nav.js"></script>
 <script src="/js/menu.js"></script>
+<script src="/js/reel.js"></script>
 <script>document.querySelectorAll("[data-yr]").forEach(function(e){e.textContent=new Date().getFullYear()})</script>
 </body>
 </html>

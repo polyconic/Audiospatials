@@ -19,6 +19,7 @@
 const RELEASES = [
     { title: 'gentle', artist: 'CANARY', cover: 'gentle.webp',
       url: 'https://open.spotify.com/track/3sCwz65jI7B7WFCzaVsoIw',
+      credit: 'produced by Hunter Bowersmith',
       announce: true },
     { title: 'Shifter EP', artist: 'Gregor Egan', cover: 'shifter.webp',
       url: 'https://open.spotify.com/album/6bQV8We6TvwaG73aCShgxS',
@@ -42,7 +43,7 @@ const RELEASES = [
 ];
 
 // recent work order on the studio page, by title
-const STUDIO_ORDER = ['Blueberry Pie EP', 'Latency', 'Highwater', 'Love You', 'Moonrise EP', 'Shifter EP'];
+const STUDIO_ORDER = ['gentle', 'Blueberry Pie EP', 'Latency', 'Highwater', 'Love You', 'Moonrise EP', 'Shifter EP'];
 
 const VIDEOS = [
     { id: '5LAzm3qv7Lk', title: 'Dragonfly', artist: 'CANARY' },

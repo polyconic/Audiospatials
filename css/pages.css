@@ -92,6 +92,23 @@ body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px,
               -webkit-background-clip: text; background-clip: text; }
 .names a:focus-visible { color: transparent; outline: none; }
 @media (hover: hover) { .names a:hover { color: transparent; } }
+/* front page, wide screens: the artists' photos on the right, dissolving one into the next every
+   5s (js/reel.js), curved corner like the artist covers. hovering a name shows theirs */
+.reel { display: none; }
+@media (min-width: 1000px) {
+    .home .wrap { display: grid; grid-template-columns: max-content minmax(0, 1fr); column-gap: clamp(32px, 4vw, 72px); }
+    .reel { display: block; position: sticky; top: clamp(80px, 9vh, 100px); align-self: start;
+            justify-self: end; width: 100%; max-width: 760px;
+            height: calc(100svh - clamp(80px, 9vh, 100px) - 28px); min-height: 360px;
+            overflow: hidden; background: var(--rule); border-top-left-radius: min(10vw, 180px); }
+    .reel a { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
+    .reel a.on { opacity: 1; z-index: 1; }
+    .reel img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block;
+                transform: scale(1.06); transition: transform 7s linear; }
+    .reel a.on img { transform: scale(1); }
+    .reel img:not([src]) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .reel img, .reel a.on img { transform: none; transition: none; } }
 /* "out now" line top left of the front page, set from content/music.js. sits in the bar's
    row on desktop, next to the icons on phones. red dot is the only color */
 .news { position: fixed; z-index: 61; top: calc(18px + env(safe-area-inset-top, 0px));

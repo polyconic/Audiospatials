@@ -11,6 +11,9 @@
                (from its 1200px copy in img/artists/sm/, make one when adding an artist)
                and opens their page unless `hero` says otherwise (photo or video like
                'video/luci-red.mp4')
+   focus       optional, where to aim when the photo is cropped on the front page's
+               photo reel, as css object-position: '10% 50%' is near the left edge,
+               halfway down. without it the reel aims at 'center 30%'
    tagline     optional, short line under the name
    bio         paragraphs, one string each
    photos      optional, more photos further down. anything with a slash is a
@@ -161,6 +164,7 @@ const ARTISTS = [
         description: 'Two producers, one from techno and one from experimental synth-rock, meeting in between. Moonrise EP out now.',
         name: 'WOLFMANWOOF',
         photo: 'wolfmanwoof.webp',
+        focus: '10% 50%',
         bio: [
             'WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.',
         ],

@@ -29,7 +29,7 @@ Audiospatials is the collaborative project of Gregor Egan (Los Angeles) and Hunt
 
 ## Releases
 
-- gentle — CANARY: https://open.spotify.com/track/3sCwz65jI7B7WFCzaVsoIw
+- gentle — CANARY (produced by Hunter Bowersmith): https://open.spotify.com/track/3sCwz65jI7B7WFCzaVsoIw
 - Shifter EP — Gregor Egan (produced, mixed and mastered by Gregor Egan): https://open.spotify.com/album/6bQV8We6TvwaG73aCShgxS
 - Latency — WOLFMANWOOF (produced, mixed, and mastered by Gregor Egan): https://open.spotify.com/album/57s6rqYzN0SdpJrCWNlE7E
 - Love You — WOLFMANWOOF (produced and mixed by Hunter Bowersmith): https://open.spotify.com/album/7oEeCfFE0QxOwHwywky7jn
