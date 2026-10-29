@@ -150,7 +150,7 @@ body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px,
    left with a curved top corner, the name bottom right on the black. flip mirrors it. on phones the
    photo then the name */
 body.artist { padding-top: 0; overflow-x: clip; }
-.cover { --navh: 49px; display: grid; grid-template-columns: 60% 40%;
+section.cover { --navh: 49px; display: grid; grid-template-columns: 60% 40%;
          height: calc(100svh - var(--navh)); margin: var(--navh) calc(50% - 50vw) clamp(60px, 10vh, 110px); }
 .cover .c1 { overflow: hidden; background: var(--rule); border-top-right-radius: min(16vw, 240px); }
 .cover img, .cover .clip, .cover .clip video { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -165,7 +165,7 @@ body.artist { padding-top: 0; overflow-x: clip; }
 .cover.flip h1 { grid-column: 1; grid-row: 1; justify-self: start; text-align: left;
                  padding: 0 20px clamp(24px, 5vh, 56px) clamp(20px, 3vw, 48px); }
 @media (max-width: 760px) {
-    .cover, .cover.flip { --navh: 0px; height: auto; grid-template-columns: 1fr; }
+    section.cover, section.cover.flip { --navh: 0px; height: auto; grid-template-columns: 1fr; }
     .cover .c1, .cover.flip .c1 { grid-column: 1; grid-row: auto; height: 78svh; border-radius: 0 0 38vw 0; }
     .cover h1, .cover.flip h1 { grid-column: 1; grid-row: auto; justify-self: start; text-align: left;
         padding: 26px clamp(20px, 7vw, 110px) 0; font-size: clamp(22px, 7.2vw, 44px); }
