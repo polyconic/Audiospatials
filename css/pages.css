@@ -142,7 +142,7 @@ body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px,
 /* one per row on phones, extra gap so the name goes with the photo above it */
 @media (max-width: 480px)  { .tiles.centered, .tiles.centered.third { --cols: 1; row-gap: 40px; } }
 
-/* artist page cover, the whole first screen (after rebellionrecords.com): the page photo big on the
+/* artist page cover, the whole first screen: the page photo big on the
    left with a curved top corner, the name bottom right on the black. flip mirrors it. on phones the
    photo then the name */
 body.artist { padding-top: 0; overflow-x: clip; }
