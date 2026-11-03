@@ -264,6 +264,8 @@ function artistPage(a) {
     <meta property="og:url" content="${abs('/' + a.slug)}">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <script src="/js/theme.js"></script>
     <link rel="stylesheet" href="/css/pages.css">
 ${artistLD(a)}
 </head>

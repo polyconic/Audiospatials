@@ -9,6 +9,8 @@
     <meta name="robots" content="noindex">
     <meta name="theme-color" content="#0a0a0a">
     <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <script src="/js/theme.js"></script>
     <style>
         html, body { height: 100%; overflow: hidden; }
         body { display: grid; align-items: end; justify-items: center; }
@@ -40,7 +42,7 @@
 Geo.converge(document.getElementById('c'), '404', width => {
     const s = Math.min(innerWidth * 0.62 / width, innerHeight * 0.4);
     return { x: (innerWidth - width * s) / 2, y: innerHeight * 0.41 - s / 2, s };
-}, { cycle: 16 });
+}, { cycle: 16, ink: getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() });
 </script>
 <script src="/js/nav.js"></script>
 <script>document.querySelectorAll("[data-yr]").forEach(function(e){e.textContent=new Date().getFullYear()})</script>

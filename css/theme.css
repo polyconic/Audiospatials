@@ -1,0 +1,38 @@
+/* light mode, 9am to 5pm on the visitor's clock (js/theme.js sets data-theme on <html>).
+   the white is rgb 251 251 251 (Gregor, 2026-11-03). dark stays base.css's own colors */
+:root[data-theme="light"] {
+  --bg: #fbfbfb;
+  --fg: #0a0a0a;
+  --dim: var(--fg);
+  --faint: #c4c4bf;
+  --rule: #e6e6e2;
+  --panel: rgba(251, 251, 251, 0.62);
+  --veil: rgba(251, 251, 251, 0.985);
+  color-scheme: light;
+}
+:root[data-theme="light"] body::after { opacity: 0.035; }
+/* the corner marks are white blended by difference, which only reads on dark. plain ink here
+   (:where keeps it low so their red hover still wins) */
+:where(:root[data-theme="light"]) .corner a, :where(:root[data-theme="light"]) .corner button,
+:where(:root[data-theme="light"]) .backmark, :where(:root[data-theme="light"]) .homemark { color: var(--fg); mix-blend-mode: normal; }
+
+/* the loading screen, once per visit (js/theme.js). drawn on <html> itself so it's there from the
+   first frame: "audiospatials" small in the middle, a bar under it that fills, then it all fades */
+html.loading::before, html.loading::after { content: ""; position: fixed; z-index: 10000; pointer-events: none; }
+html.loading::before {
+  content: "audiospatials"; inset: 0; display: grid; place-items: center; padding-bottom: 30px;
+  background: var(--bg); color: var(--fg);
+  font: 500 15px/1 var(--sans); letter-spacing: 0.01em;
+}
+html.loading::after {
+  left: 50%; top: calc(50% + 4px); width: 132px; height: 4px; margin-left: -66px; border-radius: 2px;
+  background: linear-gradient(var(--fg), var(--fg)) 0 0 / 85% 100% no-repeat, var(--faint);
+  animation: load-fill 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+html.loaded::after { animation: load-done 0.25s ease-out forwards; }
+html.loaded::before, html.loaded::after { opacity: 0; transition: opacity 0.45s ease 0.25s; }
+@keyframes load-fill { from { background-size: 0% 100%, auto; } }
+@keyframes load-done { to { background-size: 100% 100%, auto; } }
+@media (prefers-reduced-motion: reduce) {
+  html.loading::after { animation: none; }
+}
