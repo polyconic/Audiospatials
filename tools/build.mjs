@@ -195,6 +195,9 @@ function coverMedia(f, name) {
     return `<img src="/img/${f.includes('/') ? '' : 'artists/'}${f}" alt="${esc(name)}" decoding="async" fetchpriority="high">`;
 }
 
+// link preview image: the artist's own 1200x630 in assets/share/ if there is one, else the wordmark
+const shareImage = a => exists('assets/share/' + a.slug + '.jpg') ? '/assets/share/' + a.slug + '.jpg' : '/assets/share/audiospatials.jpg';
+
 function artistPage(a) {
     const body = [];
     // the cover photo: the hero, or the grid photo. it doesn't repeat in the gallery
@@ -259,7 +262,11 @@ function artistPage(a) {
     <meta name="theme-color" content="#0a0a0a">
     <meta property="og:title" content="${esc(a.name)} — Audiospatials">
     <meta property="og:description" content="${esc(a.description)}">
-    <meta property="og:image" content="${abs('/assets/share/' + a.slug + '.jpg')}">
+    <meta property="og:image" content="${abs(shareImage(a))}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:alt" content="${esc(exists(shareImage(a).slice(1)) && shareImage(a) !== '/assets/share/audiospatials.jpg' ? a.name : 'audiospatials')}">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="${abs('/' + a.slug)}">
     <meta name="twitter:card" content="summary_large_image">

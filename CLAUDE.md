@@ -119,6 +119,8 @@ link preview, not photos (2026-09-27) — per-artist photo previews were made
 and dropped. JPG, not webp: iMessage doesn't show webp. The artist pages'
 structured data still names each artist's photo as their image.
 
+**Artist pages now use their own `assets/share/<slug>.jpg`** (1200×630, made 2026-10-06) when one exists, else the wordmark (`shareImage()` in the build): Ses Eye Ohm and TADEVSZ have none yet. Every page also states the image's size, type and alt (`og:image:width/height/type/alt`) since 2026-11-04, after Gregor saw a square thumbnail on LinkedIn: without the size LinkedIn can fall back to its small square preview. LinkedIn caches previews; refresh one at linkedin.com/post-inspector after a change.
+
 ## Content decisions
 
 - **Never call Audiospatials a "collective"** — Greg and Hunter find it a
