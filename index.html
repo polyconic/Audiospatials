@@ -137,6 +137,7 @@ if (location.pathname.endsWith('.html')) history.replaceState(history.state, '',
 <script src="/js/nav.js"></script>
 <script src="/js/menu.js"></script>
 <script src="/js/reel.js"></script>
+<script>(function(){var n=document.querySelector('.news'),a=document.querySelectorAll('.exit a'),l=a[a.length-1];if(!n||!l)return;function f(){document.documentElement.style.setProperty('--navend',l.getBoundingClientRect().right+'px')}f();addEventListener('resize',f)})();</script>
 <script>document.querySelectorAll("[data-yr]").forEach(function(e){e.textContent=new Date().getFullYear()})</script>
 </body>
 </html>
