@@ -259,6 +259,8 @@ section:has(> .tiles.cube) > .label { text-align: center; }
 
 /* nav bar goes at the top here, copyright at the bottom of the page (.footcopy, from js/menu.js).
    base.css is shared with visuospatials which has the bar at the bottom */
+/* medium weight, a little bolder than the body (Gregor, 2026-11-07) */
+.exit, .news, .footcopy { font-weight: 500; }
 .exit { top: 0; bottom: auto; justify-content: center; text-align: center;
         padding: calc(18px + env(safe-area-inset-top, 0px)) 20px 18px;
         border-top: 0; border-bottom: 1px solid var(--rule); }
