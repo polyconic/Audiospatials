@@ -93,10 +93,19 @@ body.roster { padding-left: clamp(20px, 3.5vw, 56px); padding-right: clamp(20px,
 .reel { display: none; }
 @media (min-width: 1000px) {
     .home .wrap { display: grid; grid-template-columns: max-content minmax(0, 1fr); column-gap: clamp(32px, 4vw, 72px); }
+    /* the names run exactly the photo's height, top of LUCI to the foot of WOLFMANWOOF (Gregor,
+       2026-11-08). sized from the screen height, unless that would make them wider than 5.4vw;
+       then the photo shrinks to match instead. in Helvetica Neue bold at line-height 1.12 the
+       capitals start 0.208em below the top of their line and sit 0.181em above its bottom,
+       so n names measure n * 1.12 - 0.389 em from cap top to baseline. the build writes n,
+       the artist count, as --n on the list and on the photo */
+    .home .names, .reel { --fs: min(5.4vw, calc((100svh - clamp(80px, 9vh, 100px) - 28px) / (var(--n, 12) * 1.12 - 0.389))); }
+    .home .names { margin-top: calc(var(--fs) * -0.208); margin-bottom: calc(var(--fs) * -0.181); }
+    .home .names a { font-size: var(--fs); }
     .reel { display: block; position: sticky; top: clamp(80px, 9vh, 100px); align-self: start;
             justify-self: end; width: 100%; max-width: 760px;
             margin-right: calc(-0.5 * clamp(20px, 3.5vw, 56px)); /* half into the side margin, Gregor */
-            height: calc(100svh - clamp(80px, 9vh, 100px) - 28px); min-height: 360px;
+            height: calc(var(--fs) * (var(--n, 12) * 1.12 - 0.389));
             overflow: hidden; background: var(--rule); border-top-left-radius: min(10vw, 180px); }
     .reel a { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
     .reel a.on { opacity: 1; z-index: 1; }

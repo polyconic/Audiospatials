@@ -1,4 +1,6 @@
-/* the artists, in the order they show on /artists.
+/* the artists, in the order they show on the front page: shortest name to
+   longest as set in the list (Gregor, 2026-11-08). a new artist goes where
+   their name's width fits.
 
    change or add one here and the build redoes their page, the artists grid,
    the sitemap and llms.txt. locally run node tools/build.mjs, on github it
@@ -75,6 +77,26 @@ const ARTISTS = [
         ],
     },
     {
+        slug: 'wibes',
+        description: 'Wibes is an Oslo-based Norwegian-American duo, Hansine and Avery, making indie, dream pop and IDM.',
+        name: 'Wibes',
+        photo: 'wibes.webp',
+        focus: '55% 40%',
+        bio: [
+            'Wibes is an Oslo-based Norwegian-American duo made up of Hansine and Avery. They met by chance on a bus heading to a rave in Oslo in 2022. They clicked instantly and started sending each other demos.',
+            'Wibes doesn’t seek to make any particular type of music. Each song springs from the ether. Outputs span indie, dream pop, and IDM. It is dreamy without being sleepy and playful without being shallow.',
+            'Avery’s background doing his PhD on bioacoustics supports unexpected sonic combinations, while Hansine’s filmmaking background underlies their storytelling and aesthetics.',
+            'Their self-titled EP was recorded in the Santa Cruz Mountains and released in September 2026, mastered by Josh Jacobs at Sonic Zen Studios in Oakland, CA.',
+        ],
+        listen: [
+            { kind: 'spotify', url: 'https://open.spotify.com/artist/4KoCahKQz3CB1c7d5FaW1l', title: 'Wibes', sub: 'Top tracks' },
+        ],
+        links: [
+            { title: 'Instagram', handle: '@wibes_musics', url: 'https://www.instagram.com/wibes_musics/' },
+        ],
+        photos: ['wibes-2.webp', 'wibes-3.webp'],
+    },
+    {
         slug: 'fennec',
         description: 'A Santa Cruz band blending rock, folk and electronic sound, led by Hunter Bowersmith.',
         name: 'FENNEC',
@@ -101,39 +123,45 @@ const ARTISTS = [
         photos: ['canary-2.webp', 'canary-3.webp', 'canary-4.webp', 'video/canary-room.mp4'],
     },
     {
-        slug: 'gregor-egan',
-        description: 'LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.',
-        name: 'Gregor Egan',
-        photo: 'gregor-egan.webp',
-        hero: 'gregor-egan-grain.webp',
-        links: [
-            { title: 'Instagram', handle: '@gregor.egan', url: 'https://www.instagram.com/gregor.egan/' },
-            { title: 'Website', handle: 'gregoregan.com', url: 'https://gregoregan.com/' },
-        ],
+        slug: 'tadevsz',
+        description: 'TADEVSZ (Tadeusz Valadrian-Smith) is a producer and performer who has worked with Portland artists since 2015. Rap, reggaeton and DnB.',
+        name: 'TADEVSZ',
+        photo: 'tadeusz.webp',
+        hero: 'tadeusz-2.webp',
         bio: [
-            'Gregor Egan is a Los Angeles-based techno producer and DJ.',
-            'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Textural and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
+            'Based in Portland, OR, TADEVSZ (Tadeusz Valadrian-Smith) is the name he uses when producing, performing, and portraying the person he wants to be. He has been producing since 2015, collaborating with other Portland artists and working toward a sound unique to his values, lived experience, and culture.',
+            'He grew up with an American mom who listened to Morrissey and the Beastie Boys and a Colombian dad who listened to Willie Colón and Manu Chao, and he has always struggled to find a balance between all the sounds and rhythms that make him move. That balance is the goal. He wants to make people bounce, to set aside his inner dialogue and transmit himself faithfully through sound.',
+            'His debut album ranges across genres, all aimed at making his own head nod: rap, reggaeton, DnB. He makes the types of music that inspire him, and he hopes others enjoy it as much as he enjoys making it.',
         ],
         listen: [
-            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HÖR' },
+            { kind: 'spotify', url: 'https://open.spotify.com/artist/3ktJvEuNd4W6KV16KfbYci', title: 'TADEVSZ', sub: 'Top tracks' },
         ],
-        photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
+        links: [
+            { title: 'SoundCloud', handle: 'TADEVSZ', url: 'https://soundcloud.com/user-976868861-143056506' },
+            { title: 'Apple Music', handle: 'TADEVSZ', url: 'https://music.apple.com/us/artist/tadevsz/1795599218' },
+        ],
+        photos: ['tadeusz-4.webp', 'tadeusz-3.webp'],
+        captions: { 'tadeusz-3.webp': 'day by day 2025' },
     },
     {
-        slug: 'margo-flow',
-        description: 'New York City singer-songwriter. Folk and pop about the inner world and the natural one.',
-        name: 'Margo Flow',
-        photo: 'margo-flow.webp',
+        slug: 'stazrad',
+        description: 'A folk song that turns hardcore. Emo, prog and finger-picked acoustic songs from a Bay Area artist born in St. Louis.',
+        name: 'Stäzrad',
+        photo: 'stazrad.webp',
+        flip: true,
         bio: [
-            'Margo Flow is a singer-songwriter based in New York City. Her songs are a patchwork expression of the emotional ebb and flow of her internal landscape along with a calling for hope and appreciation of the natural world and sustainability. Her sound is inspired by 60s folk artists, like Bob Dylan and Joni Mitchell, and modern confessional artists, like Taylor Swift and Lizzy McAlpine. She tries to emulate the song of the natural world in her music through her lyrics and sonic world. Pop, folk, and acoustic genres inspire her sound. She hopes that her songs can serve as a gateway for inspiring others to take steps towards enlivening their own personal dreams and their dreams for the world at large.',
+            'If Stäzrad’s style could be distilled to a single word it would be: authentic, raw, and emo (a single word wouldn’t suffice). Emo as in emotionally vulnerable lyrical content conveyed through gut-wrenching vocal releases over musical climaxes that are sure to transport you into an existential catharsis…but of course, the tendrils of midwest emo (in the traditional sense) and hardcore have slithered their way all throughout the folk-acoustic and poly-rhythmic musings of this unique artist.',
+            'Drawing inspiration from the psychedelic 60s from the likes of Pink Floyd and The Beatles (after they discovered acid ofc) all the way to modern prog-rock stylings from the iconic Radiohead soundscape and post-hardcore breakdowns of Circa Survive, we find ourselves with a one: Stäzrad. Have you ever heard a folk song turn hardcore? As if Fleetwood Mac were cowriting a tune with Bob Dylan when suddenly the whole squad was transported to the middle of an Underoath mosh pit? If that’s hard to fathom give Stäzrad’s finger-pickin’, heart-rippin’ original “Autumn-Like Changes” a listen :)',
+            'An inter-dimensional pontificator adventuring through time and space, manifested into a physical form in our shared dimension and instilled with the conviction to share perspective through audio artform is where we find our artist. Born and raised in St. Louis, Stäzrad busted out of the midwest and hit the road full time to pursue a life of nomadic adventure chasing rock climbs and rock shows across the North American West. The siren song of the West Coast has finally lured Stäz into a California dreamin’ era that now establishes East Bay as home-base.',
         ],
         listen: [
-            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/children', title: 'children' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/nyc', title: 'nyc' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/gist-ode-to-mac-miller', title: 'gist (ode to mac miller)' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/they-themestry', title: 'they/themestry' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/salad-for-life-tk0-mp3', title: 'salad for life tk0.mp3' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/sets/originals', title: 'Originals', sub: 'Playlist' },
         ],
         links: [
-            { title: 'Instagram', handle: '@margoflow', url: 'https://www.instagram.com/margoflow/' },
+            { title: 'Instagram', handle: '@stazrad', url: 'https://www.instagram.com/stazrad/' },
         ],
     },
     {
@@ -160,19 +188,6 @@ const ARTISTS = [
         ],
     },
     {
-        slug: 'wolfmanwoof',
-        description: 'Two producers, one from techno and one from experimental synth-rock, meeting in between. Moonrise EP out now.',
-        name: 'WOLFMANWOOF',
-        photo: 'wolfmanwoof.webp',
-        focus: '10% 50%',
-        bio: [
-            'WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.',
-        ],
-        releases: 'WOLFMANWOOF',
-        // used to be the front page photo
-        photos: ['wolfmanwoof-blur.webp'],
-    },
-    {
         slug: 'ses-eye-ohm',
         description: 'Live looping artist from Los Angeles, now in Santa Cruz. Hip hop, reggae, bossa nova and R&B, built from the ground up in real time.',
         name: 'Ses Eye Ohm',
@@ -187,46 +202,53 @@ const ARTISTS = [
         ],
     },
     {
-        slug: 'stazrad',
-        description: 'A folk song that turns hardcore. Emo, prog and finger-picked acoustic songs from a Bay Area artist born in St. Louis.',
-        name: 'Stäzrad',
-        photo: 'stazrad.webp',
-        flip: true,
+        slug: 'margo-flow',
+        description: 'New York City singer-songwriter. Folk and pop about the inner world and the natural one.',
+        name: 'Margo Flow',
+        photo: 'margo-flow.webp',
         bio: [
-            'If Stäzrad’s style could be distilled to a single word it would be: authentic, raw, and emo (a single word wouldn’t suffice). Emo as in emotionally vulnerable lyrical content conveyed through gut-wrenching vocal releases over musical climaxes that are sure to transport you into an existential catharsis…but of course, the tendrils of midwest emo (in the traditional sense) and hardcore have slithered their way all throughout the folk-acoustic and poly-rhythmic musings of this unique artist.',
-            'Drawing inspiration from the psychedelic 60s from the likes of Pink Floyd and The Beatles (after they discovered acid ofc) all the way to modern prog-rock stylings from the iconic Radiohead soundscape and post-hardcore breakdowns of Circa Survive, we find ourselves with a one: Stäzrad. Have you ever heard a folk song turn hardcore? As if Fleetwood Mac were cowriting a tune with Bob Dylan when suddenly the whole squad was transported to the middle of an Underoath mosh pit? If that’s hard to fathom give Stäzrad’s finger-pickin’, heart-rippin’ original “Autumn-Like Changes” a listen :)',
-            'An inter-dimensional pontificator adventuring through time and space, manifested into a physical form in our shared dimension and instilled with the conviction to share perspective through audio artform is where we find our artist. Born and raised in St. Louis, Stäzrad busted out of the midwest and hit the road full time to pursue a life of nomadic adventure chasing rock climbs and rock shows across the North American West. The siren song of the West Coast has finally lured Stäz into a California dreamin’ era that now establishes East Bay as home-base.',
+            'Margo Flow is a singer-songwriter based in New York City. Her songs are a patchwork expression of the emotional ebb and flow of her internal landscape along with a calling for hope and appreciation of the natural world and sustainability. Her sound is inspired by 60s folk artists, like Bob Dylan and Joni Mitchell, and modern confessional artists, like Taylor Swift and Lizzy McAlpine. She tries to emulate the song of the natural world in her music through her lyrics and sonic world. Pop, folk, and acoustic genres inspire her sound. She hopes that her songs can serve as a gateway for inspiring others to take steps towards enlivening their own personal dreams and their dreams for the world at large.',
         ],
         listen: [
-            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/gist-ode-to-mac-miller', title: 'gist (ode to mac miller)' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/they-themestry', title: 'they/themestry' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/salad-for-life-tk0-mp3', title: 'salad for life tk0.mp3' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/stazrad/sets/originals', title: 'Originals', sub: 'Playlist' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/children', title: 'children' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/margo-anna/nyc', title: 'nyc' },
         ],
         links: [
-            { title: 'Instagram', handle: '@stazrad', url: 'https://www.instagram.com/stazrad/' },
+            { title: 'Instagram', handle: '@margoflow', url: 'https://www.instagram.com/margoflow/' },
         ],
     },
     {
-        slug: 'tadevsz',
-        description: 'TADEVSZ (Tadeusz Valadrian-Smith) is a producer and performer who has worked with Portland artists since 2015. Rap, reggaeton and DnB.',
-        name: 'TADEVSZ',
-        photo: 'tadeusz.webp',
-        hero: 'tadeusz-2.webp',
+        slug: 'gregor-egan',
+        description: 'LA producer and DJ. Hypnotic, textural techno shaped by jazz training and Chicago house.',
+        name: 'Gregor Egan',
+        photo: 'gregor-egan.webp',
+        hero: 'gregor-egan-grain.webp',
+        links: [
+            { title: 'Instagram', handle: '@gregor.egan', url: 'https://www.instagram.com/gregor.egan/' },
+            { title: 'Website', handle: 'gregoregan.com', url: 'https://gregoregan.com/' },
+        ],
         bio: [
-            'Based in Portland, OR, TADEVSZ (Tadeusz Valadrian-Smith) is the name he uses when producing, performing, and portraying the person he wants to be. He has been producing since 2015, collaborating with other Portland artists and working toward a sound unique to his values, lived experience, and culture.',
-            'He grew up with an American mom who listened to Morrissey and the Beastie Boys and a Colombian dad who listened to Willie Colón and Manu Chao, and he has always struggled to find a balance between all the sounds and rhythms that make him move. That balance is the goal. He wants to make people bounce, to set aside his inner dialogue and transmit himself faithfully through sound.',
-            'His debut album ranges across genres, all aimed at making his own head nod: rap, reggaeton, DnB. He makes the types of music that inspire him, and he hopes others enjoy it as much as he enjoys making it.',
+            'Gregor Egan is a Los Angeles-based techno producer and DJ.',
+            'He began producing in 2020, drawing from trip-hop, electronica, and IDM before narrowing his focus. Textural and dark sound design, built now around Elektron hardware and a Moog Grandmother.',
         ],
         listen: [
-            { kind: 'spotify', url: 'https://open.spotify.com/artist/3ktJvEuNd4W6KV16KfbYci', title: 'TADEVSZ', sub: 'Top tracks' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HÖR' },
         ],
-        links: [
-            { title: 'SoundCloud', handle: 'TADEVSZ', url: 'https://soundcloud.com/user-976868861-143056506' },
-            { title: 'Apple Music', handle: 'TADEVSZ', url: 'https://music.apple.com/us/artist/tadevsz/1795599218' },
+        photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
+    },
+    {
+        slug: 'wolfmanwoof',
+        description: 'Two producers, one from techno and one from experimental synth-rock, meeting in between. Moonrise EP out now.',
+        name: 'WOLFMANWOOF',
+        photo: 'wolfmanwoof.webp',
+        focus: '10% 50%',
+        bio: [
+            'WOLFMANWOOF is a collaborative project between two producers working in opposite corners of music. Techno and experimental synth-rock. The music lives somewhere in between.',
         ],
-        photos: ['tadeusz-4.webp', 'tadeusz-3.webp'],
-        captions: { 'tadeusz-3.webp': 'day by day 2025' },
+        releases: 'WOLFMANWOOF',
+        // used to be the front page photo
+        photos: ['wolfmanwoof-blur.webp'],
     },
     /* on the old squarespace grid, no pages yet. uncomment once they have a
        photo, description and bio

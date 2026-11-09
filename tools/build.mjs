@@ -314,7 +314,7 @@ const artistTiles = ARTISTS.map(a => {
 
 // the photos dissolving into each other on the right of the front page (js/reel.js). the script
 // loads them one ahead and only on wide screens; the noscript copy covers no-js
-const reel = `    <div class="reel" aria-hidden="true">
+const reel = `    <div class="reel" aria-hidden="true" style="--n: ${ARTISTS.length}">
 ${ARTISTS.map((a, i) => `        <a href="/${a.slug}" tabindex="-1"${i ? '' : ' class="on"'}><img data-src="/img/artists/${a.photo}" alt="" decoding="async"${a.focus ? ` style="object-position: ${esc(a.focus)}"` : ''}>${i ? '' : `<noscript><img src="/img/artists/${a.photo}" alt="" loading="lazy"></noscript>`}</a>`).join('\n')}
     </div>`;
 
@@ -367,6 +367,8 @@ for (const f of fs.readdirSync(ROOT).filter(f => f.endsWith('.html') && !built.h
 for (const a of ARTISTS) write(a.slug + '.html', artistPage(a));
 
 fill('index.html', 'tiles', artistTiles);
+// the names and the photo beside them are sized to the same height from the artist count (css/pages.css)
+write('index.html', read('index.html').replace(/<ul class="names"[^>]*>/, `<ul class="names" style="--n: ${ARTISTS.length}">`));
 fill('index.html', 'news', news);
 fill('index.html', 'reel', reel);
 fill('music.html', 'releases', onMusic.map(r => '        ' + releaseTile(r)).join('\n'));
