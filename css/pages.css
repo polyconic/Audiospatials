@@ -13,7 +13,10 @@ body { padding: clamp(30px, 8vh, 90px) clamp(20px, 7vw, 110px) 110px; }
 @media (max-width: 620px) { body { padding-top: 62px; padding-bottom: 150px; } }
 .wrap { max-width: 1180px; margin: 0 auto; }
 
-h1 { font-size: clamp(40px, 11vw, 150px); line-height: 0.82; letter-spacing: -0.045em;
+/* page titles all share one size, set so the widest line on any page ("PRODUCTION &", 8.14em
+   at full spread) always fits the column (1180px, or the screen less body padding), with slack.
+   then no title rewraps while its letters spread on scroll (Gregor, 2026-11-08) */
+h1 { font-size: min(150px, calc(min(1180px, 100vw - 2 * clamp(20px, 7vw, 110px)) / 8.4)); line-height: 0.82; letter-spacing: -0.045em;
      font-weight: 700; text-transform: uppercase; overflow-wrap: anywhere; }
 h1 em { font-style: normal; color: var(--sig); margin-left: calc(0.045em + 2px); }
 /* artist names are long (wolfmanwoof) so they go a size down */
@@ -384,7 +387,7 @@ section:has(> .tiles.cube) > .label { text-align: center; }
     }
 }
 @keyframes title-open { to { letter-spacing: 0.03em; } }
-/* titles that already wrap (contact) stay still or they jump around */
+/* a title that would rewrap mid-spread can opt out. none do now: they're sized to fit (top of file) */
 .wrap > h1.still { animation: none; }
 
 /* light mode (css/theme.css): the players and the sound buttons sit on photos and video, so they

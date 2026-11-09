@@ -265,20 +265,31 @@
                     return;
                 }
                 if (c.nodeType !== 3) return;
-                [...c.textContent.replace(/\s+/g, ' ')].forEach(ch => {
-                    const span = document.createElement('span');
-                    span.className = 'arrive';
-                    if (ch === '↗') {
-                        const svg = document.createElementNS(NS, 'svg');
-                        svg.setAttribute('viewBox', '0 0 0.5 1');
-                        svg.classList.add('geo', 'arrow');
-                        const path = document.createElementNS(NS, 'path');
-                        path.setAttribute('d', G['↗'].parts[0]);
-                        svg.appendChild(path);
-                        span.appendChild(svg);
-                    } else span.textContent = ch;
-                    into.appendChild(span);
-                    letters.push(span);
+                // each word's letters sit in a nowrap span, or a line could break mid-word
+                // between the letter boxes ("PRODUCTION & M / IXING")
+                c.textContent.replace(/\s+/g, ' ').split(/( )/).forEach(word => {
+                    if (!word) return;
+                    let box = into;
+                    if (word !== ' ') {
+                        box = document.createElement('span');
+                        box.className = 'word';
+                        into.appendChild(box);
+                    }
+                    [...word].forEach(ch => {
+                        const span = document.createElement('span');
+                        span.className = 'arrive';
+                        if (ch === '↗') {
+                            const svg = document.createElementNS(NS, 'svg');
+                            svg.setAttribute('viewBox', '0 0 0.5 1');
+                            svg.classList.add('geo', 'arrow');
+                            const path = document.createElementNS(NS, 'path');
+                            path.setAttribute('d', G['↗'].parts[0]);
+                            svg.appendChild(path);
+                            span.appendChild(svg);
+                        } else span.textContent = ch;
+                        box.appendChild(span);
+                        letters.push(span);
+                    });
                 });
             });
         })(el, shown);
