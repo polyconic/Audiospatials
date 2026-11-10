@@ -387,6 +387,33 @@ section:has(> .tiles.cube) > .label { text-align: center; }
     }
 }
 @keyframes title-open { to { letter-spacing: 0.03em; } }
+
+/* photos, release covers and videos rise into place as they scroll on screen (2026-11-10).
+   css only: anything already on screen at load is simply there. off for reduced motion */
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .photos img, .photos .clip, .photos figure, .tiles > .tile, .player.video {
+            animation: rise linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 90%;
+        }
+    }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(48px); } }
+
+/* artist covers: as the page scrolls, the photo (or clip) sinks a little slower than the page and
+   eases closer, over the first screen. scaled from its bottom edge so the top never shows a gap */
+@supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .cover .c1 > img, .cover .c1 video {
+            transform-origin: 50% 100%;
+            animation: drift linear both;
+            animation-timeline: scroll(root block);
+            animation-range: 0 100vh;
+        }
+    }
+}
+@keyframes drift { to { transform: translateY(8%) scale(1.1); } }
 /* a title that would rewrap mid-spread can opt out. none do now: they're sized to fit (top of file) */
 .wrap > h1.still { animation: none; }
 

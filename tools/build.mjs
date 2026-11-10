@@ -176,7 +176,8 @@ const labelRelease = r => ({ '@type': 'MusicRelease', url: r.url, recordLabel: {
 const releasesBy = name => RELEASES.filter(r => r.artist === name);
 
 function artistLD(a) {
-    const sameAs = [...(a.listen || []).map(l => embed(l.kind, l.url).page), ...(a.links || []).map(l => l.url)].filter(Boolean);
+    // profiles only: a single track or video isn't the artist, so of the players just spotify artist pages count
+    const sameAs = [...new Set([...(a.listen || []).map(l => embed(l.kind, l.url).page).filter(u => /open\.spotify\.com\/artist\//.test(u || '')), ...(a.links || []).map(l => l.url)])];
     const albums = releasesBy(a.releases || a.name);
     return ld({
         '@type': 'MusicGroup',

@@ -111,9 +111,13 @@ const ARTISTS = [
     },
     {
         slug: 'canary',
-        description: 'Canary is an artist on Audiospatials.',
+        description: 'Canary is a singer and songwriter based in Santa Cruz.',
         name: 'Canary',
         photo: 'canary-5.webp',
+        listen: [
+            { kind: 'spotify', url: 'https://open.spotify.com/track/3sCwz65jI7B7WFCzaVsoIw', title: 'gentle', sub: 'New single' },
+            { kind: 'youtube', url: 'https://www.youtube.com/watch?v=5LAzm3qv7Lk', title: 'Dragonfly' },
+        ],
         links: [
             { title: 'Instagram', handle: '@canary.the.marie', url: 'https://www.instagram.com/canary.the.marie/' },
             { title: 'YouTube', handle: '@mariesmith-e3z', url: 'https://www.youtube.com/@mariesmith-e3z' },
