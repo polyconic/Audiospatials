@@ -50,6 +50,7 @@ const ARTISTS = [
             'Her successful shows have led her to share the stage with renowned artists such as David Löhlein, Cassie Raptor, Nikolina, LOLALITA, FUTUR IS OFFLINE, and MA ČKA.',
         ],
         listen: [
+            { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/input-device-recording-1', title: 'luci @ ÆDEN (21.03.26)' },
             { kind: 'soundcloud', url: 'https://soundcloud.com/luci-picarelli/luci-sucre-lyon-06-10-25', title: 'luci @ Le Sucre (Lyon, 10-06-25)' },
         ],
         photos: ['luci-stage.webp', 'video/luci-crowd.mp4', 'luci.webp'],
@@ -237,7 +238,7 @@ const ARTISTS = [
         ],
         listen: [
             { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/spontaneous-friday-mix', title: 'Spontaneous Friday Mix' },
-            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'for HÖR' },
+            { kind: 'soundcloud', url: 'https://soundcloud.com/gregoregan/for-hor', title: 'floater' },
         ],
         photos: ['gregor-egan-stage.webp', 'gregor-egan.webp'],
     },
